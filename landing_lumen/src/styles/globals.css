@@ -1,0 +1,131 @@
+/* Importar fuentes Glancyr */
+/* Importar fuentes Glancyr */
+:root {
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@font-face {
+  font-family: 'Glancyr';
+  src: url('../assets/fonts/Glancyr-Bold.woff2') format('otf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Glancyr';
+  src: url('../assets/fonts/Glancyr-Semibold.woff2') format('otf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Glancyr';
+  src: url('../assets/fonts/Glancyr-ExtraLight.woff2') format('otf');
+  font-weight: 200;
+  font-style: normal;
+}
+
+/* Aplicar Glancyr a toda la página */
+* {
+  font-family: 'Glancyr', sans-serif;
+}
+
+body {
+  font-family: 'Glancyr', sans-serif;
+}
+  
+  /* Variables CSS */
+  :root {
+    --color-bg: #FEF7F7;
+    --color-text: #161615;
+    --color-accent: #F7C432;
+    --color-secondary: #EED4E9;
+    --color-primary: #4B8FCE;
+    --color-cta: #E74E13;
+    
+    --font-primary: 'Glancyr', sans-serif;
+    
+    --container-width: 1200px;
+    --section-padding: 80px 20px;
+    
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+  }
+  
+  /* Reset y estilos base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-primary);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Utilidades */
+  .text-bold {
+    font-weight: 700;
+  }
+  
+  .text-semibold {
+    font-weight: 600;
+  }
+  
+  .text-extralight {
+    font-weight: 200;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-primary);
+  }
+  
+  .btn-primary {
+    background-color: var(--color-cta);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #d0450b;
+    transform: translateY(-2px);
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--color-accent);
+  }

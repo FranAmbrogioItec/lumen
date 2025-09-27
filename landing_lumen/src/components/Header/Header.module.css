@@ -1,0 +1,209 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  transition: var(--transition);
+  z-index: 1000;
+  padding: 15px 0;
+  font-family: var(--font-primary);
+}
+
+.header.scrolled {
+  background-color: var(--color-bg);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logoLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: var(--transition);
+  z-index: 1001;
+}
+
+.logo {
+  height: 54px;
+  width: auto;
+  transition: var(--transition);
+}
+
+.logoLink:hover .logo {
+  transform: scale(1.05);
+}
+
+/* Lista de navegación */
+.navList {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 600;
+  transition: var(--transition);
+  position: relative;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.navLink:hover::before {
+  left: 100%;
+}
+
+.linkText {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-primary);
+}
+
+/* Efectos hover para enlaces normales */
+.navLink:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 5px 15px rgba(75, 143, 206, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Efectos especiales para el CTA */
+.ctaLink {
+  background: linear-gradient(45deg, var(--color-cta), var(--color-accent));
+  color: white !important;
+  border: 2px solid transparent !important;
+  font-weight: 700;
+}
+
+.ctaLink:hover {
+  background: linear-gradient(45deg, var(--color-accent), var(--color-cta));
+  box-shadow: 0 5px 20px rgba(231, 78, 19, 0.4);
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Botón menú móvil */
+.mobileMenuButton {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.mobileMenuButton span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-text);
+  margin: 3px 0;
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+
+/* Agregar al archivo existente */
+
+.header.darkNav {
+  background-color: rgba(10, 10, 10, 0.95) !important;
+  backdrop-filter: blur(20px);
+}
+
+.header.darkNav .navLink {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.header.darkNav .navLink:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.header.darkNav .ctaLink {
+  background: linear-gradient(45deg, var(--color-cta), var(--color-accent));
+} 
+
+/* Estilos responsivos */
+@media (max-width: 968px) {
+  .mobileMenuButton {
+    display: flex;
+  }
+
+  .navList {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--color-bg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+
+  .navListOpen {
+    right: 0;
+  }
+
+  .navLink {
+    width: 100%;
+    text-align: center;
+    padding: 15px 20px;
+    border-radius: 10px;
+  }
+
+  .mobileMenuButton.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .mobileMenuButton.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobileMenuButton.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    height: 35px;
+  }
+  
+  .navLink {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+}
