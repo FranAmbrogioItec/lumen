@@ -19,7 +19,7 @@ const About = () => {
       shortDesc: "Identidad visual única",
       longDesc: "Creamos identidades visuales que comunican la esencia de tu marca. Logotipos, paletas de colores y material gráfico que destacan en el mercado y conectan con tu audiencia.",
       icon: persona1,
-      color: "#F7C432",
+      color: "#E74E13", // Naranja
       direction: "right"
     },
     {
@@ -28,7 +28,7 @@ const About = () => {
       shortDesc: "Comunidad online activa",
       longDesc: "Gestionamos tus comunidades digitales creando engagement genuino. Estrategias de contenido que fomentan relaciones duraderas con tu audiencia objetivo.",
       icon: persona2,
-      color: "#EED4E9",
+      color: "#4B8FCE", // Azul
       direction: "right"
     },
     {
@@ -37,7 +37,7 @@ const About = () => {
       shortDesc: "Campañas efectivas",
       longDesc: "Implementamos campañas publicitarias en plataformas digitales que maximizan tu ROI. Segmentación precisa y optimización continua para mejores resultados.",
       icon: persona3,
-      color: "#4B8FCE",
+      color: "#EED4E9", // Rosa pálido/Lila
       direction: "left"
     },
     {
@@ -46,7 +46,7 @@ const About = () => {
       shortDesc: "Experiencias digitales",
       longDesc: "Desarrollamos sitios web responsivos y optimizados centrados en la experiencia de usuario. Conversión y profesionalismo en cada proyecto.",
       icon: persona4,
-      color: "#E74E13",
+      color: "#F7C432", // Amarillo
       direction: "left"
     }
   ]
@@ -96,29 +96,32 @@ const About = () => {
   return (
     <section id="nosotros" className={styles.about} ref={aboutRef}>
       <div className="container">
-        {/* Título y descripción superior */}
-        <div className={styles.aboutHeader}>
-          <h2 className={`${styles.aboutTitle} text-semibold`}>NOSOTROS</h2>
-          <p className={`${styles.aboutSubtitle} text-extralight`}>
-            BLACKLINK AGENCIA DE DISEÑO Y MARKETING QUE GENERA ESTRATEGIAS DE 
-            ORGANIZACIÓN EFICAZ Y POTENCIA MARCAS QUE CONQUISTAN CON PROPÓSITO 
-            Y PRESENCIA DIGITAL EN LA SOCIEDAD.
-          </p>
+        {/* Título y descripción superior en 2 columnas */}
+        <div className={styles.aboutHeaderGrid}> {/* Clase para el layout en grid */}
+          <div className={styles.gridLeft}>
+            <h2 className={`${styles.aboutTitle} text-semibold`}>NOSOTROS</h2>
+          </div>
+          <div className={styles.gridRight}>
+            <p className={styles.aboutSubtitle}>
+              BLACKLINK AGENCIA DE DISEÑO Y MARKETING QUE GENERA ESTRATEGIAS DE 
+              ORGANIZACIÓN EFICAZ Y POTENCIA MARCAS QUE CONQUISTAN CON PROPÓSITO 
+              Y PRESENCIA DIGITAL EN LA SOCIEDAD.
+            </p>
+          </div>
         </div>
 
-        {/* Grid de servicios en fila */}
+        {/* Grid de servicios pegados */}
         <div className={styles.servicesRow}>
           {services.map((service) => (
             <div 
               key={service.id}
               className={`${styles.serviceCard} ${activeCard === service.id ? styles.active : ''} ${styles[service.direction]}`}
               onClick={() => handleCardClick(service.id)}
-              style={{ '--accent-color': service.color }}
+              style={{ '--accent-color': service.color, backgroundColor: service.color }} // Añadimos backgroundColor para el color base
             >
               <div className={styles.cardContent}>
                 <div className={styles.cardImage}>
                   <img src={service.icon} alt={service.title} />
-                  <div className={styles.imageOverlay}></div>
                 </div>
                 <div className={styles.cardText}>
                   <h3 className={`${styles.cardTitle} text-semibold`}>{service.title}</h3>
@@ -153,7 +156,7 @@ const About = () => {
           ))}
         </div>
 
-        {/* Sección ADS */}
+        {/* Sección ADS - Mantenida por si acaso */}
         <div className={styles.adsSection}>
           <div className={styles.adsContent}>
             <p className={`${styles.adsText} text-semibold`}>ADS</p>
@@ -165,7 +168,7 @@ const About = () => {
         </div>
       </div>
 
-      {/* Elementos decorativos de fondo */}
+      {/* Elementos decorativos de fondo - Mantenidos por si acaso */}
       <div className={styles.backgroundElements}>
         <div className={styles.bgCircle1}></div>
         <div className={styles.bgCircle2}></div>

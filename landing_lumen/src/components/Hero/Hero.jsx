@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Hero.module.css'
-import heroImage from '../../assets/hero.png'
+import heroImage from '../../assets/hero.svg'
 
 const Hero = () => {
   const heroRef = useRef(null)
-  const [displayedTitle, setDisplayedTitle] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const fullTitle = 'DISEÑO Y MARKETING ESTRATÉGICO PARA ILUMINAR EL FUTURO DE TU EMPRESA'
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -14,8 +12,7 @@ const Hero = () => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active')
-            // Iniciar efecto de tipeado cuando la sección sea visible
-            startTypingEffect()
+            setIsVisible(true)
           }
         })
       },
@@ -33,22 +30,6 @@ const Hero = () => {
     }
   }, [])
 
-  const startTypingEffect = () => {
-    if (currentIndex < fullTitle.length) {
-      const timer = setTimeout(() => {
-        setDisplayedTitle(fullTitle.slice(0, currentIndex + 1))
-        setCurrentIndex(currentIndex + 1)
-      }, 50) // Velocidad de tipeado
-      return () => clearTimeout(timer)
-    }
-  }
-
-  useEffect(() => {
-    if (currentIndex > 0 && currentIndex < fullTitle.length) {
-      startTypingEffect()
-    }
-  }, [currentIndex])
-
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -58,56 +39,75 @@ const Hero = () => {
 
   return (
     <section id="inicio" className={styles.hero} ref={heroRef}>
+      {/* Línea divisoria superior */}
+      <div className={styles.dividerTop}></div>
+      
       <div className="container">
         <div className={styles.heroGrid}>
-          <div className={`${styles.heroContent} reveal`}>
-            <h1 className={`${styles.heroTitle} text-bold`}>
-              <span className={styles.typedText}>{displayedTitle}</span>
-              <span className={styles.cursor}>|</span>
+          <div className={`${styles.heroContent} ${isVisible ? styles.visible : ''}`}>
+            {/* Línea decorativa izquierda */}
+            <div className={styles.contentDividerLeft}></div>
+            
+            <h1 className={styles.heroTitle}>
+              <span className={styles.titleLine}>
+                DISEÑO Y MARKETING
+              </span>
+              <span className={styles.titleLine}>ESTRATÉGICO PARA</span>
+              <span className={styles.titleLine}>
+                <span className={styles.highlight}>ILUMINAR</span> EL FUTURO
+              </span>
+              <span className={styles.titleLine}>DE <span className={styles.highlight}>TU EMPRESA</span></span>
             </h1>
-            <p className={styles.heroSubtitle}>
-              Transformamos tu visión en resultados tangibles con soluciones integrales de marketing y desarrollo.
+            
+            {/* Línea divisoria entre título y subtítulo */}
+            <div className={styles.titleDivider}></div>
+            
+            {/* <p className={styles.heroSubtitle}>
+              Transformamos tu visión en resultados tangibles con soluciones integrales 
+              de marketing y desarrollo web que impulsan el crecimiento de tu negocio.
             </p>
+             */}
             <div className={styles.heroButtons}>
               <a 
                 href="#propuesta" 
-                className={`btn btn-primary ${styles.heroCta}`}
+                className={styles.heroCta}
                 onClick={(e) => {
                   e.preventDefault()
                   scrollToSection('propuesta')
                 }}
               >
-                Nuestra Propuesta
-              </a>
-              <a 
-                href="#nosotros" 
-                className={styles.heroSecondary}
-                onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection('nosotros')
-                }}
-              >
-                Conoce más
+                <span className={styles.ctaText}>Nuestra Propuesta</span>
+                <span className={styles.ctaArrow}>→</span>
               </a>
             </div>
           </div>
           
-          <div className={`${styles.heroImageContainer} reveal`}>
+          <div className={`${styles.heroImageContainer} ${isVisible ? styles.visible : ''}`}>
+            {/* Línea decorativa derecha */}
+            <div className={styles.imageDividerRight}></div>
+            
             <img 
               src={heroImage} 
-              alt="Diseño y Marketing Estratégico" 
+              alt="Ilustración de diseño y marketing estratégico" 
               className={styles.heroImage}
             />
-            <div className={styles.imageDecoration}></div>
+            
+            {/* Badge decorativo en la imagen */}
+            <div className={styles.imageBadge}>
+              <span className={styles.badgeText}>BL</span>
+            </div>
           </div>
         </div>
         
-        <div className={styles.heroVisual}>
-          <div className={`${styles.floatingElement} ${styles.float1}`}></div>
-          <div className={`${styles.floatingElement} ${styles.float2}`}></div>
-          <div className={`${styles.floatingElement} ${styles.float3}`}></div>
+        {/* Indicador de scroll mejorado */}
+        <div className={styles.scrollIndicator}>
+          <div className={styles.scrollLine}></div>
+          <span className={styles.scrollText}>Scroll</span>
         </div>
       </div>
+      
+      {/* Línea divisoria inferior */}
+      <div className={styles.dividerBottom}></div>
     </section>
   )
 }

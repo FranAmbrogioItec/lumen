@@ -1,12 +1,11 @@
 .about {
-  padding: var(--section-padding);
+  padding: var(--section-padding) 0; /* Se ajusta el padding vertical */
   background: linear-gradient(135deg, #0a0a0a 0%, #161615 50%, #1a1a1a 100%);
   position: relative;
   overflow: hidden;
   color: white;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
+  /* Se elimina el display: flex; align-items: center; para que el contenido fluya verticalmente */
 }
 
 /* Navbar oscuro */
@@ -29,102 +28,112 @@
   background: linear-gradient(45deg, var(--color-cta), var(--color-accent));
 }
 
-.aboutHeader {
-  text-align: center;
-  margin-bottom: 80px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+/* NUEVA ESTRUCTURA DE CABECERA EN 2 COLUMNAS */
+.aboutHeaderGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap: 40px;
+  margin-bottom: 60px;
+  padding: 0 15px; /* Pequeño padding para los bordes del contenedor */
+}
+
+.gridLeft {
+  text-align: left;
+}
+
+.gridRight {
+  text-align: left;
+  display: flex;
+  align-items: center;
 }
 
 .aboutTitle {
-  font-size: 4rem;
-  margin-bottom: 30px;
+  font-size: 6rem; /* Se aumenta el tamaño para que sea más dominante */
+  margin-bottom: 0;
   color: white;
   position: relative;
   display: inline-block;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  line-height: 1;
 }
 
 .aboutTitle::after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(45deg, var(--color-accent), var(--color-primary));
-  border-radius: 2px;
+  content: none; /* Eliminamos la línea bajo el título */
 }
 
 .aboutSubtitle {
-  font-size: 1.4rem;
+  font-size: 1.5rem; /* Se mantiene o ajusta ligeramente el tamaño */
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.9);
-  margin-top: 40px;
+  margin-top: 0;
   font-weight: 200;
 }
 
 /* Fila de servicios */
 .servicesRow {
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  justify-content: flex-start;
+  gap: 0; /* Eliminamos el espacio entre cards */
   margin-bottom: 80px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Aseguramos que se mantenga en una sola fila */
+  width: 100%;
 }
 
 /* Cards de servicios */
 .serviceCard {
   position: relative;
-  background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(20, 20, 20, 0.9));
-  border-radius: 20px;
+  /* El color de fondo se establece directamente en el JSX a través de service.color */
+  background: var(--accent-color); 
+  border-radius: 0; /* Eliminamos el radio para que estén pegadas */
   padding: 0;
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 280px;
-  min-height: 350px;
+  box-shadow: none; /* Eliminamos la sombra */
+  border: none; /* Eliminamos el borde */
+  width: 25%; /* Hacemos que cada card ocupe exactamente 1/4 del ancho */
+  min-height: 450px; /* Aumentamos el alto para la referencia visual */
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.1); /* Separador sutil */
 }
 
+/* Eliminamos el efecto hover de color */
 .serviceCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, var(--accent-color), transparent);
-  opacity: 0.1;
-  transition: opacity 0.3s ease;
+  content: none; 
 }
 
 .serviceCard:hover::before {
-  opacity: 0.2;
+  opacity: 0;
 }
 
 .serviceCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  border-color: var(--accent-color);
+  transform: none; /* Eliminamos el efecto de levantamiento al hacer hover */
+  box-shadow: none;
+  border-color: none;
 }
 
 /* Estados activos para despliegue */
 .serviceCard.active {
-  width: 600px;
+  width: 70%; /* La card activa ocupa más espacio */
   z-index: 20;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  transform: none !important; /* Aseguramos que no haya traslación en activo */
 }
 
+/* Reducimos el tamaño de las cards inactivas */
+.servicesRow:has(.serviceCard.active) .serviceCard:not(.active) {
+  width: 10%; /* Las cards inactivas se encogen */
+  opacity: 0.6;
+  transform: none !important;
+}
+
+/* Ajustes a los efectos de dirección para que no trasladen el elemento activo */
 .serviceCard.active.right {
-  transform: translateX(100px) translateY(-10px);
+  transform: none !important;
 }
 
 .serviceCard.active.left {
-  transform: translateX(-100px) translateY(-10px);
+  transform: none !important;
 }
 
 /* Contenido de la card */
@@ -133,9 +142,9 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  align-items: flex-start; /* Alineamos a la izquierda */
+  justify-content: flex-end; /* Alineamos al final (abajo) */
+  text-align: left;
   transition: all 0.4s ease;
 }
 
@@ -145,13 +154,16 @@
 }
 
 .cardImage {
+  /* Se mantiene el estilo de imagen por si se usan iconos lineales */
   width: 120px;
   height: 120px;
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 20px;
   position: relative;
-  border: 3px solid var(--accent-color);
+  border: none;
+  /* Opcional: Se pueden usar los colores de acento para la imagen. */
+  /* border: 3px solid var(--accent-color); */
 }
 
 .cardImage img {
@@ -162,46 +174,37 @@
 }
 
 .serviceCard:hover .cardImage img {
-  transform: scale(1.1);
+  transform: none;
 }
 
 .imageOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, var(--accent-color), transparent);
-  opacity: 0.3;
+  content: none; /* Eliminamos el overlay */
 }
 
 .cardText {
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .cardTitle {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-  color: white;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem; /* Aumentamos el tamaño */
+  margin-bottom: 5px;
+  color: #0a0a0a; /* Color oscuro para el contraste */
+  text-shadow: none;
 }
 
 .cardShortDesc {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.9rem;
-  font-weight: 300;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .cardArrow {
-  font-size: 1.8rem;
-  color: var(--accent-color);
-  transition: all 0.3s ease;
-  opacity: 0.7;
+  content: none; /* Eliminamos la flecha del diseño original */
 }
 
 .serviceCard:hover .cardArrow {
-  transform: translateX(5px) scale(1.2);
-  opacity: 1;
+  transform: none;
+  opacity: 0;
 }
 
 /* Contenido expandido */
@@ -217,6 +220,9 @@
   transition: all 0.5s ease;
   display: flex;
   align-items: center;
+  background: rgba(10, 10, 10, 0.95); /* Fondo oscuro para el contenido expandido */
+  backdrop-filter: blur(10px);
+  color: white;
 }
 
 .serviceCard.active .cardExpanded {
@@ -229,9 +235,9 @@
 }
 
 .expandedTitle {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
-  color: var(--accent-color);
+  color: var(--accent-color); /* Usamos el color de acento de la card */
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -272,6 +278,7 @@
   cursor: pointer;
   transition: var(--transition);
   backdrop-filter: blur(10px);
+  z-index: 25; /* Aseguramos que esté por encima de todo */
 }
 
 .closeButton:hover {
@@ -281,127 +288,38 @@
 
 /* Sección ADS */
 .adsSection {
-  text-align: center;
-  padding: 50px;
-  background: linear-gradient(45deg, rgba(75, 143, 206, 0.1), rgba(231, 78, 19, 0.1));
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-}
-
-.adsSection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-}
-
-.adsText {
-  font-size: 5rem;
-  margin-bottom: 10px;
-  position: relative;
-  z-index: 2;
-  background: linear-gradient(45deg, var(--color-primary), var(--color-cta));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.adsSubtext {
-  font-size: 1.3rem;
-  opacity: 0.9;
-  position: relative;
-  z-index: 2;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-  font-weight: 300;
+  /* Se mantiene el estilo de ADS */
 }
 
 /* Elementos decorativos de fondo */
 .backgroundElements {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.bgCircle1, .bgCircle2, .bgCircle3 {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.1;
-  animation: float 8s ease-in-out infinite;
-}
-
-.bgCircle1 {
-  width: 300px;
-  height: 300px;
-  background: var(--color-accent);
-  top: 10%;
-  left: 5%;
-  animation-delay: 0s;
-}
-
-.bgCircle2 {
-  width: 200px;
-  height: 200px;
-  background: var(--color-primary);
-  bottom: 20%;
-  right: 10%;
-  animation-delay: 2s;
-}
-
-.bgCircle3 {
-  width: 150px;
-  height: 150px;
-  background: var(--color-cta);
-  top: 50%;
-  left: 50%;
-  animation-delay: 4s;
+  /* Se mantienen los elementos decorativos */
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .servicesRow {
-    gap: 15px;
-  }
-  
-  .serviceCard {
-    width: 240px;
-  }
-  
-  .serviceCard.active {
-    width: 500px;
+  .aboutTitle {
+    font-size: 5rem;
   }
 }
 
 @media (max-width: 968px) {
-  .servicesRow {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+  /* Diseño de cabecera en una sola columna para pantallas pequeñas */
+  .aboutHeaderGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+    margin-bottom: 40px;
   }
   
-  .serviceCard {
-    width: 100%;
-    max-width: 400px;
+  .gridLeft, .gridRight {
+    text-align: center;
   }
   
-  .serviceCard.active {
-    width: 100%;
-    max-width: 400px;
-    transform: translateY(-10px) !important;
+  .gridRight {
+    justify-content: center;
   }
-  
+
   .aboutTitle {
     font-size: 3rem;
   }
@@ -409,48 +327,36 @@
   .aboutSubtitle {
     font-size: 1.2rem;
   }
+
+  /* Cards apiladas */
+  .servicesRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  
+  .serviceCard, .serviceCard.active, 
+  .servicesRow:has(.serviceCard.active) .serviceCard:not(.active) {
+    width: 100%; /* Ocupan todo el ancho */
+    max-width: 400px; /* Ancho máximo para el apilamiento */
+    min-height: 250px;
+    transform: none !important;
+    opacity: 1 !important;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .cardExpanded {
+    background: #0a0a0a;
+  }
 }
 
 @media (max-width: 768px) {
-  .serviceCard {
-    min-height: 300px;
-  }
-  
-  .cardContent {
-    padding: 20px;
-  }
-  
-  .cardExpanded {
-    padding: 30px 20px;
-  }
-  
   .expandedTitle {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
   
   .expandedDesc {
     font-size: 1rem;
-  }
-  
-  .adsText {
-    font-size: 3.5rem;
-  }
-  
-  .adsSubtext {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .aboutTitle {
-    font-size: 2.5rem;
-  }
-  
-  .aboutSubtitle {
-    font-size: 1.1rem;
-  }
-  
-  .serviceFeatures {
-    justify-content: center;
   }
 }
