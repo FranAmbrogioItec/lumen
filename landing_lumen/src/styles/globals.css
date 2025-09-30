@@ -1,130 +1,208 @@
 /* Importar fuentes Glancyr */
-:root {
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 @font-face {
   font-family: 'Glancyr';
-  src: url('../assets/fonts/Glancyr-Bold.woff2') format('otf');
+  src: url('./assets/fonts/Glancyr-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Glancyr';
-  src: url('../assets/fonts/Glancyr-Semibold.woff2') format('otf');
+  src: url('./assets/fonts/Glancyr-Semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Glancyr';
-  src: url('../assets/fonts/Glancyr-ExtraLight.woff2') format('otf');
+  src: url('./assets/fonts/Glancyr-ExtraLight.woff2') format('woff2');
   font-weight: 200;
   font-style: normal;
+  font-display: swap;
 }
 
-/* Aplicar Glancyr a toda la página */
+/* Variables CSS - Dark Mode */
+:root {
+  --color-bg: #0a0a0a;
+  --color-bg-secondary: #111111;
+  --color-bg-card: #1a1a1a;
+  --color-text: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-accent: #F7C432;
+  --color-secondary: #EED4E9;
+  --color-primary: #4B8FCE;
+  --color-cta: #E74E13;
+  --color-border: #2a2a2a;
+  
+  --font-primary: 'Glancyr', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  --container-width: 1200px;
+  --section-padding: 100px 20px;
+  
+  --border-radius: 12px;
+  --border-radius-lg: 20px;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 40px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Reset y estilos base */
 * {
-  font-family: 'Glancyr', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Glancyr', sans-serif;
+  font-family: var(--font-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-  
-  /* Variables CSS */
-  :root {
-    --color-bg: #FEF7F7;
-    --color-text: #161615;
-    --color-accent: #F7C432;
-    --color-secondary: #EED4E9;
-    --color-primary: #4B8FCE;
-    --color-cta: #E74E13;
-    
-    --font-primary: 'Glancyr', sans-serif;
-    
-    --container-width: 1200px;
-    --section-padding: 80px 20px;
-    
-    --border-radius: 8px;
-    --transition: all 0.3s ease;
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cta);
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Utilidades */
+.text-bold {
+  font-weight: 700;
+}
+
+.text-semibold {
+  font-weight: 600;
+}
+
+.text-extralight {
+  font-weight: 200;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, var(--color-cta), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animaciones globales */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
-  
-  /* Reset y estilos base */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  html {
-    scroll-behavior: smooth;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
   }
-  
-  body {
-    font-family: var(--font-primary);
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    line-height: 1.6;
-    overflow-x: hidden;
+  33% {
+    transform: translateY(-20px) rotate(2deg);
   }
-  
-  .container {
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 20px;
+  66% {
+    transform: translateY(-10px) rotate(-1deg);
   }
-  
-  /* Utilidades */
-  .text-bold {
-    font-weight: 700;
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.5;
   }
-  
-  .text-semibold {
-    font-weight: 600;
+  50% {
+    opacity: 0.8;
   }
-  
-  .text-extralight {
-    font-weight: 200;
-  }
-  
-  .btn {
-    display: inline-block;
-    padding: 12px 30px;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
-    font-family: var(--font-primary);
-  }
-  
-  .btn-primary {
-    background-color: var(--color-cta);
-    color: white;
-  }
-  
-  .btn-primary:hover {
-    background-color: #d0450b;
-    transform: translateY(-2px);
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-    margin-bottom: 40px;
-    text-align: center;
-    position: relative;
-  }
-  
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background-color: var(--color-accent);
-  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.glow {
+  animation: glow 4s ease-in-out infinite;
+}
+
+/* Efectos de partículas y fondo */
+.background-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+  opacity: 0.1;
+  filter: blur(40px);
+  animation: float 8s ease-in-out infinite;
+}
+
+.particle:nth-child(1) {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--color-cta) 0%, transparent 70%);
+  bottom: 20%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.particle:nth-child(3) {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  top: 50%;
+  left: 80%;
+  animation-delay: 4s;
+}

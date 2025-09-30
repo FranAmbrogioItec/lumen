@@ -1,21 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Header.module.css'
-import logo from '../../assets/logo.svg' // Ajusta la ruta según tu estructura
+import logo from '../../assets/lumen-dark.svg'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('inicio')
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 20)
+      
+      // Actualizar sección activa
+      const sections = ['inicio', 'nosotros', 'trabajamos', 'trabajos', 'reunion']
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
+        }
+        return false
+      })
+      
+      if (currentSection) {
+        setActiveSection(currentSection)
+      }
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Cerrar menú móvil cuando se hace clic fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
       const nav = document.querySelector(`.${styles.navList}`)
@@ -32,7 +47,6 @@ const Header = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [isMobileMenuOpen])
 
-  // Prevenir scroll del body cuando el menú móvil está abierto
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden'
@@ -54,6 +68,7 @@ const Header = () => {
       })
     }
     setIsMobileMenuOpen(false)
+    setActiveSection(sectionId)
   }
 
   const toggleMobileMenu = () => {
@@ -64,7 +79,6 @@ const Header = () => {
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className="container">
         <nav className={styles.nav}>
-          {/* Logo como enlace a Home */}
           <a 
             href="#inicio" 
             className={styles.logoLink}
@@ -77,60 +91,27 @@ const Header = () => {
             <img src={logo} alt="BLACKLINK Logo" className={styles.logo} />
           </a>
           
-          {/* Menú de navegación */}
           <ul className={`${styles.navList} ${isMobileMenuOpen ? styles.navListOpen : ''}`}>
-            <li>
-              <a 
-                href="#inicio" 
-                className={styles.navLink}
-                onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection('inicio')
-                }}
-                aria-label="Ir a inicio"
-              >
-                <span className={styles.linkText}>Inicio</span>
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#nosotros" 
-                className={styles.navLink}
-                onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection('nosotros')
-                }}
-                aria-label="Ir a nosotros"
-              >
-                <span className={styles.linkText}>Nosotros</span>
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#trabajamos" 
-                className={styles.navLink}
-                onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection('trabajamos')
-                }}
-                aria-label="Ir a como trabajamos"
-              >
-                <span className={styles.linkText}>Cómo trabajamos</span>
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#trabajos" 
-                className={styles.navLink}
-                onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection('trabajos')
-                }}
-                aria-label="Ver nuestros trabajos"
-              >
-                <span className={styles.linkText}>Nuestros Trabajos</span>
-              </a>
-            </li>
+            {[
+              { id: 'inicio', label: 'Inicio' },
+              { id: 'nosotros', label: 'Nosotros' },
+              { id: 'trabajamos', label: 'Cómo trabajamos' },
+              { id: 'trabajos', label: 'Nuestros Trabajos' }
+            ].map((item) => (
+              <li key={item.id}>
+                <a 
+                  href={`#${item.id}`}
+                  className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    scrollToSection(item.id)
+                  }}
+                >
+                  <span className={styles.linkText}>{item.label}</span>
+                  <div className={styles.linkHover}></div>
+                </a>
+              </li>
+            ))}
             <li>
               <a 
                 href="#reunion" 
@@ -139,14 +120,13 @@ const Header = () => {
                   e.preventDefault()
                   scrollToSection('reunion')
                 }}
-                aria-label="Agendar reunión"
               >
                 <span className={styles.linkText}>Agenda tu reunión</span>
+                <div className={styles.ctaGlow}></div>
               </a>
             </li>
           </ul>
 
-          {/* Botón menú móvil */}
           <button 
             className={`${styles.mobileMenuButton} ${isMobileMenuOpen ? styles.active : ''}`}
             onClick={toggleMobileMenu}

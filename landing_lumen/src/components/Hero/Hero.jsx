@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Hero.module.css'
-import heroImage from '../../assets/hero.svg'
+import heroImage from '../../assets/hero.png'
 
 const Hero = () => {
   const heroRef = useRef(null)
@@ -11,7 +11,6 @@ const Hero = () => {
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('active')
             setIsVisible(true)
           }
         })
@@ -39,75 +38,73 @@ const Hero = () => {
 
   return (
     <section id="inicio" className={styles.hero} ref={heroRef}>
-      {/* Línea divisoria superior */}
-      <div className={styles.dividerTop}></div>
-      
+      {/* Elementos de fondo animados */}
+      <div className={styles.heroBackground}>
+        <div className={styles.backgroundParticle1}></div>
+        <div className={styles.backgroundParticle2}></div>
+        <div className={styles.backgroundParticle3}></div>
+        <div className={styles.backgroundGrid}></div>
+      </div>
+
       <div className="container">
         <div className={styles.heroGrid}>
           <div className={`${styles.heroContent} ${isVisible ? styles.visible : ''}`}>
-            {/* Línea decorativa izquierda */}
-            <div className={styles.contentDividerLeft}></div>
+            <div className={styles.titleContainer}>
+              <h1 className={styles.heroTitle}>
+                <span className={styles.titleLine}>DISEÑO Y MARKETING</span>
+                <span className={styles.titleLine}>ESTRATÉGICO PARA</span>
+                <span className={styles.titleLine}>
+                  <span className={styles.gradientText}>ILUMINAR</span> EL FUTURO
+                </span>
+                <span className={styles.titleLine}>DE <span className={styles.gradientText}>TU EMPRESA</span></span>
+              </h1>
+              
+              <div className={styles.titleGlow}></div>
+            </div>
             
-            <h1 className={styles.heroTitle}>
-              <span className={styles.titleLine}>
-                DISEÑO Y MARKETING
-              </span>
-              <span className={styles.titleLine}>ESTRATÉGICO PARA</span>
-              <span className={styles.titleLine}>
-                <span className={styles.highlight}>ILUMINAR</span> EL FUTURO
-              </span>
-              <span className={styles.titleLine}>DE <span className={styles.highlight}>TU EMPRESA</span></span>
-            </h1>
-            
-            {/* Línea divisoria entre título y subtítulo */}
-            <div className={styles.titleDivider}></div>
-            
-            {/* <p className={styles.heroSubtitle}>
+            <p className={styles.heroSubtitle}>
               Transformamos tu visión en resultados tangibles con soluciones integrales 
               de marketing y desarrollo web que impulsan el crecimiento de tu negocio.
             </p>
-             */}
+            
             <div className={styles.heroButtons}>
-              <a 
-                href="#propuesta" 
+              <button 
                 className={styles.heroCta}
-                onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection('propuesta')
-                }}
+                onClick={() => scrollToSection('propuesta')}
               >
-                <span className={styles.ctaText}>Nuestra Propuesta</span>
-                <span className={styles.ctaArrow}>→</span>
-              </a>
+                <span>Nuestra Propuesta</span>
+                <div className={styles.buttonGlow}></div>
+              </button>
+              
+              <button 
+                className={styles.heroSecondary}
+                onClick={() => scrollToSection('nosotros')}
+              >
+                <span>Conoce más</span>
+                <div className={styles.buttonHover}></div>
+              </button>
             </div>
           </div>
           
           <div className={`${styles.heroImageContainer} ${isVisible ? styles.visible : ''}`}>
-            {/* Línea decorativa derecha */}
-            <div className={styles.imageDividerRight}></div>
-            
-            <img 
-              src={heroImage} 
-              alt="Ilustración de diseño y marketing estratégico" 
-              className={styles.heroImage}
-            />
-            
-            {/* Badge decorativo en la imagen */}
-            <div className={styles.imageBadge}>
-              <span className={styles.badgeText}>BL</span>
+            <div className={styles.imageWrapper}>
+              <img 
+                src={heroImage} 
+                alt="Diseño y Marketing Estratégico" 
+                className={styles.heroImage}
+              />
+              <div className={styles.imageGlow}></div>
+              <div className={styles.imageBorder}></div>
             </div>
           </div>
         </div>
         
-        {/* Indicador de scroll mejorado */}
+        {/* Scroll indicator */}
         <div className={styles.scrollIndicator}>
           <div className={styles.scrollLine}></div>
-          <span className={styles.scrollText}>Scroll</span>
+          <span>Scroll</span>
         </div>
       </div>
-      
-      {/* Línea divisoria inferior */}
-      <div className={styles.dividerBottom}></div>
     </section>
   )
 }
