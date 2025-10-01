@@ -1,6 +1,7 @@
+// Hero.jsx
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Hero.module.css'
-import heroImage from '../../assets/hero.png'
+import heroImage from '../../assets/persona1-d.svg'
 
 const Hero = () => {
   const heroRef = useRef(null)
@@ -44,6 +45,12 @@ const Hero = () => {
         <div className={styles.backgroundParticle2}></div>
         <div className={styles.backgroundParticle3}></div>
         <div className={styles.backgroundGrid}></div>
+        
+        {/* Nuevos elementos flotantes naranjas */}
+        <div className={styles.floatingOrb1}></div>
+        <div className={styles.floatingOrb2}></div>
+        <div className={styles.floatingShape1}></div>
+        <div className={styles.floatingShape2}></div>
       </div>
 
       <div className="container">
@@ -88,13 +95,17 @@ const Hero = () => {
           
           <div className={`${styles.heroImageContainer} ${isVisible ? styles.visible : ''}`}>
             <div className={styles.imageWrapper}>
+              {/* Nuevo fondo degradado naranja */}
+              <div className={styles.orangeGradient}></div>
+              <div className={styles.imageGlow}></div>
               <img 
                 src={heroImage} 
                 alt="Diseño y Marketing Estratégico" 
                 className={styles.heroImage}
               />
-              <div className={styles.imageGlow}></div>
               <div className={styles.imageBorder}></div>
+              {/* Efecto de partículas naranjas */}
+              <div className={styles.orangeParticles}></div>
             </div>
           </div>
         </div>

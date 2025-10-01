@@ -88,7 +88,7 @@ const Header = () => {
             }}
             aria-label="Ir a inicio"
           >
-            <img src={logo} alt="BLACKLINK Logo" className={styles.logo} />
+            <img src={logo} alt="Lumen Logo" className={styles.logo} />
           </a>
           
           <ul className={`${styles.navList} ${isMobileMenuOpen ? styles.navListOpen : ''}`}>
