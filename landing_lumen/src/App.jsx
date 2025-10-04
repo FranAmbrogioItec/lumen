@@ -2,7 +2,9 @@ import React from 'react'
 import Header from './components/Header/Header'
 import Hero from './components/Hero/Hero'
 import About from './components/About/About'
-import Process from './components/Process/Process'
+import HowWeWork from './components/HowWeWork/HowWeWork'
+import Portfolio from './components/Portfolio/Portfolio'
+import Meeting from './components/Meeting/Meeting'
 import Footer from './components/Footer/Footer'
 import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton'
 import ThemeToggle from './components/ThemeToggle/ThemeToggle'
@@ -14,7 +16,9 @@ function App() {
       <Header />
       <Hero />
       <About />
-      <Process />
+      <HowWeWork />
+      <Portfolio />
+      <Meeting />
       <Footer />
       <WhatsAppButton />
     </div>
