@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import styles from './Meeting.module.css'
 
 const Meeting = () => {
+  const [showForm, setShowForm] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,10 +32,76 @@ const Meeting = () => {
     e.preventDefault()
     // Aquí iría la lógica para enviar el formulario
     console.log('Formulario enviado:', formData)
+    // Opcional: resetear el formulario después del envío
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      projectType: '',
+      message: ''
+    })
   }
 
+  const handleCTAClick = () => {
+    setShowForm(true)
+    // Scroll suave a la sección del formulario
+    setTimeout(() => {
+      document.getElementById('reunion-form')?.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'center'
+      })
+    }, 100)
+  }
+
+  const handleCloseForm = () => {
+    setShowForm(false)
+  }
+
+  // Vista Previa (CTA)
+  if (!showForm) {
+    return (
+      <section id="reunion" className={styles.meetingPreview}>
+        <div className="container">
+          <div className={styles.previewContent}>
+            <h2 className={styles.previewTitle}>
+              DE LA IDEA A LA ACCIÓN, TRANSFORMAMOS TU MARCA EN RESULTADOS
+            </h2>
+            <p className={styles.previewSubtitle}>
+              Estamos listos para convertir tu visión en una estrategia de crecimiento tangible. 
+              Toma el primer paso hacia el éxito de tu proyecto.
+            </p>
+            <button 
+              className={styles.ctaButton}
+              onClick={handleCTAClick}
+            >
+              <span>Agenda tu reunión</span>
+              <div className={styles.ctaGlow}></div>
+            </button>
+            
+            {/* Elementos decorativos de fondo */}
+            <div className={styles.previewOrbs}>
+              <div className={styles.orb1}></div>
+              <div className={styles.orb2}></div>
+              <div className={styles.orb3}></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // Vista Completa (Formulario)
   return (
-    <section id="reunion" className={styles.meeting}>
+    <section id="reunion-form" className={styles.meeting}>
+      {/* Botón para cerrar/volver */}
+      <button 
+        className={styles.closeFormButton}
+        onClick={handleCloseForm}
+        aria-label="Volver a la vista anterior"
+      >
+        ← Volver
+      </button>
+
       <div className="container">
         <div className={styles.meetingGrid}>
           {/* Información */}

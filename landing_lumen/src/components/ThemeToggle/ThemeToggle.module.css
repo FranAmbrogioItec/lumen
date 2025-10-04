@@ -1,99 +1,126 @@
+/* ThemeToggle.module.css */
 .themeToggle {
   position: fixed;
   top: 20px;
   right: 20px;
   background: var(--color-card-bg);
-  border: 2px solid var(--color-border);
-  border-radius: 25px;
+  border: 1px solid var(--color-border);
+  border-radius: 50px;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 10px 15px;
   z-index: 1001;
-  transition: all 0.3s ease;
+  transition: var(--transition);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px var(--color-shadow);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-primary);
 }
 
 .themeToggle:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--color-shadow);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent);
+}
+
+.themeToggle:active {
+  transform: translateY(0);
 }
 
 .toggleTrack {
-  width: 50px;
-  height: 24px;
+  width: 52px;
+  height: 28px;
   background: var(--color-bg-secondary);
-  border-radius: 12px;
+  border-radius: 14px;
   position: relative;
   transition: all 0.3s ease;
+  border: 1px solid var(--color-border);
 }
 
 .toggleThumb {
   position: absolute;
   top: 2px;
   left: 2px;
-  width: 20px;
-  height: 20px;
-  background: var(--color-accent);
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(45deg, var(--color-accent), var(--color-cta));
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .themeToggle.dark .toggleThumb {
-  transform: translateX(26px);
+  transform: translateX(24px);
+  background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
 }
 
 .sun, .moon {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  display: block;
 }
 
 .sun {
   opacity: 0;
+  transform: scale(0.8);
 }
 
 .moon {
   opacity: 1;
+  transform: scale(1);
 }
 
 .themeToggle.dark .sun {
   opacity: 1;
+  transform: scale(1);
 }
 
 .themeToggle.dark .moon {
   opacity: 0;
+  transform: scale(0.8);
 }
 
 .toggleLabel {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-text);
   white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+/* Estados de accesibilidad */
+.themeToggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3);
+}
+
+.themeToggle:focus:not(:focus-visible) {
+  box-shadow: var(--shadow-sm);
 }
 
 /* Mobile First */
 @media (max-width: 768px) {
   .themeToggle {
-    top: 16px;
-    right: 16px;
-    padding: 6px 10px;
+    top: 15px;
+    right: 15px;
+    padding: 8px 12px;
+    gap: 10px;
   }
   
   .toggleTrack {
-    width: 44px;
-    height: 22px;
+    width: 48px;
+    height: 26px;
   }
   
   .toggleThumb {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
   }
   
   .themeToggle.dark .toggleThumb {
@@ -101,7 +128,11 @@
   }
   
   .toggleLabel {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+  }
+  
+  .sun, .moon {
+    font-size: 11px;
   }
 }
 
@@ -109,10 +140,29 @@
   .themeToggle {
     top: 12px;
     right: 12px;
-    padding: 5px 8px;
+    padding: 6px 10px;
   }
   
   .toggleLabel {
-    display: none; /* Ocultar texto en móviles muy pequeños */
+    display: none;
+  }
+}
+
+/* Reduce motion para usuarios que lo prefieran */
+@media (prefers-reduced-motion: reduce) {
+  .themeToggle,
+  .toggleThumb {
+    transition: none;
+  }
+}
+
+/* Modo alto contraste */
+@media (prefers-contrast: high) {
+  .themeToggle {
+    border-width: 2px;
+  }
+  
+  .toggleTrack {
+    border-width: 2px;
   }
 }
