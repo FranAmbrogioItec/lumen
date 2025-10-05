@@ -1,7 +1,7 @@
 // Hero.jsx
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Hero.module.css'
-import heroImage from '../../assets/persona1-d.svg'
+import heroImage from '../../assets/hero.svg'
 
 const Hero = () => {
   const heroRef = useRef(null)

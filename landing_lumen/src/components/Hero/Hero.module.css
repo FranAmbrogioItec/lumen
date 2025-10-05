@@ -6,7 +6,8 @@
   padding: 120px 0 80px;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #0a0a0a 0%, #161616 50%, #1a1a1a 100%);
+  /* CAMBIO PRINCIPAL: Fondo muy claro (gris suave/cremoso) */
+  background: #f9f9f9; 
 }
 
 .heroBackground {
@@ -19,13 +20,15 @@
   z-index: 1;
 }
 
+/* Las partículas de fondo se mantienen, pero con opacidad reducida para no ser "quema ojos" */
 .backgroundParticle1,
 .backgroundParticle2,
 .backgroundParticle3 {
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
-  opacity: 0.1;
+  /* CAMBIO: Reducir mucho la opacidad de los fondos de color para que sean sutiles */
+  opacity: 0.05; 
   animation: float 8s ease-in-out infinite;
 }
 
@@ -63,12 +66,13 @@
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    /* CAMBIO: Rejilla muy sutil en color oscuro */
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
-/* Nuevos elementos flotantes naranjas */
+/* Nuevos elementos flotantes naranjas - Se mantienen como acento */
 .floatingOrb1,
 .floatingOrb2 {
   position: absolute;
@@ -146,7 +150,9 @@
 .heroTitle {
   font-size: 3.3rem;
   line-height: 1.1;
-  font-weight: 700;
+  font-weight: 900;
+  /* CAMBIO: Color de título oscuro */
+  color: #1a1a1a;
 }
 
 .titleLine {
@@ -168,6 +174,7 @@
 }
 
 .gradientText {
+  /* Se mantiene el degradado para el acento naranja */
   background: linear-gradient(45deg, #E74C3C, #F39C12);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -181,6 +188,7 @@
   left: -20px;
   width: 120%;
   height: 120%;
+  /* Mantiene el brillo naranja */
   background: radial-gradient(circle, rgba(231, 76, 60, 0.1) 0%, transparent 70%);
   filter: blur(20px);
   z-index: -1;
@@ -190,14 +198,14 @@
 .heroSubtitle {
   font-size: 1.3rem;
   margin-bottom: 50px;
-  color: rgba(255, 255, 255, 0.8);
+  /* CAMBIO: Texto oscuro para mejor lectura en fondo claro */
+  color: #444; 
   line-height: 1.7;
   font-weight: 300;
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.8s ease 0.6s;
 }
-
 .heroContent.visible .heroSubtitle {
   opacity: 1;
   transform: translateY(0);
@@ -233,7 +241,8 @@
 }
 
 .heroCta {
-  background: linear-gradient(45deg, #E74C3C, #F39C12);
+  /* Mantiene el CTA en naranja vibrante */
+  background: #f05a1f; 
   color: white;
   box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
 }
@@ -258,9 +267,10 @@
 }
 
 .heroSecondary {
-  background: transparent;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* CAMBIO: Botón secundario con fondo blanco/claro y borde naranja */
+  background: white; 
+  color: #f05a1f;
+  border: 1px solid #f05a1f;
 }
 
 .buttonHover {
@@ -269,7 +279,8 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  /* CAMBIO: Efecto hover en color naranja sutil */
+  background: linear-gradient(90deg, transparent, rgba(240, 90, 31, 0.1), transparent);
   transition: left 0.6s ease;
 }
 
@@ -278,8 +289,8 @@
 }
 
 .heroSecondary:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(240, 90, 31, 0.05);
+  border-color: #e74c3c;
   transform: translateY(-2px);
 }
 
@@ -305,13 +316,14 @@
 /* Nuevo fondo degradado naranja */
 .orangeGradient {
   position: absolute;
-  width: 110%;
-  height: 110%;
-  background: radial-gradient(circle, rgba(231, 76, 60, 0.2) 0%, rgba(231, 76, 60, 0.05) 50%, transparent 70%);
-  border-radius: 20px;
+  width: 100%; 
+  height: 100%; 
+  background: #FF8C00; 
+  opacity: 0.8; /* CAMBIO: Opacidad muy reducida */
+  border-radius: 16px; 
   z-index: 1;
-  animation: pulse 4s ease-in-out infinite;
-  filter: blur(15px);
+  filter: none;
+  animation: none; 
 }
 
 .heroImage {
@@ -321,7 +333,8 @@
   position: relative;
   z-index: 3;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  /* CAMBIO: Sombra más sutil y ligera */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
   animation: gentleFloat 6s ease-in-out infinite;
 }
 
@@ -333,9 +346,10 @@
   position: absolute;
   width: 120%;
   height: 120%;
-  background: radial-gradient(circle, rgba(231, 76, 60, 0.15) 0%, transparent 70%);
-  opacity: 0.6;
-  filter: blur(40px);
+  background: radial-gradient(circle, rgba(231, 76, 60, 0.1) 0%, transparent 70%);
+  /* CAMBIO: Reducir opacidad para que no "queme" */
+  opacity: 0.4; 
+  filter: blur(30px);
   z-index: 2;
   animation: glow 4s ease-in-out infinite;
 }
@@ -344,15 +358,16 @@
   position: absolute;
   width: 102%;
   height: 102%;
-  border: 2px solid rgba(231, 76, 60, 0.3);
+  /* CAMBIO: Borde más claro */
+  border: 2px solid rgba(231, 76, 60, 0.2); 
   border-radius: 18px;
   z-index: 2;
   transition: all 0.4s ease;
 }
 
 .heroImage:hover ~ .imageBorder {
-  opacity: 0.8;
-  border-color: rgba(231, 76, 60, 0.6);
+  opacity: 1;
+  border-color: rgba(231, 76, 60, 0.5);
   transform: scale(1.02);
 }
 
@@ -363,12 +378,13 @@
   height: 100%;
   z-index: 2;
   background-image: 
-    radial-gradient(circle at 20% 80%, rgba(231, 76, 60, 0.4) 2px, transparent 0),
-    radial-gradient(circle at 80% 20%, rgba(231, 76, 60, 0.3) 1px, transparent 0),
-    radial-gradient(circle at 40% 40%, rgba(231, 76, 60, 0.2) 1px, transparent 0);
+    radial-gradient(circle at 20% 80%, rgba(231, 76, 60, 0.2) 2px, transparent 0),
+    radial-gradient(circle at 80% 20%, rgba(231, 76, 60, 0.15) 1px, transparent 0),
+    radial-gradient(circle at 40% 40%, rgba(231, 76, 60, 0.1) 1px, transparent 0);
   background-size: 50px 50px, 30px 30px, 40px 40px;
   animation: particlesMove 20s linear infinite;
-  opacity: 0.6;
+  /* CAMBIO: Partículas más sutiles */
+  opacity: 0.4; 
 }
 
 /* Scroll indicator */
@@ -382,7 +398,8 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  color: rgba(255, 255, 255, 0.6);
+  /* CAMBIO: Color de indicador oscuro y suave */
+  color: rgba(0, 0, 0, 0.6); 
   font-size: 0.8rem;
   opacity: 0;
   animation: fadeIn 1s ease 1.5s forwards;
@@ -391,11 +408,12 @@
 .scrollLine {
   width: 1px;
   height: 40px;
-  background: linear-gradient(to bottom, #E74C3C, transparent);
+  /* CAMBIO: Línea con degradado naranja sutil */
+  background: linear-gradient(to bottom, #E74C3C, transparent); 
   animation: scrollLine 2s ease-in-out infinite;
 }
 
-/* Animaciones */
+/* Animaciones (Se mantienen) */
 @keyframes slideInFromLeft {
   from {
     opacity: 0;
@@ -442,10 +460,10 @@
 
 @keyframes glow {
   0%, 100% {
-    opacity: 0.6;
+    opacity: 0.4;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.6;
   }
 }
 
@@ -486,7 +504,7 @@
   }
 }
 
-/* Responsive */
+/* Responsive (Se mantienen) */
 @media (max-width: 1024px) {
   .heroGrid {
     grid-template-columns: 1fr;

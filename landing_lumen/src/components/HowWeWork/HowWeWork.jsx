@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react'
 import styles from './HowWeWork.module.css'
 
 const HowWeWork = () => {
+  // CAMBIO: activeStep ahora controla el índice visible del carrusel
   const [activeStep, setActiveStep] = useState(0)
   const sectionRef = useRef(null)
 
@@ -33,57 +34,92 @@ const HowWeWork = () => {
     }
   ]
 
+  const totalSteps = processSteps.length
+  
+  // Función para avanzar en el carrusel
+  const nextStep = () => {
+    setActiveStep((prev) => (prev + 1) % totalSteps)
+  }
+
+  // Función para retroceder en el carrusel
+  const prevStep = () => {
+    setActiveStep((prev) => (prev - 1 + totalSteps) % totalSteps)
+  }
+
   return (
     <section id="proceso" className={styles.howWeWork} ref={sectionRef}>
+      {/* CAMBIO: Partículas flotantes de background */}
+      <div className={styles.howWeWorkBackground}>
+        <div className={styles.backgroundParticle1}></div>
+        <div className={styles.backgroundParticle2}></div>
+      </div>
+      
       <div className="container">
         <div className={styles.sectionHeader}>
-          <h2 className={`${styles.sectionTitle} text-semibold`}>CÓMO TRABAJAMOS</h2>
-          <p className={styles.sectionSubtitle}>
-            Un proceso meticuloso diseñado para transformar ideas en resultados tangibles
-          </p>
+          <h2 className={`${styles.sectionTitle} text-bold`}>CÓMO TRABAJAMOS</h2>
+          <p className={styles.sectionSubtitle}>Nuestro proceso se basa en **cuatro fases clave** para asegurar resultados medibles y un crecimiento sostenido para tu marca.</p>
         </div>
 
         <div className={styles.processContainer}>
-          <div className={styles.processSteps}>
-            {processSteps.map((step, index) => (
-              <div
-                key={index}
-                className={`${styles.stepCard} ${activeStep === index ? styles.active : ''}`}
-                onMouseEnter={() => setActiveStep(index)}
-                onClick={() => setActiveStep(index)}
-              >
-                <div className={styles.stepHeader}>
-                  <span className={styles.stepNumber}>{step.number}</span>
-                  <h3 className={`${styles.stepTitle} text-semibold`}>{step.title}</h3>
-                </div>
-                
-                <div className={styles.stepContent}>
-                  <p className={styles.stepDescription}>{step.description}</p>
-                  
-                  <div className={styles.stepFeatures}>
-                    {step.features.map((feature, featureIndex) => (
-                      <span key={featureIndex} className={styles.featureTag}>
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className={styles.stepIndicator}>
-                  <div className={styles.indicatorLine}></div>
-                  <div className={styles.indicatorDot}></div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Visual Progress */}
-          <div className={styles.visualProgress}>
+          
+          {/* CAMBIO: Contenedor para el carrusel */}
+          <div className={styles.carouselWrapper}>
             <div 
-              className={styles.progressBar}
-              style={{ transform: `scaleX(${(activeStep + 1) / processSteps.length})` }}
-            ></div>
+              className={styles.processSteps}
+              // Transforma el contenedor para mostrar la tarjeta activa
+              style={{ transform: `translateX(-${activeStep * (100 / totalSteps)}%)` }}
+            >
+              {processSteps.map((step, index) => (
+                // La tarjeta se mantiene simple, el dinamismo está en el wrapper
+                <div 
+                  key={index}
+                  className={`${styles.stepCard} ${index === activeStep ? styles.active : ''}`}
+                >
+                  <div className={styles.stepHeader}>
+                    <span className={styles.stepNumber}>{step.number}</span>
+                    <h3 className={`${styles.stepTitle} text-semibold`}>{step.title}</h3>
+                  </div>
+                  
+                  <div className={styles.stepContent}>
+                    <p className={styles.stepDescription}>{step.description}</p>
+                    
+                    <div className={styles.stepFeatures}>
+                      {step.features.map((feature, featureIndex) => (
+                        <span key={featureIndex} className={styles.featureTag}>
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                </div>
+              ))}
+            </div>
           </div>
+          
+          {/* Controles de Navegación del Carrusel */}
+          <div className={styles.carouselControls}>
+            <button 
+              className={styles.controlButton} 
+              onClick={prevStep} 
+              disabled={activeStep === 0}
+              aria-label="Paso anterior"
+            >
+              {'<'}
+            </button>
+            <span className={styles.stepPagination}>
+              {activeStep + 1} / {totalSteps}
+            </span>
+            <button 
+              className={styles.controlButton} 
+              onClick={nextStep} 
+              disabled={activeStep === totalSteps - 1}
+              aria-label="Siguiente paso"
+            >
+              {'>'}
+            </button>
+          </div>
+
         </div>
       </div>
     </section>

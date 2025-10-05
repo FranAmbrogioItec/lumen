@@ -34,7 +34,18 @@
     src: url('../assets/fonts/Glancyr-Bold.woff2') format('woff2'),
          url('../assets/fonts/Glancyr-Bold.woff') format('woff'),
          url('../assets/fonts/Glancyr-Bold.ttf') format('truetype');
-    font-weight: 700;
+    font-weight: 900;
     font-style: normal;
     font-display: swap;
+    font-stretch: condensed; /* Usa el valor 'condensed' o un porcentaje */
+
   }
+
+  @font-face {
+     font-family: 'Glancyr';
+     src: url('../assets/fonts/Glancyr-Wide.woff2') format('woff2');
+     font-weight: 400; /* o el peso correspondiente a ese archivo */
+     font-style: normal;
+     font-stretch: expanded; /* o semi-expanded, extra-expanded, etc. */
+     font-display: swap;
+ }

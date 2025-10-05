@@ -3,8 +3,8 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  background: var(--color-card-bg);
-  border: 1px solid var(--color-border);
+  background: var(--color-bg-card); /* Usar variable */
+  border: 1px solid var(--color-border); /* Usar variable */
   border-radius: 50px;
   cursor: pointer;
   padding: 10px 15px;
@@ -28,14 +28,22 @@
   transform: translateY(0);
 }
 
+.toggleLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text); /* Usar variable */
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
 .toggleTrack {
   width: 52px;
   height: 28px;
-  background: var(--color-bg-secondary);
+  background: var(--color-bg-secondary); /* Usar variable */
   border-radius: 14px;
   position: relative;
   transition: all 0.3s ease;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border); /* Usar variable */
 }
 
 .toggleThumb {
@@ -46,22 +54,22 @@
   height: 24px;
   background: linear-gradient(45deg, var(--color-accent), var(--color-cta));
   border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-sm);
+  font-size: 1.1rem;
 }
 
-.themeToggle.dark .toggleThumb {
-  transform: translateX(24px);
-  background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+/* Estado 'light' */
+.themeToggle.light .toggleThumb {
+  transform: translateX(24px); /* Mover a la derecha (52px - 4px padding - 24px ancho) */
+  background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
 }
 
 .sun, .moon {
-  font-size: 12px;
-  line-height: 1;
+  position: absolute;
   transition: all 0.3s ease;
   display: block;
 }
@@ -76,6 +84,7 @@
   transform: scale(1);
 }
 
+/* Estado 'dark' */
 .themeToggle.dark .sun {
   opacity: 1;
   transform: scale(1);
@@ -85,7 +94,6 @@
   opacity: 0;
   transform: scale(0.8);
 }
-
 .toggleLabel {
   font-size: 0.85rem;
   font-weight: 600;

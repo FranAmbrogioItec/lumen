@@ -1,13 +1,15 @@
 .about {
-  padding: var(--section-padding) 0;
-  background: linear-gradient(135deg, #0a0a0a 0%, #161615 50%, #1a1a1a 100%);
+  /* CORRECCIÓN ESTÉTICA: Fondo "Dark" más suave, menos negro */
+  background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 50%, #1c1c1c 100%);
+  /* CORRECCIÓN MARGEN: Usar padding fijo (120px) en lugar de la variable desconocida para controlar el espaciado y mantener la consistencia */
+  padding: 120px 0; 
   position: relative;
   overflow: hidden;
   color: white;
   min-height: 100vh;
 }
 
-/* --- TÍTULO Y SUBTÍTULO (Jerarquía Visual Corregida) --- */
+/* --- TÍTULO Y SUBTÍTULO --- */
 
 .aboutHeaderGrid {
   display: grid;
@@ -37,7 +39,8 @@
   color: white;
   position: relative;
   display: inline-block;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  /* Sombra más sutil */
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   line-height: 1;
   letter-spacing: -1px;
   font-weight: 700;
@@ -46,14 +49,15 @@
 .aboutSubtitle {
   font-size: 1rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.65);
+  /* Color del subtítulo un poco más claro para mejor contraste */
+  color: rgba(255, 255, 255, 0.75);
   margin-top: 0;
   font-weight: 400;
-  border-left: 3px solid var(--color-accent);
+  border-left: 3px solid var(--color-accent); 
   padding-left: 20px;
 }
 
-/* --- SECCIÓN DE SERVICIOS (Proporción Corregida) --- */
+/* --- SECCIÓN DE SERVICIOS --- */
 
 .servicesRow {
   display: flex;
@@ -75,35 +79,37 @@
   border-radius: 0;
   padding: 0;
   cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
   box-shadow: none;
   border: none;
   width: 25%;
   min-height: 450px;
   overflow: hidden;
   backdrop-filter: none;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  /* Borde más claro y sutil */
+  border-right: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
 .serviceCard:hover {
-  transform: none;
+  transform: none;  
 }
 
 .serviceCard.active {
   width: 75%;
   z-index: 20;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+  /* Sombra más suave */
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7); 
   transform: none !important;
 }
 
 .servicesRow:has(.serviceCard.active) .serviceCard:not(.active) {
   width: 8.33%;
-  opacity: 0.5;
-  filter: grayscale(100%);
+  opacity: 0.6; /* Opacidad ligeramente aumentada */
+  filter: grayscale(80%); /* Filtro menos agresivo */
   transform: none !important;
 }
 
-/* --- Contenido de la Card (Tamaños Corregidos) --- */
+/* --- Contenido de la Card --- */
 
 .cardContent {
   padding: 35px 30px;
@@ -116,12 +122,12 @@
   transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+/* Contenido de la Card al activarse */
 .serviceCard.active .cardContent {
-  opacity: 0;
-  transform: scale(0.9) translateY(20px);
+  opacity: 0.3;                /* antes 0 -> mantenemos algo visible */
+  transform: scale(0.95) translateY(10px); /* menos agresivo */
+  filter: blur(2px);           /* ligero desenfoque para resaltar el expandido */
 }
-
-/* CORRECCIÓN PRINCIPAL: Tamaño de imágenes */
 .cardImage {
   width: 250px;
   height: 250px;
@@ -144,20 +150,21 @@
 .cardTitle {
   font-size: 1.4rem;
   margin-bottom: 8px;
-  color: #0a0a0a;
+  color: #0a0a0a; 
   text-shadow: none;
   line-height: 1.2;
   font-weight: 700;
 }
 
 .cardShortDesc {
-  color: rgba(0, 0, 0, 0.65);
+  /* Texto más contrastante */
+  color: rgba(0, 0, 0, 0.75); 
   font-size: 0.95rem;
   font-weight: 400;
   line-height: 1.4;
 }
 
-/* --- Contenido Expandido (Proporciones Mejoradas) --- */
+/* --- Contenido Expandido --- */
 
 .cardExpanded {
   position: absolute;
@@ -171,14 +178,24 @@
   transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   display: flex;
   align-items: center;
-  background: rgba(10, 10, 10, 0.98);
-  backdrop-filter: blur(20px);
+  /* CORRECCIÓN ESTÉTICA: Fondo de tarjeta expandida más claro (lighter dark) */
+  background: rgba(30, 30, 30, 0.6);  /* antes 0.95 -> más translúcido */
+  backdrop-filter: blur(12px);        /* menor blur para que se vea el color de la card */
+  transition: all 0.5s ease-in-out;
   color: white;
 }
 
 .serviceCard.active .cardExpanded {
   opacity: 1;
   transform: scale(1);
+}
+
+/* Cards no activas cuando hay una card expandida */
+.servicesRow:has(.serviceCard.active) .serviceCard:not(.active) {
+  width: 8.33%;
+  opacity: 0.85;               /* antes 0.6 */  
+  filter: grayscale(30%);      /* antes 80% */
+  transform: none !important;
 }
 
 .expandedContent {
@@ -198,7 +215,7 @@
 .expandedDesc {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.85); /* Un poco más de contraste */
   margin-bottom: 30px;
   font-weight: 300;
 }
@@ -211,11 +228,12 @@
 
 .feature {
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.05);
+  /* Fondo más claro y borde más claro */
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   font-size: 0.9rem;
   color: var(--accent-color);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   font-weight: 500;
 }
 
@@ -226,7 +244,8 @@
   width: 40px;
   height: 40px;
   border: none;
-  background: rgba(255, 255, 255, 0.05);
+  /* Botón de cierre más visible */
+  background: rgba(255, 255, 255, 0.15); 
   color: white;
   font-size: 24px;
   cursor: pointer;
@@ -239,11 +258,11 @@
 }
 
 .closeButton:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.25);
   transform: scale(1.05);
 }
 
-/* --- Responsive (Mejorado) --- */
+/* --- Responsive --- */
 
 @media (max-width: 1400px) {
   .aboutTitle {
@@ -300,25 +319,26 @@
     min-height: 300px;
     opacity: 1 !important;
     filter: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Borde más claro */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     border-right: none;
   }
   
   .serviceCard:first-child {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .cardContent {
     align-items: center;
     text-align: center;
-    padding: 30px 25px;
+    padding: 25px 20px;
     justify-content: center;
   }
   
   .cardImage {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 15px;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
   }
   
   .cardTitle {
@@ -326,12 +346,13 @@
   }
   
   .cardShortDesc {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .cardExpanded {
     padding: 35px 25px;
-    background: #0a0a0a;
+    /* Fondo de móvil más claro */
+    background: #1c1c1c; 
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -370,19 +391,17 @@
 }
 
 @media (max-width: 576px) {
-  .aboutTitle {
-    font-size: 2.5rem;
+  .cardImage {
+    width: 150px;       /* un poco más chico para móviles muy pequeños */
+    height: 150px;
+    margin-bottom: 18px;
   }
-  
-  .aboutSubtitle {
-    font-size: 0.9rem;
-  }
-  
-  .cardTitle {
-    font-size: 1.2rem;
-  }
-  
+
   .expandedTitle {
     font-size: 1.6rem;
+  }
+
+  .expandedDesc {
+    font-size: 0.95rem;
   }
 }

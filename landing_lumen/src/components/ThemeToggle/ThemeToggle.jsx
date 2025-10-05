@@ -6,6 +6,22 @@ const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
 
+  // Lógica para aplicar el tema y actualizar el meta tag del navegador
+  const applyTheme = (theme) => {
+    const root = document.documentElement;
+    
+    // Aplicar el tema en el DOM
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+
+    // Actualizar el meta tag para el color de la barra de direcciones en móviles
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      // Usar un color claro para el modo 'light' y oscuro para el modo 'dark'
+      metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#FEF7F7');
+    }
+  };
+
   useEffect(() => {
     // Verificar tema guardado o preferencia del sistema
     const savedTheme = localStorage.getItem('theme');
@@ -16,6 +32,7 @@ const ThemeToggle = () => {
     if (savedTheme) {
       initialTheme = savedTheme;
     } else if (!systemPrefersDark) {
+      // Si no hay tema guardado y el sistema prefiere claro, usar claro
       initialTheme = 'light';
     }
     
@@ -26,6 +43,7 @@ const ThemeToggle = () => {
     // Escuchar cambios en la preferencia del sistema
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e) => {
+      // Solo aplicar si el usuario no ha seleccionado un tema manualmente
       if (!localStorage.getItem('theme')) {
         const newTheme = e.matches ? 'dark' : 'light';
         setIsDark(e.matches);
@@ -38,26 +56,12 @@ const ThemeToggle = () => {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  const applyTheme = (theme) => {
-    const root = document.documentElement;
-    
-    // Aplicar el tema
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    
-    // Actualizar meta theme-color para navegadores móviles
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#FEF7F7');
-    }
-  };
-
   const toggleTheme = () => {
     const newTheme = isDark ? 'light' : 'dark';
     setIsDark(!isDark);
     applyTheme(newTheme);
     
-    // Efecto de retroalimentación visual
+    // Configuración de transición suave
     document.documentElement.style.setProperty('--transition', 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)');
   };
 
@@ -83,15 +87,13 @@ const ThemeToggle = () => {
       aria-label={`Cambiar a modo ${isDark ? 'claro' : 'oscuro'}`}
       title={`Cambiar a modo ${isDark ? 'claro' : 'oscuro'}`}
     >
+      <span className={styles.toggleLabel}>Modo {isDark ? 'Oscuro' : 'Claro'}</span>
       <div className={styles.toggleTrack}>
         <div className={styles.toggleThumb}>
-          <span className={styles.sun} aria-hidden="true"></span>
-          <span className={styles.moon} aria-hidden="true"></span>
+          <span className={styles.sun} aria-hidden="true">☀️</span>
+          <span className={styles.moon} aria-hidden="true">🌙</span>
         </div>
       </div>
-      <span className={styles.toggleLabel}>
-        {isDark ? 'Modo Claro' : 'Modo Oscuro'}
-      </span>
     </button>
   );
 };

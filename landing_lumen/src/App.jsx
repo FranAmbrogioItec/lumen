@@ -12,8 +12,8 @@ import ThemeToggle from './components/ThemeToggle/ThemeToggle'
 function App() {
   return (
     <div className="App">
-      <ThemeToggle />
-      <Header />
+{/*       <ThemeToggle />
+ */}      <Header />
       <Hero />
       <About />
       <HowWeWork />
