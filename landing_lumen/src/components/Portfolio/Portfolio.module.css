@@ -11,6 +11,7 @@
 
 .sectionTitle {
   font-size: 2.5rem;
+  margin-top: 3rem;
   margin-bottom: 20px;
   position: relative;
   display: inline-block;
@@ -305,3 +306,4 @@
     font-size: 2rem;
   }
 }
+

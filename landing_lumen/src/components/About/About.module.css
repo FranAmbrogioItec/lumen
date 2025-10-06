@@ -50,11 +50,12 @@
   font-size: 1rem;
   line-height: 1.7;
   /* Color del subtítulo un poco más claro para mejor contraste */
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.973);
   margin-top: 0;
   font-weight: 400;
   border-left: 3px solid var(--color-accent); 
   padding-left: 20px;
+  text-align: center;
 }
 
 /* --- SECCIÓN DE SERVICIOS --- */

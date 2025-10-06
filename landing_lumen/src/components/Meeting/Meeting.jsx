@@ -1,6 +1,8 @@
 // Meeting.jsx
 import React, { useState } from 'react'
 import styles from './Meeting.module.css'
+// Se importan los iconos de react-icons
+import { FiCheckCircle, FiTarget, FiZap, FiPhone, FiMail } from 'react-icons/fi' 
 
 const Meeting = () => {
   const [showForm, setShowForm] = useState(false)
@@ -40,6 +42,8 @@ const Meeting = () => {
       projectType: '',
       message: ''
     })
+    // En un proyecto real, probablemente querrías ocultar el formulario aquí
+    // setShowForm(false)
   }
 
   const handleCTAClick = () => {
@@ -55,6 +59,13 @@ const Meeting = () => {
 
   const handleCloseForm = () => {
     setShowForm(false)
+    // Scroll suave de vuelta a la sección principal
+    setTimeout(() => {
+        document.getElementById('reunion')?.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        })
+    }, 100)
   }
 
   // Vista Previa (CTA)
@@ -64,17 +75,16 @@ const Meeting = () => {
         <div className="container">
           <div className={styles.previewContent}>
             <h2 className={styles.previewTitle}>
-              DE LA IDEA A LA ACCIÓN, TRANSFORMAMOS TU MARCA EN RESULTADOS
+              DE LA IDEA A LA ACCION, TRANSFORMAMOS TU MARCA EN RESULTADOS
             </h2>
             <p className={styles.previewSubtitle}>
-              Estamos listos para convertir tu visión en una estrategia de crecimiento tangible. 
-              Toma el primer paso hacia el éxito de tu proyecto.
+              Tu proyecto de desarrollo y marketing necesita un motor potente. Agenda tu consulta gratuita y transforma tu visión en resultados tangibles.
             </p>
             <button 
-              className={styles.ctaButton}
+              className={styles.ctaButton} 
               onClick={handleCTAClick}
             >
-              <span>Agenda tu reunión</span>
+              <span>Agendar mi reunión</span>
               <div className={styles.ctaGlow}></div>
             </button>
             
@@ -92,7 +102,11 @@ const Meeting = () => {
 
   // Vista Completa (Formulario)
   return (
-    <section id="reunion-form" className={styles.meeting}>
+    // CLAVE: Se usa la clase 'activeForm' para activar la transición CSS
+    <section 
+        id="reunion-form" 
+        className={`${styles.meeting} ${showForm ? styles.activeForm : ''}`}
+    >
       {/* Botón para cerrar/volver */}
       <button 
         className={styles.closeFormButton}
@@ -116,26 +130,29 @@ const Meeting = () => {
             </p>
 
             <div className={styles.benefitsList}>
+              {/* BENEFICIO 1: Icono profesional */}
               <div className={styles.benefitItem}>
-                <div className={styles.benefitIcon}>✓</div>
+                <div className={styles.benefitIcon}><FiCheckCircle /></div> 
                 <div className={styles.benefitText}>
                   <strong>Consulta sin costo</strong>
                   <span>Evaluación inicial gratuita de tu proyecto</span>
                 </div>
               </div>
               
+              {/* BENEFICIO 2: Icono profesional */}
               <div className={styles.benefitItem}>
-                <div className={styles.benefitIcon}>🎯</div>
+                <div className={styles.benefitIcon}><FiTarget /></div>
                 <div className={styles.benefitText}>
                   <strong>Propuesta personalizada</strong>
                   <span>Estrategia adaptada a tus objetivos específicos</span>
                 </div>
               </div>
               
+              {/* BENEFICIO 3: Icono profesional */}
               <div className={styles.benefitItem}>
-                <div className={styles.benefitIcon}>⚡</div>
+                <div className={styles.benefitIcon}><FiZap /></div>
                 <div className={styles.benefitText}>
-                  <strong>Respuesta en 24h</strong>
+                  <strong>Resultados rápidos</strong>
                   <span>Te contactamos en menos de un día hábil</span>
                 </div>
               </div>
@@ -143,24 +160,17 @@ const Meeting = () => {
 
             <div className={styles.contactInfo}>
               <div className={styles.contactItem}>
-                <span className={styles.contactLabel}>Email</span>
-                <a href="mailto:hola@agencia.com" className={styles.contactLink}>
-                  hola@agencia.com
-                </a>
-              </div>
-              
-              <div className={styles.contactItem}>
-                <span className={styles.contactLabel}>WhatsApp</span>
-                <a href="https://wa.me/123456789" className={styles.contactLink}>
-                  +1 234 567 89
-                </a>
+                <span className={styles.contactLabel}>Contáctanos directamente:</span>
+                <a href="tel:+123456789" className={styles.contactLink}><FiPhone /> +1 234 567 89</a>
+                <a href="mailto:hola@agencia.com" className={styles.contactLink}><FiMail /> hola@agencia.com</a>
               </div>
             </div>
+            
           </div>
 
           {/* Formulario */}
           <div className={styles.formSection}>
-            <form className={styles.meetingForm} onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.meetingForm}>
               <div className={styles.formGroup}>
                 <label htmlFor="name" className={styles.formLabel}>Nombre completo *</label>
                 <input
@@ -175,7 +185,7 @@ const Meeting = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="email" className={styles.formLabel}>Email *</label>
+                <label htmlFor="email" className={styles.formLabel}>Email de contacto *</label>
                 <input
                   type="email"
                   id="email"
@@ -186,9 +196,9 @@ const Meeting = () => {
                   required
                 />
               </div>
-
+              
               <div className={styles.formGroup}>
-                <label htmlFor="company" className={styles.formLabel}>Empresa</label>
+                <label htmlFor="company" className={styles.formLabel}>Empresa (opcional)</label>
                 <input
                   type="text"
                   id="company"
@@ -229,8 +239,8 @@ const Meeting = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className={`${styles.submitButton} btn btn-primary`}>
-                <span>Agendar reunión</span>
+              <button type="submit" className={`${styles.submitButton} ${styles.ctaButton}`}>
+                <span>Enviar Solicitud</span>
                 <div className={styles.buttonGlow}></div>
               </button>
             </form>

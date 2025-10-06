@@ -101,8 +101,8 @@ const About = () => {
           </div>
           <div className={styles.gridRight}>
             <p className={styles.aboutSubtitle}>
-              SOMOS UNA AGENCIA DE DESARROLLO Y MARKETING QUE CONSTRUYE ESTRATEGIAS DE 
-              CRECIMIENTO; DESARROLLAMOS Y POTENCIAMOS MARCAS QUE EVOLUCIONAN CON UN PROPÓSITO Y PRESENCIA DIGITAL SOSTENIBLE Y ESCALABLE.
+              SOMOS UNA AGENCIA DE DESARROLLO Y MARKETING QUE CONSTRUYE <strong>ESTRATEGIAS DE 
+              CRECIMIENTO;</strong> DESARROLLAMOS Y POTENCIAMOS <br />MARCAS QUE EVOLUCIONAN CON UN <strong>PROPÓSITO Y  PRESENCIA DIGITAL</strong> SOSTENIBLE Y ESCALABLE.
             </p>
           </div>
         </div>

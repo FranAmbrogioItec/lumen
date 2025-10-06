@@ -1,6 +1,10 @@
 // Portfolio.jsx
 import React, { useState } from 'react'
 import styles from './Portfolio.module.css'
+import diegoten from '../../assets/diegotten.png'
+import echenique from '../../assets/echenique.png'
+import fasolutions from '../../assets/fasolutions.png'
+import deligo from '../../assets/deligo.png'
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('todos')
@@ -19,7 +23,7 @@ const Portfolio = () => {
       title: "NOVA TECH",
       category: "branding",
       description: "Rediseño completo de identidad corporativa para empresa de tecnología",
-      image: "/api/placeholder/400/300",
+      image: diegoten,
       results: ["+40% reconocimiento", "+25% engagement", "Nueva identidad visual"]
     },
     {
@@ -27,7 +31,7 @@ const Portfolio = () => {
       title: "ECO LIVING",
       category: "web",
       description: "Desarrollo de e-commerce sostenible con experiencia UX optimizada",
-      image: "/api/placeholder/400/300",
+      image: echenique,
       results: ["+150% conversiones", "-30% tasa de rebote", "Mobile first design"]
     },
     {
@@ -35,7 +39,7 @@ const Portfolio = () => {
       title: "URBAN FIT",
       category: "marketing",
       description: "Campaña integral de marketing digital para cadena de gimnasios",
-      image: "/api/placeholder/400/300",
+      image: deligo,
       results: ["+300% leads", "+45% membresías", "Comunidad activa"]
     },
     {
@@ -43,7 +47,7 @@ const Portfolio = () => {
       title: "ARTISAN COFFEE",
       category: "branding",
       description: "Posicionamiento de marca premium en mercado de especialidad",
-      image: "/api/placeholder/400/300",
+      image: fasolutions,
       results: ["Posicionamiento premium", "+60% ventas", "Expansión nacional"]
     }
   ]
@@ -53,7 +57,7 @@ const Portfolio = () => {
     : projects.filter(project => project.category === activeFilter)
 
   return (
-    <section id="portfolio" className={styles.portfolio}>
+    <section id="trabajos" className={styles.portfolio}>
       <div className="container">
         <div className={styles.sectionHeader}>
           <h2 className={`${styles.sectionTitle} text-semibold`}>NUESTROS TRABAJOS</h2>
