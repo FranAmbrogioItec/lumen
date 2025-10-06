@@ -96,7 +96,8 @@ const Header = () => {
               { id: 'inicio', label: 'Inicio' },
               { id: 'nosotros', label: 'Nosotros' },
               { id: 'trabajamos', label: 'Cómo trabajamos' },
-              { id: 'trabajos', label: 'Nuestros Trabajos' }
+              { id: 'trabajos', label: 'Nuestros Trabajos' },
+              { id: 'faq', label: 'Preguntas Frecuentes' } 
             ].map((item) => (
               <li key={item.id}>
                 <a 
