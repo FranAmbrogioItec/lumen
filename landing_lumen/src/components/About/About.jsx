@@ -97,7 +97,7 @@ const About = () => {
       <div className="container">
         <div className={styles.aboutHeaderGrid}>
           <div className={styles.gridLeft}>
-            <h2 className={`${styles.aboutTitle} text-semibold`}>NOSOTROS</h2>
+            <h2 className={`${styles.aboutTitle}`}>NOSOTROS</h2>
           </div>
           <div className={styles.gridRight}>
             <p className={styles.aboutSubtitle}>
@@ -121,14 +121,14 @@ const About = () => {
                 <img src={service.icon} alt={service.title} />
               </div>
               <div className={styles.cardText}>
-                <h3 className={`${styles.cardTitle} text-semibold`}>{service.title}</h3>
+                <h3 className={`${styles.cardTitle}`}>{service.title}</h3>
                 <p className={styles.cardShortDesc}>{service.shortDesc}</p>
               </div>
             </div>
             
             <div className={styles.cardExpanded}>
               <div className={styles.expandedContent}>
-                <h4 className={`${styles.expandedTitle} text-semibold`}>{service.title}</h4>
+                <h4 className={`${styles.expandedTitle}`}>{service.title}</h4>
                 <p className={styles.expandedDesc}>{service.longDesc}</p>
                 <div className={styles.serviceFeatures}>
                   <span className={styles.feature}>Estratégico</span>

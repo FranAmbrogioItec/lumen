@@ -60,7 +60,7 @@ const Portfolio = () => {
     <section id="trabajos" className={styles.portfolio}>
       <div className="container">
         <div className={styles.sectionHeader}>
-          <h2 className={`${styles.sectionTitle} text-semibold`}>NUESTROS TRABAJOS</h2>
+          <h2 className={`${styles.sectionTitle}`}>NUESTROS TRABAJOS</h2>
           <p className={styles.sectionSubtitle}>
             Casos de éxito que demuestran nuestro enfoque estratégico y resultados medibles
           </p>
@@ -95,7 +95,7 @@ const Portfolio = () => {
               </div>
               
               <div className={styles.projectInfo}>
-                <h3 className={`${styles.projectTitle} text-semibold`}>{project.title}</h3>
+                <h3 className={`${styles.projectTitle}`}>{project.title}</h3>
                 <p className={styles.projectDescription}>{project.description}</p>
                 <div className={styles.projectCategory}>{project.category}</div>
               </div>

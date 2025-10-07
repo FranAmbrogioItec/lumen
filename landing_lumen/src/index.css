@@ -1,24 +1,4 @@
-/* Importar fuentes Glancyr */
-@font-face {
-  font-family: 'Glancyr';
-  src: url('../assets/fonts/Glancyr-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Glancyr';
-  src: url('../assets/fonts/Glancyr-Semibold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Glancyr';
-  src: url('../assets/fonts/Glancyr-ExtraLight.woff2') format('woff2');
-  font-weight: 200;
-  font-style: normal;
-}
+@import url('./fonts.css');
 
 /* Variables CSS - Tema Oscuro (por defecto) */
 :root {

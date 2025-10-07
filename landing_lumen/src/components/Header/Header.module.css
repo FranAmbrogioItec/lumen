@@ -101,7 +101,7 @@
   background: transparent;
   cursor: pointer;
   overflow: hidden;
-  font-weight: bold;
+  font-weight: semibold;
   border: 1px solid #333;
 }
 

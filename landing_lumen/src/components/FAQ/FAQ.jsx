@@ -55,7 +55,7 @@ const FAQ = () => {
 
       <div className="container">
         <div className={styles.sectionHeader}>
-          <h2 className={`${styles.sectionTitle} text-semibold`}>
+          <h2 className={`${styles.sectionTitle}`}>
             PREGUNTAS FRECUENTES
           </h2>
           <p className={styles.sectionSubtitle}>

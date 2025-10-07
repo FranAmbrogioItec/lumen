@@ -1,24 +1,8 @@
 /* Meeting.module.css */
 
-/* Variables de color asumidas (ajusta según tu tema) */
-/* :root {
-    --section-padding: 100px 0;
-    --color-cta: #E74C3C;
-    --color-accent: #F39C12;
-    --color-primary: #4B8FCE;
-    --color-text: #f0f0f0;
-    --color-text-secondary: #aaa;
-    --color-card-bg: rgba(255, 255, 255, 0.05);
-    --color-bg: rgba(0, 0, 0, 0.1);
-    --color-border: rgba(255, 255, 255, 0.1);
-    --color-feature-bg: rgba(231, 76, 60, 0.1);
-    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.4);
-} */
-
 /* ===== VISTA PREVIA (CTA) ===== */
 .meetingPreview {
-  padding: 120px 0 80px 0; /* Más padding arriba para separar */
-  background: linear-gradient(135deg, #0a0a0a 0%, #161616 50%, #1a1a1a 100%);
+  padding: 120px 0 80px 0;
   position: relative;
   overflow: hidden;
   min-height: 70vh;
@@ -26,10 +10,76 @@
   align-items: center;
   text-align: center;
   color: var(--color-text);
-  margin-top: 60px; /* Espacio adicional desde el portfolio */
+  margin-top: 60px;
+  
+  /* Transiciones mejoradas */
+  opacity: 1;
+  transform: translateY(0);/* Meeting.module.css */
+
+/* ===== VISTA PREVIA (CTA) ===== */
+.meetingPreview {
+  padding: 120px 0 80px 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--color-text);
+  margin-top: 60px;
+  
+  /* Transiciones mejoradas */
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.meetingPreview.fadeOut {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
 
+.meetingPreview.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Imagen de fondo */
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-image: url('../../assets/meeting-background.jpg');
+  background-size: cover;              /* La imagen siempre cubrirá todo el fondo */
+  background-position: center center;  /* Centrada en cualquier resolución */
+  background-repeat: no-repeat;
+  background-attachment: fixed;        /* Hace que la imagen se mantenga mientras haces scroll (efecto parallax) */
+  z-index: 0;
+
+  /* Para suavizar cambios en pantallas pequeñas */
+  transition: background-position 0.3s ease-in-out;
+}
+
+/* Overlay para mejor legibilidad */
+.backgroundImage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(22, 22, 22, 0.85) 50%,
+    rgba(26, 26, 26, 0.8) 100%
+  );
+  z-index: 1;
+}
 
 .previewContent {
   position: relative;
@@ -43,10 +93,11 @@
   font-weight: 700;
   margin-bottom: 30px;
   line-height: 1.1;
-  background: linear-gradient(45deg, #ffffff, #F7C432);
+  background: linear-gradient(45deg, #E74C3C, #F39C12);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .previewSubtitle {
@@ -57,11 +108,12 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .ctaButton {
   position: relative;
-  background: linear-gradient(45deg, var(--color-cta), var(--color-accent));
+  background: #f05a1f;
   border: none;
   padding: 20px 50px;
   border-radius: 50px;
@@ -72,12 +124,20 @@
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
   font-family: inherit;
-  box-shadow: 0 10px 30px rgba(231, 78, 19, 0.3);
+  box-shadow: 0 10px 30px rgba(231, 78, 19, 0.4);
+  border: 2px solid transparent;
 }
 
-.ctaButton:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(231, 78, 19, 0.5);
+.ctaButton:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(231, 78, 19, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ctaButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .ctaGlow {
@@ -90,7 +150,7 @@
   transition: left 0.6s ease;
 }
 
-.ctaButton:hover .ctaGlow {
+.ctaButton:hover:not(:disabled) .ctaGlow {
   left: 100%;
 }
 
@@ -109,7 +169,7 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(40px);
-  opacity: 0.1;
+  opacity: 0.15;
   animation: float 8s ease-in-out infinite;
 }
 
@@ -143,7 +203,6 @@
 /* ===== VISTA COMPLETA (FORMULARIO) ===== */
 .meeting {
   padding: var(--section-padding);
-  background: linear-gradient(135deg, #0a0a0a 0%, #161616 50%, #1a1a1a 100%);
   position: relative;
   overflow: hidden;
   min-height: 100vh;
@@ -151,16 +210,26 @@
   align-items: center;
   color: var(--color-text);
   
-  /* CLAVE: ESTADO INICIAL PARA LA TRANSICIÓN */
+  /* Transiciones mejoradas */
   opacity: 0;
-  transform: scale(0.98); /* Ligeramente más pequeño */
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* CLAVE: ESTADO FINAL DE LA TRANSICIÓN */
 .meeting.activeForm {
-    opacity: 1;
-    transform: scale(1); /* Vuelve al tamaño normal */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.meeting.fadeOut {
+  opacity: 0;
+  transform: translateY(-30px);
+  pointer-events: none;
+} 
+
+.meeting.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .closeFormButton {
@@ -170,33 +239,40 @@
   background: var(--color-card-bg);
   border: 1px solid var(--color-border);
   color: var(--color-text);
-  padding: 10px 20px;
+  padding: 12px 20px;
   border-radius: 25px;
   cursor: pointer;
   font-family: inherit;
   font-size: 0.9rem;
+  font-weight: 500;
   transition: all 0.3s ease;
   z-index: 10;
   backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
 }
 
-.closeFormButton:hover {
+.closeFormButton:hover:not(:disabled) {
   background: var(--color-feature-bg);
   border-color: var(--color-accent);
   transform: translateX(-5px);
+  box-shadow: var(--shadow-md);
 }
 
-.meeting::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(231, 76, 60, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(75, 143, 206, 0.1) 0%, transparent 50%);
-  pointer-events: none;
+.closeFormButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.closeIcon {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.closeFormButton:hover:not(:disabled) .closeIcon {
+  transform: translateX(-3px);
 }
 
 .meetingGrid {
@@ -217,6 +293,7 @@
   font-size: 3rem;
   margin-bottom: 30px;
   line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .accentText {
@@ -231,6 +308,7 @@
   color: var(--color-text-secondary);
   line-height: 1.7;
   margin-bottom: 50px;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .benefitsList {
@@ -244,6 +322,11 @@
   display: flex;
   align-items: flex-start;
   gap: 15px;
+  transition: transform 0.3s ease;
+}
+
+.benefitItem:hover {
+  transform: translateX(5px);
 }
 
 .benefitIcon {
@@ -255,10 +338,15 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  
-  /* AJUSTE: Nuevo estilo para los React Icons */
   color: var(--color-accent);
-  font-size: 1.3rem; 
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.benefitItem:hover .benefitIcon {
+  background: var(--color-accent);
+  color: white;
+  transform: scale(1.1);
 }
 
 .benefitText {
@@ -287,7 +375,7 @@
 .contactItem {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 
 .contactLabel {
@@ -300,14 +388,16 @@
   color: var(--color-text);
   text-decoration: none;
   font-size: 1.1rem;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 8px 0;
 }
 
 .contactLink:hover {
   color: var(--color-accent);
+  transform: translateX(5px);
 }
 
 /* Form Section */
@@ -318,6 +408,11 @@
   border: 1px solid var(--color-border);
   backdrop-filter: blur(10px);
   box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+
+.formSection:hover {
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(231, 76, 60, 0.1);
 }
 
 .meetingForm {
@@ -357,6 +452,14 @@
   outline: none;
   border-color: var(--color-accent);
   box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+  transform: translateY(-2px);
+}
+
+.formInput:disabled,
+.formSelect:disabled,
+.formTextarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .formTextarea {
@@ -383,7 +486,7 @@
   transition: left 0.6s ease;
 }
 
-.submitButton:hover .buttonGlow {
+.submitButton:hover:not(:disabled) .buttonGlow {
   left: 100%;
 }
 
@@ -403,7 +506,7 @@
 /* Responsive */
 @media (max-width: 968px) {
   .meetingPreview {
-    min-height: 60vh; /* Ajuste la altura mínima en dispositivos más pequeños */
+    min-height: 60vh;
   }
 
   .previewTitle {
@@ -443,11 +546,17 @@
   .sectionTitle {
     font-size: 2.5rem;
   }
+  
+  .previewTitle {
+    font-size: 2.2rem;
+  }
+  
   .formSection {
     padding: 30px;
   }
-  .meeting::before {
-    display: none; /* Oculta los efectos de fondo en móvil para mejor rendimiento */
+  
+  .backgroundImage {
+    background-attachment: scroll;
   }
 }
 
@@ -455,11 +564,1153 @@
   .previewTitle {
     font-size: 2rem;
   }
+  
   .sectionTitle {
     font-size: 2rem;
   }
+  
   .ctaButton {
     font-size: 1rem;
     padding: 15px 30px;
+  }
+  
+  .closeFormButton {
+    top: 15px;
+    left: 15px;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .backgroundImage::after {
+    background: linear-gradient(
+      135deg,
+      rgba(10, 10, 10, 0.95) 0%,
+      rgba(22, 22, 22, 0.92) 50%,
+      rgba(26, 26, 26, 0.9) 100%
+    );
+  }
+}/* Meeting.module.css */
+
+/* ===== VISTA PREVIA (CTA) ===== */
+.meetingPreview {
+  padding: 120px 0 80px 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--color-text);
+  margin-top: 60px;
+  
+  /* Transiciones mejoradas */
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.meetingPreview.fadeOut {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+.meetingPreview.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Imagen de fondo */
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/meeting-background.jpg'); /* Ajusta la ruta a tu imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Overlay para mejor legibilidad */
+.backgroundImage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(22, 22, 22, 0.85) 50%,
+    rgba(26, 26, 26, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.previewContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.previewTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  line-height: 1.1;
+  background: linear-gradient(45deg, #E74C3C, #F39C12);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.previewSubtitle {
+  font-size: 1.3rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.ctaButton {
+  position: relative;
+  background: linear-gradient(45deg, var(--color-cta), var(--color-accent));
+  border: none;
+  padding: 20px 50px;
+  border-radius: 50px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  font-family: inherit;
+  box-shadow: 0 10px 30px rgba(231, 78, 19, 0.4);
+  border: 2px solid transparent;
+}
+
+.ctaButton:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(231, 78, 19, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ctaButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ctaGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+}
+
+.ctaButton:hover:not(:disabled) .ctaGlow {
+  left: 100%;
+}
+
+/* Elementos decorativos de fondo para la vista previa */
+.previewOrbs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.orb1, .orb2, .orb3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--color-cta) 0%, transparent 70%);
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.orb2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+  bottom: 20%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.orb3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  top: 50%;
+  left: 80%;
+  animation-delay: 4s;
+}
+
+/* ===== VISTA COMPLETA (FORMULARIO) ===== */
+.meeting {
+  padding: var(--section-padding);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  
+  /* Transiciones mejoradas */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.meeting.activeForm {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.meeting.fadeOut {
+  opacity: 0;
+  transform: translateY(-30px);
+  pointer-events: none;
+}
+
+.meeting.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.closeFormButton {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.closeFormButton:hover:not(:disabled) {
+  background: var(--color-feature-bg);
+  border-color: var(--color-accent);
+  transform: translateX(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.closeFormButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.closeIcon {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.closeFormButton:hover:not(:disabled) .closeIcon {
+  transform: translateX(-3px);
+}
+
+.meetingGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.infoSection {
+  padding-right: 40px;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.accentText {
+  background: linear-gradient(45deg, #E74C3C, #F39C12);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionDescription {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 50px;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  transition: transform 0.3s ease;
+}
+
+.benefitItem:hover {
+  transform: translateX(5px);
+}
+
+.benefitIcon {
+  width: 40px;
+  height: 40px;
+  background: var(--color-feature-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-accent);
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.benefitItem:hover .benefitIcon {
+  background: var(--color-accent);
+  color: white;
+  transform: scale(1.1);
+}
+
+.benefitText {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.benefitText strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.benefitText span {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contactLabel {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.contactLink {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.contactLink:hover {
+  color: var(--color-accent);
+  transform: translateX(5px);
+}
+
+/* Form Section */
+.formSection {
+  background: var(--color-card-bg);
+  border-radius: 16px;
+  padding: 40px;
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+
+.formSection:hover {
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(231, 76, 60, 0.1);
+}
+
+.meetingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formLabel {
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+  transform: translateY(-2px);
+}
+
+.formInput:disabled,
+.formSelect:disabled,
+.formTextarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submitButton {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.buttonGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.submitButton:hover:not(:disabled) .buttonGlow {
+  left: 100%;
+}
+
+/* Animaciones */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .meetingPreview {
+    min-height: 60vh;
+  }
+
+  .previewTitle {
+    font-size: 2.8rem;
+  }
+  
+  .meetingGrid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .infoSection {
+    padding-right: 0;
+    text-align: center;
+  }
+  
+  .benefitItem {
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .benefitsList {
+    align-items: center;
+  }
+  
+  .contactInfo {
+    align-items: center;
+  }
+  
+  .closeFormButton {
+    top: 20px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+  
+  .previewTitle {
+    font-size: 2.2rem;
+  }
+  
+  .formSection {
+    padding: 30px;
+  }
+  
+  .backgroundImage {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 576px) {
+  .previewTitle {
+    font-size: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .ctaButton {
+    font-size: 1rem;
+    padding: 15px 30px;
+  }
+  
+  .closeFormButton {
+    top: 15px;
+    left: 15px;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .backgroundImage::after {
+    background: linear-gradient(
+      135deg,
+      rgba(10, 10, 10, 0.95) 0%,
+      rgba(22, 22, 22, 0.92) 50%,
+      rgba(26, 26, 26, 0.9) 100%
+    );
+  }
+}
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.meetingPreview.fadeOut {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+.meetingPreview.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Imagen de fondo */
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/meeting-background.jpg'); /* Ajusta la ruta a tu imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Overlay para mejor legibilidad */
+.backgroundImage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(22, 22, 22, 0.85) 50%,
+    rgba(26, 26, 26, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.previewContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.previewTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  line-height: 1.1;
+  background: linear-gradient(45deg, #ffffff, #F7C432);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.previewSubtitle {
+  font-size: 1.3rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.ctaButton {
+  position: relative;
+  background: linear-gradient(45deg, var(--color-cta), var(--color-accent));
+  border: none;
+  padding: 20px 50px;
+  border-radius: 50px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  font-family: inherit;
+  box-shadow: 0 10px 30px rgba(231, 78, 19, 0.4);
+  border: 2px solid transparent;
+}
+
+.ctaButton:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(231, 78, 19, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ctaButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ctaGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+}
+
+.ctaButton:hover:not(:disabled) .ctaGlow {
+  left: 100%;
+}
+
+/* Elementos decorativos de fondo para la vista previa */
+.previewOrbs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.orb1, .orb2, .orb3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--color-cta) 0%, transparent 70%);
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.orb2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+  bottom: 20%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.orb3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  top: 50%;
+  left: 80%;
+  animation-delay: 4s;
+}
+
+/* ===== VISTA COMPLETA (FORMULARIO) ===== */
+.meeting {
+  padding: var(--section-padding);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  
+  /* Transiciones mejoradas */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.meeting.activeForm {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.meeting.fadeOut {
+  opacity: 0;
+  transform: translateY(-30px);
+  pointer-events: none;
+}
+
+.meeting.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.closeFormButton {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.closeFormButton:hover:not(:disabled) {
+  background: var(--color-feature-bg);
+  border-color: var(--color-accent);
+  transform: translateX(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.closeFormButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.closeIcon {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.closeFormButton:hover:not(:disabled) .closeIcon {
+  transform: translateX(-3px);
+}
+
+.meetingGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.infoSection {
+  padding-right: 40px;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.accentText {
+  background: linear-gradient(45deg, #E74C3C, #F39C12);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionDescription {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 50px;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  transition: transform 0.3s ease;
+}
+
+.benefitItem:hover {
+  transform: translateX(5px);
+}
+
+.benefitIcon {
+  width: 40px;
+  height: 40px;
+  background: var(--color-feature-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-accent);
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.benefitItem:hover .benefitIcon {
+  background: var(--color-accent);
+  color: white;
+  transform: scale(1.1);
+}
+
+.benefitText {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.benefitText strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.benefitText span {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contactLabel {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.contactLink {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.contactLink:hover {
+  color: var(--color-accent);
+  transform: translateX(5px);
+}
+
+/* Form Section */
+.formSection {
+  background: var(--color-card-bg);
+  border-radius: 16px;
+  padding: 40px;
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+
+.formSection:hover {
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(231, 76, 60, 0.1);
+}
+
+.meetingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formLabel {
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+  transform: translateY(-2px);
+}
+
+.formInput:disabled,
+.formSelect:disabled,
+.formTextarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submitButton {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.buttonGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.submitButton:hover:not(:disabled) .buttonGlow {
+  left: 100%;
+}
+
+/* Animaciones */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .meetingPreview {
+    min-height: 60vh;
+  }
+
+  .previewTitle {
+    font-size: 2.8rem;
+  }
+  
+  .meetingGrid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .infoSection {
+    padding-right: 0;
+    text-align: center;
+  }
+  
+  .benefitItem {
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .benefitsList {
+    align-items: center;
+  }
+  
+  .contactInfo {
+    align-items: center;
+  }
+  
+  .closeFormButton {
+    top: 20px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+  
+  .previewTitle {
+    font-size: 2.2rem;
+  }
+  
+  .formSection {
+    padding: 30px;
+  }
+  
+  .backgroundImage {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 576px) {
+  .previewTitle {
+    font-size: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .ctaButton {
+    font-size: 1rem;
+    padding: 15px 30px;
+  }
+  
+  .closeFormButton {
+    top: 15px;
+    left: 15px;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .backgroundImage::after {
+    background: linear-gradient(
+      135deg,
+      rgba(10, 10, 10, 0.95) 0%,
+      rgba(22, 22, 22, 0.92) 50%,
+      rgba(26, 26, 26, 0.9) 100%
+    );
   }
 }

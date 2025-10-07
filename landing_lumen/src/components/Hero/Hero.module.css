@@ -150,7 +150,7 @@
 .heroTitle {
   font-size: 3.3rem;
   line-height: 1.1;
-  font-weight: 900;
+  font-weight: 00;
   /* CAMBIO: Color de título oscuro */
   color: #1a1a1a;
 }
@@ -554,6 +554,11 @@
 }
 
 @media (max-width: 480px) {
+  .heroImage {
+    width: 80%;
+    height: auto;
+  }
+  
   .heroTitle {
     font-size: 2rem;
   }

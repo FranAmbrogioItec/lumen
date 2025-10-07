@@ -96,7 +96,7 @@
     justify-content: space-between;
     align-items: center;
     color: #2d3748;
-    font-family: inherit;
+    font-family: 'Glancyr', sans-serif;
     transition: all 0.3s ease;
   }
   
@@ -229,7 +229,7 @@
     font-weight: 600;
     text-decoration: none;
     display: inline-block;
-    font-family: inherit;
+    font-family: 'Glancyr', sans-serif;
     cursor: pointer;
   }
   

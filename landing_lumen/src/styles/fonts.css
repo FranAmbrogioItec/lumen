@@ -1,51 +1,32 @@
-/* Importar fuente Glancyr */
+/* fonts.css - Versión corregida */
 @font-face {
-    font-family: 'Glancyr';
-    src: url('../assets/fonts/Glancyr-Light.woff2') format('woff2'),
-         url('../assets/fonts/Glancyr-Light.woff') format('woff'),
-         url('../assets/fonts/Glancyr-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'Glancyr';
-    src: url('../assets/fonts/Glancyr-Regular.woff2') format('woff2'),
-         url('../assets/fonts/Glancyr-Regular.woff') format('woff'),
-         url('../assets/fonts/Glancyr-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'Glancyr';
-    src: url('../assets/fonts/Glancyr-Medium.woff2') format('woff2'),
-         url('../assets/fonts/Glancyr-Medium.woff') format('woff'),
-         url('../assets/fonts/Glancyr-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'Glancyr';
-    src: url('../assets/fonts/Glancyr-Bold.woff2') format('woff2'),
-         url('../assets/fonts/Glancyr-Bold.woff') format('woff'),
-         url('../assets/fonts/Glancyr-Bold.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-    font-stretch: condensed; /* Usa el valor 'condensed' o un porcentaje */
+  font-family: 'Glancyr';
+  src: url('../fonts/Glancyr-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
-  }
+@font-face {
+  font-family: 'Glancyr';
+  src: url('../fonts/Glancyr-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
 
-  @font-face {
-     font-family: 'Glancyr';
-     src: url('../assets/fonts/Glancyr-Wide.woff2') format('woff2');
-     font-weight: 400; /* o el peso correspondiente a ese archivo */
-     font-style: normal;
-     font-stretch: expanded; /* o semi-expanded, extra-expanded, etc. */
-     font-display: swap;
- }
+@font-face {
+  font-family: 'Glancyr';
+  src: url('../fonts/Glancyr-ExtraLight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Glancyr';
+  src: url('../fonts/Glancyr-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

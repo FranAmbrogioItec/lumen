@@ -1,11 +1,12 @@
 // Meeting.jsx
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './Meeting.module.css'
 // Se importan los iconos de react-icons
-import { FiCheckCircle, FiTarget, FiZap, FiPhone, FiMail } from 'react-icons/fi' 
+import { FiCheckCircle, FiTarget, FiZap, FiPhone, FiMail, FiArrowLeft } from 'react-icons/fi' 
 
 const Meeting = () => {
   const [showForm, setShowForm] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -42,40 +43,53 @@ const Meeting = () => {
       projectType: '',
       message: ''
     })
-    // En un proyecto real, probablemente querrías ocultar el formulario aquí
-    // setShowForm(false)
   }
 
   const handleCTAClick = () => {
-    setShowForm(true)
-    // Scroll suave a la sección del formulario
+    setIsTransitioning(true)
+    
+    // Esperar un momento para que la animación de salida se complete
     setTimeout(() => {
-      document.getElementById('reunion-form')?.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'center'
-      })
-    }, 100)
+      setShowForm(true)
+      // Scroll suave a la sección del formulario después de la transición
+      setTimeout(() => {
+        document.getElementById('reunion-form')?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        })
+        setIsTransitioning(false)
+      }, 300)
+    }, 200)
   }
 
   const handleCloseForm = () => {
-    setShowForm(false)
-    // Scroll suave de vuelta a la sección principal
+    setIsTransitioning(true)
+    
     setTimeout(() => {
+      setShowForm(false)
+      // Scroll suave de vuelta a la sección principal
+      setTimeout(() => {
         document.getElementById('reunion')?.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
+          behavior: 'smooth',
+          block: 'start'
         })
-    }, 100)
+        setIsTransitioning(false)
+      }, 300)
+    }, 200)
   }
 
   // Vista Previa (CTA)
   if (!showForm) {
     return (
-      <section id="reunion" className={styles.meetingPreview}>
+      <section 
+        id="reunion" 
+        className={`${styles.meetingPreview} ${isTransitioning ? styles.fadeOut : styles.fadeIn}`}
+      >
+        <div className={styles.backgroundImage}></div>
         <div className="container">
           <div className={styles.previewContent}>
             <h2 className={styles.previewTitle}>
-              DE LA IDEA A LA ACCION, TRANSFORMAMOS TU MARCA EN RESULTADOS
+              DE LA IDEA A LA ACCIÓN, TRANSFORMAMOS TU MARCA EN RESULTADOS
             </h2>
             <p className={styles.previewSubtitle}>
               Tu proyecto de desarrollo y marketing necesita un motor potente. Agenda tu consulta gratuita y transforma tu visión en resultados tangibles.
@@ -83,8 +97,9 @@ const Meeting = () => {
             <button 
               className={styles.ctaButton} 
               onClick={handleCTAClick}
+              disabled={isTransitioning}
             >
-              <span>Agendar mi reunión</span>
+              <span>{isTransitioning ? 'Cargando...' : 'Agendar mi reunión'}</span>
               <div className={styles.ctaGlow}></div>
             </button>
             
@@ -102,18 +117,21 @@ const Meeting = () => {
 
   // Vista Completa (Formulario)
   return (
-    // CLAVE: Se usa la clase 'activeForm' para activar la transición CSS
     <section 
-        id="reunion-form" 
-        className={`${styles.meeting} ${showForm ? styles.activeForm : ''}`}
+      id="reunion-form" 
+      className={`${styles.meeting} ${showForm ? styles.activeForm : ''} ${isTransitioning ? styles.fadeOut : styles.fadeIn}`}
     >
+      <div className={styles.backgroundImage}></div>
+      
       {/* Botón para cerrar/volver */}
       <button 
         className={styles.closeFormButton}
         onClick={handleCloseForm}
         aria-label="Volver a la vista anterior"
+        disabled={isTransitioning}
       >
-        ← Volver
+        <FiArrowLeft className={styles.closeIcon} />
+        Volver
       </button>
 
       <div className="container">
@@ -130,7 +148,6 @@ const Meeting = () => {
             </p>
 
             <div className={styles.benefitsList}>
-              {/* BENEFICIO 1: Icono profesional */}
               <div className={styles.benefitItem}>
                 <div className={styles.benefitIcon}><FiCheckCircle /></div> 
                 <div className={styles.benefitText}>
@@ -139,7 +156,6 @@ const Meeting = () => {
                 </div>
               </div>
               
-              {/* BENEFICIO 2: Icono profesional */}
               <div className={styles.benefitItem}>
                 <div className={styles.benefitIcon}><FiTarget /></div>
                 <div className={styles.benefitText}>
@@ -148,7 +164,6 @@ const Meeting = () => {
                 </div>
               </div>
               
-              {/* BENEFICIO 3: Icono profesional */}
               <div className={styles.benefitItem}>
                 <div className={styles.benefitIcon}><FiZap /></div>
                 <div className={styles.benefitText}>
@@ -165,7 +180,6 @@ const Meeting = () => {
                 <a href="mailto:hola@agencia.com" className={styles.contactLink}><FiMail /> hola@agencia.com</a>
               </div>
             </div>
-            
           </div>
 
           {/* Formulario */}
@@ -181,6 +195,7 @@ const Meeting = () => {
                   onChange={handleInputChange}
                   className={styles.formInput}
                   required
+                  disabled={isTransitioning}
                 />
               </div>
 
@@ -194,6 +209,7 @@ const Meeting = () => {
                   onChange={handleInputChange}
                   className={styles.formInput}
                   required
+                  disabled={isTransitioning}
                 />
               </div>
               
@@ -206,6 +222,7 @@ const Meeting = () => {
                   value={formData.company}
                   onChange={handleInputChange}
                   className={styles.formInput}
+                  disabled={isTransitioning}
                 />
               </div>
 
@@ -218,6 +235,7 @@ const Meeting = () => {
                   onChange={handleInputChange}
                   className={styles.formSelect}
                   required
+                  disabled={isTransitioning}
                 >
                   <option value="">Selecciona una opción</option>
                   {projectTypes.map(type => (
@@ -236,11 +254,16 @@ const Meeting = () => {
                   className={styles.formTextarea}
                   rows="4"
                   placeholder="Describe tus objetivos, necesidades y cualquier información relevante..."
+                  disabled={isTransitioning}
                 ></textarea>
               </div>
 
-              <button type="submit" className={`${styles.submitButton} ${styles.ctaButton}`}>
-                <span>Enviar Solicitud</span>
+              <button 
+                type="submit" 
+                className={`${styles.submitButton} ${styles.ctaButton}`}
+                disabled={isTransitioning}
+              >
+                <span>{isTransitioning ? 'Enviando...' : 'Enviar Solicitud'}</span>
                 <div className={styles.buttonGlow}></div>
               </button>
             </form>
