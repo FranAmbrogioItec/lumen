@@ -452,6 +452,21 @@
   .expandedDesc {
     font-size: 0.95rem;
   }
+
+  .serviceCard.active .cardExpanded {
+    /* Cambiar a diseño de una sola columna en móviles */
+    display: flex !important; /* Usamos flex en lugar de grid */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 35px 25px;
+    /* La línea de abajo asegura que el contenido se vea */
+    grid-template-columns: 1fr !important; /* Sobreescribe el grid de escritorio */
+  }
+
+  .serviceCard.active .cardExpanded .cardImage {
+    display: none !important; /* ¡La solución que buscas! */
+  }
   
 }
-
