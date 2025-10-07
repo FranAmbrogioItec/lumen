@@ -124,6 +124,8 @@ const About = () => {
                 <h3 className={`${styles.cardTitle}`}>{service.title}</h3>
                 <p className={styles.cardShortDesc}>{service.shortDesc}</p>
               </div>
+              <span className={styles.tapIndicator}>Toca para más info →</span>
+
             </div>
             
             <div className={styles.cardExpanded}>
@@ -136,6 +138,12 @@ const About = () => {
                   <span className={styles.feature}>Resultados</span>
                 </div>
               </div>
+
+              {/* La imagen que se quiere mantener al lado en PC */}
+              <div className={styles.cardImage}> 
+                    <img src={service.icon} alt={service.title} />
+              </div>
+              
               <button 
                 className={styles.closeButton}
                 onClick={(e) => {

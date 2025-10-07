@@ -51,18 +51,21 @@ const FAQ = () => {
 
   return (
     <section id="faq" className={styles.faq}>
-      {/* Elementos de fondo optimizados - solo se muestran en desktop */}
+      {/* Partículas flotantes de background */}
+      {/* Elementos de fondo animados */}
       <div className={styles.heroBackground}>
         <div className={styles.backgroundParticle1}></div>
         <div className={styles.backgroundParticle2}></div>
         <div className={styles.backgroundParticle3}></div>
+        <div className={styles.backgroundGrid}></div>
         
-        {/* Elementos flotantes optimizados */}
+        {/* Nuevos elementos flotantes naranjas */}
         <div className={styles.floatingOrb1}></div>
         <div className={styles.floatingOrb2}></div>
         <div className={styles.floatingShape1}></div>
         <div className={styles.floatingShape2}></div>
       </div>
+      
 
       <div className="container">
         <div className={styles.sectionHeader}>

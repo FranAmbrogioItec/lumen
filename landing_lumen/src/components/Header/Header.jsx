@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Header.module.css'
-import logo from '../../assets/logo.svg'
+import logoLight from '../../assets/logo.svg' // Logo para estado normal
+import logoDark from '../../assets/isotipo.svg'   // Logo para estado scrolled
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -9,7 +10,8 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+      const scrollY = window.scrollY
+      setIsScrolled(scrollY > 40)
       
       // Actualizar sección activa
       const sections = ['inicio', 'nosotros', 'trabajamos', 'trabajos', 'reunion']
@@ -88,7 +90,11 @@ const Header = () => {
             }}
             aria-label="Ir a inicio"
           >
-            <img src={logo} alt="Lumen Logo" className={styles.logo} />
+            <img 
+              src={isScrolled ? logoDark : logoLight} 
+              alt="Lumen Logo" 
+              className={styles.logo}
+            />
           </a>
           
           <ul className={`${styles.navList} ${isMobileMenuOpen ? styles.navListOpen : ''}`}>

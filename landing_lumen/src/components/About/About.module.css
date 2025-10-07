@@ -95,12 +95,45 @@
   transform: none;  
 }
 
+/* 1. Ajuste del Service Card Activo en Desktop */
 .serviceCard.active {
-  width: 75%;
-  z-index: 20;
-  /* Sombra más suave */
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7); 
-  transform: none !important;
+  /* La tarjeta activa se expande */
+  width: 100%;
+  max-width: var(--container-width); /* Ajusta al ancho del contenedor */
+  /* NO se necesita transform, ya que la animación de slide se maneja en el JS/estructura */
+  /* Esto asegura que la tarjeta activa mantenga su color base */
+  background: var(--color-card-bg); /* O el color que desees para el fondo base */
+  
+  /* Eliminar la opacidad y el filtro del estado inactivo */
+  opacity: 1 !important;
+  filter: none !important; 
+
+  /* Quitar los bordes si no se necesitan en el estado activo */
+  border: 1px solid var(--color-border);
+}
+
+.serviceCard.active .cardImage {
+  /* La imagen del card activo, ahora movida a cardExpanded */
+  display: block; /* Mostrar la imagen */
+  width: 100%;
+  height: auto;
+  min-height: 250px;
+  max-height: 350px; /* Altura máxima para la imagen */
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+
+.serviceCard.active .cardImage img {
+  width: 70%;
+  height: 75%;
+  object-fit: cover;
+}
+
+.serviceCard:not(.active) .cardExpanded {
+  /* Asegurar que el contenido expandido esté oculto en los inactivos */
+  display: none;
 }
 
 .servicesRow:has(.serviceCard.active) .serviceCard:not(.active) {
@@ -123,12 +156,14 @@
   transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Contenido de la Card al activarse */
+/* 2. Ocultar contenido corto y mostrar el expandido en el estado activo */
 .serviceCard.active .cardContent {
-  opacity: 0.3;                /* antes 0 -> mantenemos algo visible */
-  transform: scale(0.95) translateY(10px); /* menos agresivo */
-  filter: blur(2px);           /* ligero desenfoque para resaltar el expandido */
+  /* El contenido breve debe desaparecer */
+  opacity: 0;
+  visibility: hidden;
+  position: absolute; /* Para que no ocupe espacio */
 }
+
 .cardImage {
   width: 250px;
   height: 250px;
@@ -154,14 +189,14 @@
   color: #0a0a0a; 
   text-shadow: none;
   line-height: 1.2;
-  font-weight: 700;
+  font-weight: regular;
 }
 
 .cardShortDesc {
   /* Texto más contrastante */
   color: rgba(0, 0, 0, 0.75); 
   font-size: 0.95rem;
-  font-weight: 400;
+  font-weight: extralight;
   line-height: 1.4;
 }
 
@@ -187,8 +222,19 @@
 }
 
 .serviceCard.active .cardExpanded {
+  /* El contenido expandido se vuelve visible */
   opacity: 1;
-  transform: scale(1);
+  visibility: visible;
+  transform: translateX(0);
+  
+  /* MODIFICACIÓN CLAVE: Diseño de cuadrícula para texto e imagen */
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Texto más ancho que la imagen */
+  gap: 40px;
+  align-items: center;
+  padding: 40px; /* Padding general */
+  height: 100%; /* Asegura que ocupe todo el alto */
+  background: none; /* Asegura que el color de fondo venga del .serviceCard */
 }
 
 /* Cards no activas cuando hay una card expandida */
@@ -206,7 +252,7 @@
 .expandedTitle {
   font-size: 2.2rem;
   margin-bottom: 20px;
-  color: var(--accent-color);
+  color: black;
   text-shadow: none;
   letter-spacing: -0.5px;
   line-height: 1.2;
@@ -216,7 +262,7 @@
 .expandedDesc {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85); /* Un poco más de contraste */
+  color: rgba(0, 0, 0, 0.85); /* Un poco más de contraste */
   margin-bottom: 30px;
   font-weight: 300;
 }
@@ -225,6 +271,7 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+
 }
 
 .feature {
@@ -233,7 +280,7 @@
   background: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   font-size: 0.9rem;
-  color: var(--accent-color);
+  color: black;
   border: 1px solid rgba(255, 255, 255, 0.2);
   font-weight: 500;
 }

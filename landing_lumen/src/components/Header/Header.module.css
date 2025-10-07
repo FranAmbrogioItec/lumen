@@ -65,11 +65,21 @@
 .logo {
   height: 45px;
   width: auto;
-  transition: var(--transition);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Asegurar que la transición del logo sea suave */
+  opacity: 1;
+  transform: scale(1);
 }
 
+/* Transición suave para el cambio de logo */
 .logoLink:hover .logo {
   transform: scale(1.05);
+}
+
+/* Efecto específico para el estado scrolled */
+.header.scrolled .logo {
+  /* Puedes agregar efectos específicos para el logo oscuro si lo deseas */
+  filter: brightness(0.9);
 }
 
 /* Lista de navegación */
@@ -136,7 +146,7 @@
 .ctaLink {
   background: #f05a1f; /* Mantiene el color principal (naranja) */
   color: white !important; /* Mantiene el texto en blanco */
-  font-weight: 600;
+  font-weight: bold;
   position: relative;
   overflow: hidden;
 }
@@ -250,6 +260,10 @@
   .navLink::before {
     display: none;
   }
+
+  .logo {
+    height: 40px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -259,5 +273,12 @@
   
   .navList {
     width: 100%;
+  }
+}
+
+/* Mejoras de rendimiento para el cambio de logo */
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    transition: none;
   }
 }
