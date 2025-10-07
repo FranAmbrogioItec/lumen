@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styles from './FAQ.module.css';
 import { FiChevronDown, FiMessageSquare, FiCode, FiDollarSign, FiClock, FiTrendingUp } from 'react-icons/fi';
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const toggleFAQ = (index) => {
+  // Usar useCallback para optimizar la función de toggle
+  const toggleFAQ = useCallback((index) => {
     setActiveIndex(activeIndex === index ? null : index);
-  };
+  }, [activeIndex]);
 
   const faqItems = [
     {
@@ -37,16 +38,26 @@ const FAQ = () => {
     }
   ];
 
+  const handleCTAClick = useCallback((e) => {
+    e.preventDefault();
+    const reunionSection = document.getElementById('reunion');
+    if (reunionSection) {
+      reunionSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }, []);
+
   return (
     <section id="faq" className={styles.faq}>
-      {/* Elementos de fondo animados */}
+      {/* Elementos de fondo optimizados - solo se muestran en desktop */}
       <div className={styles.heroBackground}>
         <div className={styles.backgroundParticle1}></div>
         <div className={styles.backgroundParticle2}></div>
         <div className={styles.backgroundParticle3}></div>
-        <div className={styles.backgroundGrid}></div>
         
-        {/* Nuevos elementos flotantes naranjas */}
+        {/* Elementos flotantes optimizados */}
         <div className={styles.floatingOrb1}></div>
         <div className={styles.floatingOrb2}></div>
         <div className={styles.floatingShape1}></div>
@@ -55,7 +66,7 @@ const FAQ = () => {
 
       <div className="container">
         <div className={styles.sectionHeader}>
-          <h2 className={`${styles.sectionTitle}`}>
+          <h2 className={styles.sectionTitle}>
             PREGUNTAS FRECUENTES
           </h2>
           <p className={styles.sectionSubtitle}>
@@ -74,6 +85,7 @@ const FAQ = () => {
                   className={styles.faqQuestion}
                   onClick={() => toggleFAQ(index)}
                   aria-expanded={activeIndex === index}
+                  type="button"
                 >
                   <div className={styles.questionContent}>
                     <div className={styles.questionIcon}>
@@ -81,7 +93,10 @@ const FAQ = () => {
                     </div>
                     <span className={styles.questionText}>{item.question}</span>
                   </div>
-                  <FiChevronDown className={`${styles.chevron} ${activeIndex === index ? styles.rotated : ''}`} />
+                  <FiChevronDown 
+                    className={`${styles.chevron} ${activeIndex === index ? styles.rotated : ''}`} 
+                    aria-hidden="true"
+                  />
                 </button>
                 
                 <div className={styles.faqAnswer}>
@@ -99,18 +114,13 @@ const FAQ = () => {
               <p className={styles.ctaText}>
                 Contáctanos directamente y te asesoraremos personalmente sobre tu proyecto
               </p>
-              <a 
-                href="#reunion" 
-                className={`${styles.ctaButton} btn btn-primary`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('reunion')?.scrollIntoView({ 
-                    behavior: 'smooth' 
-                  });
-                }}
+              <button 
+                className={styles.ctaButton}
+                onClick={handleCTAClick}
+                type="button"
               >
                 Agendar Consulta Gratuita
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -119,4 +129,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default React.memo(FAQ);

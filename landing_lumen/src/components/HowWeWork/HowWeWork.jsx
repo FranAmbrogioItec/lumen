@@ -3,10 +3,10 @@ import React, { useRef, useState, useEffect } from 'react'
 import styles from './HowWeWork.module.css'
 
 // ** Asegúrate de importar tus imágenes PNG aquí. **
-import stepImage1 from '../../assets/persona1.png' // Ejemplo: Cambia esto a tu ruta real
-import stepImage2 from '../../assets/persona2.png' // Ejemplo
-import stepImage3 from '../../assets/persona3.png' // Ejemplo
-import stepImage4 from '../../assets/persona4.png' // Ejemplo
+import stepImage1 from '../../assets/work2.png' // Ejemplo: Cambia esto a tu ruta real
+import stepImage2 from '../../assets/work5.png' // Ejemplo
+import stepImage3 from '../../assets/work6.png' // Ejemplo
+import stepImage4 from '../../assets/work.png' // Ejemplo
 
 const HowWeWork = () => {
   const [activeStep, setActiveStep] = useState(0)
