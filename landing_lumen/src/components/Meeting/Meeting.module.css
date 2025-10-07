@@ -1,29 +1,26 @@
-/* Meeting.module.css OPTIMIZADO */
+/* Meeting.module.css - VERSIÓN MEJORADA */
 
 /* ===== VISTA PREVIA (CTA) ===== */
 .meetingPreview {
-  padding: 80px 0 60px 0;
   position: relative;
   overflow: hidden;
-  min-height: 60vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
   text-align: center;
-  color: var(--color-text);
-  margin-top: 40px;
-  
+  color: white;
+  margin-top: 0;
   /* Transiciones optimizadas */
   opacity: 1;
   transform: translateY(0);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Mejoras de rendimiento */
   transform: translateZ(0);
   backface-visibility: hidden;
 }
 
 .meetingPreview.fadeOut {
   opacity: 0;
-  transform: translateY(-15px);
+  transform: translateY(-20px);
   pointer-events: none;
 }
 
@@ -32,26 +29,26 @@
   transform: translateY(0);
 }
 
-/* Imagen de fondo optimizada */
+/* Imagen de fondo mejorada */
 .backgroundImage {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../../assets/meeting-background.jpg');
+  background-image: url('../../assets/meeting.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center 30%;
   background-repeat: no-repeat;
-  z-index: 0;
-  /* Optimizar rendering */
+  background-attachment: fixed;
+  z-index: 1;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  transform: translateZ(0);
 }
 
-/* Overlay optimizado */
-.backgroundImage::after {
-  content: '';
+/* Overlay mejorado */
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -59,72 +56,135 @@
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(10, 10, 10, 0.92) 0%,
-    rgba(22, 22, 22, 0.88) 50%,
-    rgba(26, 26, 26, 0.85) 100%
+    rgba(10, 10, 10, 0.85) 0%,
+    rgba(22, 22, 22, 0.78) 50%,
+    rgba(26, 26, 26, 0.72) 100%
   );
-  z-index: 1;
+  z-index: 2;
 }
 
 .previewContent {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 800px;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
+}
+
+.previewText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 }
 
 .previewTitle {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: 2rem; /* Tamaño más pequeño por defecto */
+  font-weight: 200; /* Reset del bold general */
+  margin-bottom: 0;
   line-height: 1.2;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.boldText {
+  font-weight: bold; /* Bold solo para esta parte */
+  display: block; /* Para que ocupe su propia línea */
+  margin-top: 8px; /* Espacio entre las líneas */
+}
+
+.accentText {
   background: linear-gradient(45deg, #E74C3C, #F39C12);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 
 .previewSubtitle {
-  font-size: 1.1rem;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-  margin-bottom: 40px;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 0;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.ctaFeatures {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  font-weight: semibold;
+}
+
+.featureIcon {
+  color: #F05A1F;
+  font-size: 1.1rem;
 }
 
 .ctaButton {
   position: relative;
   background: #f05a1f;
   border: none;
-  padding: 16px 40px;
+  padding: 20px 50px;
   border-radius: 50px;
   color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: regular;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
   font-family: inherit;
-  box-shadow: 0 8px 25px rgba(231, 78, 19, 0.4);
-  border: 2px solid transparent;
-  /* Mejoras táctiles */
+  box-shadow: 0 10px 35px rgba(240, 90, 31, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-  min-height: 54px;
+  min-height: 64px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 12px;
+}
+
+.ctaButton2 {
+  position: relative;
+  background: white;
+  border: none;
+  padding: 20px 50px;
+  border-radius: 50px;
+  color: f05a1f;
+  font-size: 1.2rem;
+  font-weight: regular;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  font-family: inherit;
+  box-shadow: 0 10px 35px rgba(240, 90, 31, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 .ctaButton:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(231, 78, 19, 0.5);
-  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 45px rgba(240, 90, 31, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #E74C3C, #F05A1F);
 }
 
 .ctaButton:disabled {
@@ -133,56 +193,86 @@
   transform: none;
 }
 
+.ctaIcon {
+  font-size: 1.3rem;
+}
+
 .ctaGlow {
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.6s ease;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.8s ease;
 }
 
 .ctaButton:hover:not(:disabled) .ctaGlow {
   left: 100%;
 }
 
-/* Elementos decorativos optimizados para móvil */
-.previewOrbs {
+/* Elementos flotantes decorativos */
+.floatingElements {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
-  /* Reducir carga en móvil */
-  display: none;
+  z-index: 2;
 }
 
-.orb1, .orb2, .orb3 {
+.floatingOrb1,
+.floatingOrb2 {
   position: absolute;
   border-radius: 50%;
-  filter: blur(30px);
-  opacity: 0.1;
-  animation: float 10s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(240, 90, 31, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: float 8s ease-in-out infinite;
+}
+
+.floatingOrb1 {
+  width: 200px;
+  height: 200px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.floatingOrb2 {
+  width: 150px;
+  height: 150px;
+  bottom: 30%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.floatingShape1 {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, rgba(240, 90, 31, 0.1), rgba(243, 156, 18, 0.05));
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation: float 12s ease-in-out infinite, morph 15s ease-in-out infinite;
+  top: 60%;
+  left: 80%;
+  filter: blur(25px);
 }
 
 /* ===== VISTA COMPLETA (FORMULARIO) ===== */
 .meeting {
-  padding: 40px 0;
   position: relative;
   overflow: hidden;
   min-height: 100vh;
   display: flex;
   align-items: center;
   color: var(--color-text);
+  background: var(--color-bg);
   
   /* Transiciones optimizadas */
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Mejoras de rendimiento */
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateZ(0);
   contain: layout style;
 }
@@ -194,7 +284,7 @@
 
 .meeting.fadeOut {
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(-30px);
   pointer-events: none;
 }
 
@@ -205,35 +295,35 @@
 
 .closeFormButton {
   position: fixed;
-  top: 15px;
-  left: 15px;
+  top: 20px;
+  left: 20px;
   background: var(--color-card-bg);
   border: 1px solid var(--color-border);
   color: var(--color-text);
-  padding: 10px 16px;
-  border-radius: 20px;
+  padding: 12px 20px;
+  border-radius: 25px;
   cursor: pointer;
   font-family: inherit;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all 0.25s ease;
+  font-size: 0.9rem;
+  font-weight: semibold;
+  transition: all 0.3s ease;
   z-index: 100;
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
-  gap: 6px;
-  box-shadow: var(--shadow-sm);
-  /* Mejoras táctiles */
+  gap: 8px;
+  box-shadow: var(--shadow-lg);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-  min-height: 44px;
+  min-height: 48px;
 }
 
 .closeFormButton:hover:not(:disabled) {
-  background: var(--color-feature-bg);
+  background: var(--color-accent);
   border-color: var(--color-accent);
-  transform: translateX(-3px);
-  box-shadow: var(--shadow-md);
+  color: white;
+  transform: translateX(-5px);
+  box-shadow: var(--shadow-xl);
 }
 
 .closeFormButton:disabled {
@@ -242,18 +332,18 @@
 }
 
 .closeIcon {
-  font-size: 1rem;
-  transition: transform 0.25s ease;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
 }
 
 .closeFormButton:hover:not(:disabled) .closeIcon {
-  transform: translateX(-2px);
+  transform: translateX(-3px);
 }
 
 .meetingGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 50px;
   align-items: start;
   position: relative;
   z-index: 2;
@@ -265,54 +355,54 @@
   order: 2;
 }
 
-.sectionTitle {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  line-height: 1.2;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  text-align: center;
+.infoContent {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.accentText {
-  background: linear-gradient(45deg, #E74C3C, #F39C12);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.sectionTitle {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-text);
 }
 
 .sectionDescription {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--color-text-secondary);
   line-height: 1.6;
-  margin-bottom: 30px;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 40px;
   text-align: center;
 }
 
 .benefitsList {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-bottom: 30px;
+  gap: 25px;
+  margin-bottom: 40px;
 }
 
 .benefitItem {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  transition: transform 0.25s ease;
-  padding: 12px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  gap: 15px;
+  transition: transform 0.3s ease;
+  padding: 15px;
+  border-radius: 12px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
 }
 
 .benefitItem:hover {
   transform: translateX(5px);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
 }
 
 .benefitIcon {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   background: var(--color-feature-bg);
   border-radius: 50%;
   display: flex;
@@ -320,27 +410,27 @@
   justify-content: center;
   flex-shrink: 0;
   color: var(--color-accent);
-  font-size: 1.1rem;
-  transition: all 0.25s ease;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
 }
 
 .benefitItem:hover .benefitIcon {
   background: var(--color-accent);
   color: white;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .benefitText {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   flex: 1;
 }
 
 .benefitText strong {
   color: var(--color-text);
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: regular;
+  font-size: 1rem;
 }
 
 .benefitText span {
@@ -352,18 +442,18 @@
 .contactInfo {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
   text-align: center;
 }
 
 .contactItem {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .contactLabel {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--color-text-secondary);
   font-weight: 500;
 }
@@ -372,47 +462,77 @@
   color: var(--color-text);
   text-decoration: none;
   font-size: 1rem;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 6px 0;
+  gap: 10px;
+  padding: 8px 0;
   -webkit-tap-highlight-color: transparent;
 }
 
 .contactLink:hover {
   color: var(--color-accent);
-  transform: translateX(3px);
+  transform: translateX(5px);
 }
 
-/* Form Section optimizado */
+/* Form Section mejorado */
 .formSection {
   background: var(--color-card-bg);
-  border-radius: 14px;
-  padding: 30px 20px;
+  border-radius: 20px;
+  padding: 40px 30px;
   border: 1px solid var(--color-border);
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow-lg);
-  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-2xl);
+  transition: all 0.3s ease;
   margin: 0 20px;
   order: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.formSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #F05A1F, #F39C12);
 }
 
 .formSection:hover {
-  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(231, 76, 60, 0.1);
+  box-shadow: var(--shadow-2xl), 0 0 0 1px rgba(240, 90, 31, 0.1);
+  transform: translateY(-5px);
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.formSubtitle {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
 }
 
 .meetingForm {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .formLabel {
@@ -426,15 +546,13 @@
 .formTextarea {
   background: var(--color-bg);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 14px 16px;
+  border-radius: 10px;
+  padding: 16px 20px;
   color: var(--color-text);
   font-family: inherit;
   font-size: 1rem;
-  transition: all 0.25s ease;
-  /* Mejoras táctiles */
-  -webkit-appearance: none;
-  min-height: 48px;
+  transition: all 0.3s ease;
+  min-height: 52px;
 }
 
 .formInput:focus,
@@ -442,8 +560,8 @@
 .formTextarea:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
-  transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgba(240, 90, 31, 0.1);
+  transform: translateY(-2px);
 }
 
 .formInput:disabled,
@@ -461,7 +579,7 @@
 .formSelect {
   background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%23666' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
   background-repeat: no-repeat;
-  background-position: right 16px center;
+  background-position: right 20px center;
   background-size: 12px;
 }
 
@@ -469,11 +587,30 @@
   position: relative;
   overflow: hidden;
   border: none;
-  padding: 16px 30px;
-  font-size: 1rem;
+  padding: 18px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #F05A1F, #E74C3C);
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
   margin-top: 10px;
-  min-height: 54px;
+  min-height: 58px;
   width: 100%;
+  box-shadow: 0 8px 25px rgba(240, 90, 31, 0.3);
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(240, 90, 31, 0.4);
+  background: linear-gradient(135deg, #E74C3C, #F05A1F);
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .buttonGlow {
@@ -482,7 +619,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left 0.6s ease;
 }
 
@@ -490,47 +627,58 @@
   left: 100%;
 }
 
-/* Animaciones optimizadas */
+/* Animaciones */
 @keyframes float {
   0%, 100% {
     transform: translateY(0) rotate(0deg);
   }
   33% {
-    transform: translateY(-15px) rotate(1deg);
+    transform: translateY(-20px) rotate(2deg);
   }
   66% {
-    transform: translateY(-8px) rotate(-0.5deg);
+    transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+@keyframes morph {
+  0%, 100% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  50% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   }
 }
 
 /* Responsive mejorado */
 @media (min-width: 768px) {
   .meetingPreview {
-    padding: 100px 0 80px 0;
-    min-height: 70vh;
-    margin-top: 60px;
+    min-height: 90vh;
   }
 
   .previewTitle {
-    font-size: 2.8rem;
+    font-size: 3rem;
   }
   
+  .boldText {
+    margin-top: 12px; /* Más espacio en desktop */
+  } 
   .previewSubtitle {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
   
   .ctaButton {
-    padding: 18px 45px;
-    font-size: 1.1rem;
+    padding: 22px 55px;
+    font-size: 1.3rem;
+    min-height: 70px;
   }
   
   .meetingGrid {
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 80px;
   }
   
   .infoSection {
-    padding-right: 20px;
+    padding-right: 40px;
     order: 1;
     text-align: left;
   }
@@ -538,11 +686,11 @@
   .formSection {
     order: 2;
     margin: 0;
-    padding: 35px 30px;
+    padding: 50px 40px;
   }
   
   .sectionTitle {
-    font-size: 2.5rem;
+    font-size: 3rem;
     text-align: left;
   }
   
@@ -552,8 +700,7 @@
   
   .benefitItem {
     justify-content: flex-start;
-    padding: 0;
-    background: transparent;
+    padding: 20px;
   }
   
   .contactInfo {
@@ -564,112 +711,106 @@
   .contactLink {
     justify-content: flex-start;
   }
+}
+
+@media (min-width: 1200px) {
+  .meetingPreview {
+    min-height: 95vh;
+  }
   
-  /* Activar elementos decorativos solo en desktop */
-  .previewOrbs {
-    display: block;
+  .previewTitle {
+    font-size: 3.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .meetingPreview {
-    padding: 60px 0 40px 0;
-    min-height: 50vh;
-    margin-top: 30px;
+    min-height: 80vh;
+    padding: 60px 0;
   }
   
   .previewTitle {
     font-size: 1.8rem;
-    margin-bottom: 16px;
+    margin-bottom: 0;
+  }
+
+  .boldText {
+    margin-top: 6px; /* Menos espacio en móvil */
+    font-size: 1.9rem; /* Ligero aumento para énfasis */
   }
   
+  
   .previewSubtitle {
-    font-size: 1rem;
-    margin-bottom: 30px;
-    padding: 0 10px;
+    font-size: 1.1rem;
+  }
+  
+  .ctaFeatures {
+    gap: 20px;
+    flex-direction: column;
   }
   
   .ctaButton {
-    padding: 14px 32px;
-    font-size: 1rem;
-    min-height: 50px;
+    padding: 18px 35px;
+    font-size: 1.1rem;
+    min-height: 60px;
     width: 100%;
-    max-width: 280px;
+    max-width: 300px;
   }
   
   .meeting {
-    padding: 30px 0;
+    padding: 40px 0;
   }
   
   .closeFormButton {
-    top: 10px;
-    left: 10px;
-    padding: 8px 14px;
-    font-size: 0.8rem;
-    min-height: 40px;
+    top: 15px;
+    left: 15px;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    min-height: 44px;
   }
   
   .formSection {
     margin: 0 15px;
-    padding: 25px 18px;
+    padding: 30px 25px;
+    border-radius: 16px;
   }
   
   .sectionTitle {
-    font-size: 1.7rem;
-    margin-bottom: 16px;
+    font-size: 2rem;
   }
   
   .sectionDescription {
-    font-size: 0.95rem;
-    margin-bottom: 25px;
-  }
-  
-  .benefitsList {
-    gap: 16px;
-    margin-bottom: 25px;
-  }
-  
-  .benefitItem {
-    padding: 10px;
-    gap: 10px;
-  }
-  
-  .benefitIcon {
-    width: 32px;
-    height: 32px;
     font-size: 1rem;
   }
   
-  .benefitText strong {
-    font-size: 0.9rem;
+  .benefitsList {
+    gap: 20px;
   }
   
-  .benefitText span {
-    font-size: 0.85rem;
+  .benefitItem {
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  .benefitIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
   }
   
   .contactInfo {
-    gap: 10px;
-  }
-  
-  .contactLabel {
-    font-size: 0.8rem;
-  }
-  
-  .contactLink {
-    font-size: 0.9rem;
+    gap: 12px;
   }
   
   .meetingForm {
-    gap: 16px;
+    gap: 20px;
   }
   
   .formInput,
   .formSelect,
   .formTextarea {
-    padding: 12px 14px;
-    font-size: 0.95rem;
-    min-height: 44px;
+    padding: 14px 16px;
+    min-height: 48px;
   }
   
   .formTextarea {
@@ -677,45 +818,24 @@
   }
   
   .submitButton {
-    padding: 14px 25px;
-    font-size: 0.95rem;
-    min-height: 50px;
+    padding: 16px 25px;
+    min-height: 54px;
   }
 }
 
 /* Mejoras de rendimiento para dispositivos táctiles */
 @media (hover: none) and (pointer: coarse) {
-  .benefitItem:hover {
+  .benefitItem:hover,
+  .contactLink:hover,
+  .closeFormButton:hover:not(:disabled),
+  .ctaButton:hover:not(:disabled),
+  .submitButton:hover:not(:disabled),
+  .formSection:hover {
     transform: none;
   }
   
   .benefitItem:hover .benefitIcon {
     transform: none;
-    background: var(--color-feature-bg);
-    color: var(--color-accent);
-  }
-  
-  .contactLink:hover {
-    transform: none;
-  }
-  
-  .closeFormButton:hover:not(:disabled) {
-    transform: none;
-  }
-  
-  .ctaButton:hover:not(:disabled) {
-    transform: none;
-  }
-  
-  .formSection:hover {
-    box-shadow: var(--shadow-lg);
-  }
-}
-
-/* Optimizaciones para navegadores WebKit */
-@media (-webkit-min-device-pixel-ratio: 2) {
-  .backgroundImage {
-    image-rendering: -webkit-optimize-contrast;
   }
 }
 
@@ -730,7 +850,9 @@
   .formInput,
   .formSelect,
   .formTextarea,
-  .benefitIcon {
+  .benefitIcon,
+  .submitButton,
+  .formSection {
     transition: none;
     animation: none;
   }

@@ -26,7 +26,7 @@
 .backgroundParticle3 {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
+  filter: blur(2px);
   /* CAMBIO: Reducir mucho la opacidad de los fondos de color para que sean sutiles */
   opacity: 0.05; 
   animation: float 8s ease-in-out infinite;
@@ -78,7 +78,7 @@
   position: absolute;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(231, 76, 60, 0.15) 0%, transparent 70%);
-  filter: blur(20px);
+  filter: blur(2px);
   animation: float 6s ease-in-out infinite;
 }
 

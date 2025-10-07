@@ -1,10 +1,12 @@
-/* Footer.module.css - OPTIMIZADO Y PROFESIONAL */
+/* Footer.module.css - VERSIÓN 100% RESPONSIVE Y SIMPLIFICADA */
 .footer {
+  /* Usamos una variable global para el acento, asumiendo --color-accent está definido. */
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
-  color: var(--color-text-secondary);
+  color: var(--color-text-secondary, rgba(255, 255, 255, 0.7));
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+  padding: 0 20px;
 }
 
 .footer::before {
@@ -14,50 +16,23 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-accent, #e74c3c), transparent);
 }
 
-/* Back to Top Button */
-.backToTop {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 44px;
-  height: 44px;
-  background: var(--color-accent);
-  border: none;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(231, 76, 60, 0.3);
-  z-index: 10;
+/* Container */
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.backToTop:hover {
-  transform: translateX(-50%) translateY(-3px);
-  box-shadow: 0 8px 30px rgba(231, 76, 60, 0.4);
-  background: #e74c3c;
-}
-
-.backToTopIcon {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-.backToTop:hover .backToTopIcon {
-  transform: translateY(-2px);
-}
-
+/* Main Footer Content */
 .footerMain {
   display: grid;
+  /* Nueva estructura de 4 columnas */
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: 60px;
-  padding: 80px 0 50px;
+  gap: 40px;
+  padding: 60px 0 40px; /* Reducido el padding superior */
   position: relative;
   z-index: 2;
 }
@@ -66,18 +41,20 @@
 .brandSection {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 15px;
 }
 
 .logoContainer {
-  margin-bottom: 10px;
+  margin-bottom: 0;
+  width: 100px;
+  height: auto;
 }
 
 .logo {
   height: auto;
-  max-width: 160px;
+  max-width: 150px; /* Tamaño ligeramente ajustado */
   filter: brightness(0) invert(1);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .logo:hover {
@@ -86,15 +63,16 @@
 }
 
 .brandDescription {
-  line-height: 1.7;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 320px;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 300px;
+  margin: 0;
 }
 
 .socialLinks {
   display: flex;
-  gap: 12px;
+  gap: 8px; /* Espacio reducido */
   margin-top: 10px;
 }
 
@@ -102,62 +80,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border-radius: 8px; /* Radio ligeramente ajustado */
   color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-}
-
-.socialLink::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.6s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
 .socialLink:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-accent, #e74c3c);
+  background: rgba(231, 76, 60, 0.1);
   color: white;
 }
 
-.socialLink:hover::before {
-  left: 100%;
-}
-
 .socialIcon {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-.socialLink:hover .socialIcon {
-  transform: scale(1.1);
+  font-size: 1.1rem;
 }
 
 /* Links Sections */
 .linksSection {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 15px;
 }
 
 .sectionTitle {
   color: white;
-  font-size: 1.1rem;
+  font-size: 1rem; /* Tamaño reducido */
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   position: relative;
   display: inline-block;
 }
@@ -165,11 +120,11 @@
 .sectionTitle::after {
   content: '';
   position: absolute;
-  bottom: -6px;
+  bottom: -4px; /* Ajustado */
   left: 0;
-  width: 30px;
+  width: 25px; /* Reducido */
   height: 2px;
-  background: var(--color-accent);
+  background: var(--color-accent, #e74c3c);
   border-radius: 2px;
 }
 
@@ -179,84 +134,66 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px; /* Espacio reducido */
 }
 
 .footerLink,
 .serviceLink {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.65);
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   transition: all 0.3s ease;
-  cursor: pointer;
+  position: relative;
   background: none;
   border: none;
   text-align: left;
   padding: 0;
-  font-family: inherit;
-  position: relative;
   width: fit-content;
-}
-
-.footerLink::after,
-.serviceLink::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--color-accent);
-  transition: width 0.3s ease;
+  cursor: pointer;
 }
 
 .footerLink:hover,
 .serviceLink:hover {
   color: white;
-  transform: translateX(5px);
-}
-
-.footerLink:hover::after,
-.serviceLink:hover::after {
-  width: 100%;
+  transform: translateX(4px); /* Movimiento ligeramente reducido */
 }
 
 /* Contact Section */
 .contactSection {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 15px;
 }
 
 .contactInfo {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 10px; /* Espacio reducido */
 }
 
 .contactItem {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   transition: transform 0.3s ease;
 }
 
 .contactItem:hover {
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
 .contactIcon {
-  width: 20px;
-  color: var(--color-accent);
+  width: 16px; /* Tamaño reducido */
+  color: var(--color-accent, #e74c3c);
   flex-shrink: 0;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
 }
 
 .contactLink,
 .contactText {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.65);
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   transition: color 0.3s ease;
 }
 
@@ -266,55 +203,42 @@
 
 /* Newsletter */
 .newsletter {
-  margin-top: 20px;
-  padding-top: 20px;
+  padding-top: 15px;
+  margin-top: 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .newsletterTitle {
   color: white;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .newsletterForm {
   display: flex;
   gap: 8px;
-  max-width: 280px;
+  max-width: 100%; /* Eliminar restricción de ancho para mobile */
 }
 
 .newsletterInput {
   flex: 1;
-  padding: 12px 16px;
+  padding: 10px 14px; /* Padding reducido */
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  border-radius: 6px;
   color: white;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.newsletterInput:focus {
-  outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
-}
-
-.newsletterInput::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  backdrop-filter: blur(5px);
+  min-width: 0;
 }
 
 .newsletterButton {
-  padding: 12px 20px;
-  background: var(--color-accent);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-size: 0.9rem;
+  padding: 10px 18px;
+  background: var(--color-accent, #e74c3c);
+  border-radius: 6px;
+  font-size: 0.85rem;
   font-weight: 600;
-  cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
 }
@@ -322,44 +246,46 @@
 .newsletterButton:hover {
   background: #e74c3c;
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+  box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);
 }
 
 /* Footer Bottom */
 .footerBottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 30px 0;
+  padding: 20px 0; /* Padding ajustado */
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
   position: relative;
   z-index: 2;
 }
 
 .copyright {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5); /* Color más suave */
+  margin: 0;
 }
 
 .copyright strong {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 600;
 }
 
 .legalLinks {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px; /* Espacio ajustado */
+  flex-wrap: wrap;
 }
 
 .legalLink {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.55);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   transition: color 0.3s ease;
-  padding: 4px 0;
+  padding: 2px 0;
 }
 
 .legalLink:hover {
@@ -367,152 +293,152 @@
 }
 
 .separator {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.3);
   font-size: 0.8rem;
 }
 
-/* Responsive Design */
+/* ===== RESPONSIVE DESIGN MEJORADO ===== */
+
+/* Desktop Pequeño/Tablet (max-width: 1024px) */
 @media (max-width: 1024px) {
   .footerMain {
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    grid-template-columns: 1.5fr 1fr 1fr; /* Cambia a 3 columnas: Marca | Links | Contacto/Newsletter */
+    gap: 30px;
+    padding: 50px 0 30px;
   }
   
-  .brandSection {
-    grid-column: 1 / -1;
-    text-align: center;
-    align-items: center;
+  .contactSection {
+    grid-column: 2 / -1; /* Ocupa las últimas dos columnas */
+    gap: 10px;
   }
   
-  .brandDescription {
-    max-width: 500px;
+  .newsletter {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
   }
 }
 
+/* Tablet Pequeña (max-width: 768px) */
 @media (max-width: 768px) {
-  .footerMain {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 60px 0 40px;
+  .footer {
+    padding: 0 15px;
   }
   
-  .linksSection,
-  .contactSection {
+  .footerMain {
+    grid-template-columns: 1fr 1fr; /* Cambia a 2 columnas */
+    gap: 25px 20px;
+    padding: 40px 0 25px;
+  }
+  
+  .brandSection {
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
     text-align: center;
     align-items: center;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   
-  .footerLink,
-  .serviceLink {
-    width: auto;
+  .brandDescription {
+    max-width: 90%;
   }
   
-  .contactItem {
-    justify-content: center;
+  .contactSection {
+    grid-column: 1 / -1; /* Ocupa todo el ancho en su propia fila */
+    order: 4; /* Lo coloca al final */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px;
+    margin-top: 0;
   }
-  
-  .newsletterForm {
-    max-width: 100%;
+
+  .linksSection {
+    order: 2; /* Links 1 y Links 2 se colocan uno al lado del otro */
   }
   
   .footerBottom {
     flex-direction: column;
     text-align: center;
-    gap: 15px;
-    padding: 25px 0;
+    gap: 10px;
+    padding: 15px 0;
   }
   
   .legalLinks {
     justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .socialLinks {
-    justify-content: center;
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile (max-width: 500px) - ESTRUCTURA SUPER SIMPLE Y CORTA */
+@media (max-width: 500px) {
+  .footer {
+    padding: 0 10px;
+  }
+  
   .footerMain {
-    gap: 35px;
-    padding: 50px 0 35px;
+    grid-template-columns: 1fr; /* Pila simple de 1 columna */
+    gap: 20px;
+    padding: 30px 0 20px;
+  }
+
+  /* Todas las secciones se centran y apilan */
+  .brandSection,
+  .linksSection,
+  .contactSection {
+    grid-column: 1 / -1;
+    text-align: center;
+    align-items: center;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .linksSection {
+    /* Ocultamos las secciones de enlaces en mobile para un footer más corto */
+    display: none; 
   }
   
-  .brandDescription {
-    font-size: 0.9rem;
+  .contactSection {
+    order: 3; /* Después de Brand */
+    padding-top: 0;
+    border-top: none;
   }
   
-  .sectionTitle {
-    font-size: 1rem;
+  .contactInfo {
+    gap: 8px;
   }
-  
-  .footerLink,
-  .serviceLink,
-  .contactLink,
-  .contactText {
-    font-size: 0.9rem;
+
+  .contactItem {
+    justify-content: center;
   }
-  
+
   .newsletterForm {
     flex-direction: column;
+    gap: 10px;
   }
   
   .newsletterButton {
     width: 100%;
   }
-  
-  .backToTop {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .backToTopIcon {
-    font-size: 1.1rem;
-  }
-}
 
-/* Mejoras de rendimiento */
-@media (prefers-reduced-motion: reduce) {
-  .backToTop,
-  .socialLink,
-  .footerLink,
-  .serviceLink,
-  .contactItem,
-  .newsletterButton {
-    transition: none;
+  .brandSection {
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-  
-  .backToTop:hover,
-  .socialLink:hover,
-  .footerLink:hover,
-  .serviceLink:hover,
-  .contactItem:hover,
-  .newsletterButton:hover {
-    transform: none;
-  }
-}
 
-/* Optimizaciones para modo oscuro automático */
-@media (prefers-color-scheme: dark) {
-  .footer {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  .footerBottom {
+    padding: 15px 0 10px;
   }
 }
 
 /* Mejoras de accesibilidad */
-@media (hover: none) {
-  .backToTop:hover,
-  .socialLink:hover,
-  .footerLink:hover,
-  .serviceLink:hover,
-  .contactItem:hover,
-  .newsletterButton:hover {
-    transform: none;
-  }
-  
-  .socialLink:active,
-  .footerLink:active,
-  .serviceLink:active {
-    transform: scale(0.95);
+@media (prefers-reduced-motion: reduce) {
+  .socialLink,
+  .footerLink,
+  .serviceLink,
+  .contactItem,
+  .newsletterButton,
+  .logo {
+    transition: none !important;
+    transform: none !important;
   }
 }

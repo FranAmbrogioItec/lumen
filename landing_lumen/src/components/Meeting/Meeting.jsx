@@ -1,8 +1,6 @@
-// Meeting.jsx
 import React, { useState, useEffect } from 'react'
 import styles from './Meeting.module.css'
-// Se importan los iconos de react-icons
-import { FiCheckCircle, FiTarget, FiZap, FiPhone, FiMail, FiArrowLeft } from 'react-icons/fi' 
+import { FiCheckCircle, FiTarget, FiZap, FiPhone, FiMail, FiArrowLeft, FiCalendar } from 'react-icons/fi' 
 
 const Meeting = () => {
   const [showForm, setShowForm] = useState(false)
@@ -48,10 +46,8 @@ const Meeting = () => {
   const handleCTAClick = () => {
     setIsTransitioning(true)
     
-    // Esperar un momento para que la animación de salida se complete
     setTimeout(() => {
       setShowForm(true)
-      // Scroll suave a la sección del formulario después de la transición
       setTimeout(() => {
         document.getElementById('reunion-form')?.scrollIntoView({ 
           behavior: 'smooth',
@@ -67,7 +63,6 @@ const Meeting = () => {
     
     setTimeout(() => {
       setShowForm(false)
-      // Scroll suave de vuelta a la sección principal
       setTimeout(() => {
         document.getElementById('reunion')?.scrollIntoView({ 
           behavior: 'smooth',
@@ -86,28 +81,60 @@ const Meeting = () => {
         className={`${styles.meetingPreview} ${isTransitioning ? styles.fadeOut : styles.fadeIn}`}
       >
         <div className={styles.backgroundImage}></div>
+        <div className={styles.overlay}></div>
+        
+        {/* Partículas decorativas */}
+        <div className={styles.floatingElements}>
+          <div className={styles.floatingOrb1}></div>
+          <div className={styles.floatingOrb2}></div>
+          <div className={styles.floatingShape1}></div>
+        </div>
+
         <div className="container">
           <div className={styles.previewContent}>
+            <div className={styles.previewText}>
             <h2 className={styles.previewTitle}>
-              DE LA IDEA A LA ACCIÓN, TRANSFORMAMOS TU MARCA EN RESULTADOS
-            </h2>
-            <p className={styles.previewSubtitle}>
+            DE LA IDEA A LA ACCIÓN,{' '}
+            <span className={styles.boldText}>TRANSFORMAMOS TU MARCA EN RESULTADOS</span>
+          </h2>
+{/*               <p className={styles.previewSubtitle}>
               Tu proyecto de desarrollo y marketing necesita un motor potente. Agenda tu consulta gratuita y transforma tu visión en resultados tangibles.
-            </p>
-            <button 
-              className={styles.ctaButton} 
-              onClick={handleCTAClick}
-              disabled={isTransitioning}
-            >
-              <span>{isTransitioning ? 'Cargando...' : 'Agendar mi reunión'}</span>
-              <div className={styles.ctaGlow}></div>
-            </button>
-            
-            {/* Elementos decorativos de fondo */}
-            <div className={styles.previewOrbs}>
-              <div className={styles.orb1}></div>
-              <div className={styles.orb2}></div>
-              <div className={styles.orb3}></div>
+              </p> */}
+              
+{/*               <div className={styles.ctaFeatures}>
+                <div className={styles.featureItem}>
+                  <FiCheckCircle className={styles.featureIcon} />
+                  <span>Consulta 100% gratuita</span>
+                </div>
+                <div className={styles.featureItem}>
+                  <FiTarget className={styles.featureIcon} />
+                  <span>Propuesta personalizada</span>
+                </div>
+                <div className={styles.featureItem}>
+                  <FiZap className={styles.featureIcon} />
+                  <span>Respuesta en 24h</span>
+                </div>
+              </div>
+ */}
+              <button 
+                className={styles.ctaButton} 
+                onClick={handleCTAClick}
+                disabled={isTransitioning}
+              >
+                <FiCalendar className={styles.ctaIcon} />
+                <span>{isTransitioning ? 'Cargando...' : 'Agendar mi reunión'}</span>
+                <div className={styles.ctaGlow}></div>
+              </button>
+
+              <button 
+                className={styles.ctaButton2} 
+                onClick={handleCTAClick}
+                disabled={isTransitioning}
+              >
+                <FiCalendar className={styles.ctaIcon} />
+                <span>{isTransitioning ? 'Cargando...' : 'Quiero que me contacten'}</span>
+                <div className={styles.ctaGlow}></div>
+              </button>
             </div>
           </div>
         </div>
@@ -122,6 +149,7 @@ const Meeting = () => {
       className={`${styles.meeting} ${showForm ? styles.activeForm : ''} ${isTransitioning ? styles.fadeOut : styles.fadeIn}`}
     >
       <div className={styles.backgroundImage}></div>
+      <div className={styles.overlay}></div>
       
       {/* Botón para cerrar/volver */}
       <button 
@@ -138,52 +166,65 @@ const Meeting = () => {
         <div className={styles.meetingGrid}>
           {/* Información */}
           <div className={styles.infoSection}>
-            <h2 className={`${styles.sectionTitle} text-semibold`}>
-              AGENDA TU <span className={styles.accentText}>REUNIÓN</span>
-            </h2>
-            
-            <p className={styles.sectionDescription}>
-              Comencemos a transformar tu visión en realidad. Agenda una consulta gratuita 
-              y descubramos juntos cómo podemos impulsar el crecimiento de tu negocio.
-            </p>
-
-            <div className={styles.benefitsList}>
-              <div className={styles.benefitItem}>
-                <div className={styles.benefitIcon}><FiCheckCircle /></div> 
-                <div className={styles.benefitText}>
-                  <strong>Consulta sin costo</strong>
-                  <span>Evaluación inicial gratuita de tu proyecto</span>
-                </div>
-              </div>
+            <div className={styles.infoContent}>
+              <h2 className={styles.sectionTitle}>
+                AGENDA TU <span className={styles.accentText}>REUNIÓN</span>
+              </h2>
               
-              <div className={styles.benefitItem}>
-                <div className={styles.benefitIcon}><FiTarget /></div>
-                <div className={styles.benefitText}>
-                  <strong>Propuesta personalizada</strong>
-                  <span>Estrategia adaptada a tus objetivos específicos</span>
-                </div>
-              </div>
-              
-              <div className={styles.benefitItem}>
-                <div className={styles.benefitIcon}><FiZap /></div>
-                <div className={styles.benefitText}>
-                  <strong>Resultados rápidos</strong>
-                  <span>Te contactamos en menos de un día hábil</span>
-                </div>
-              </div>
-            </div>
+              <p className={styles.sectionDescription}>
+                Comencemos a transformar tu visión en realidad. Agenda una consulta gratuita 
+                y descubramos juntos cómo podemos impulsar el crecimiento de tu negocio.
+              </p>
 
-            <div className={styles.contactInfo}>
-              <div className={styles.contactItem}>
-                <span className={styles.contactLabel}>Contáctanos directamente:</span>
-                <a href="tel:+123456789" className={styles.contactLink}><FiPhone /> +1 234 567 89</a>
-                <a href="mailto:hola@agencia.com" className={styles.contactLink}><FiMail /> hola@agencia.com</a>
+              <div className={styles.benefitsList}>
+                <div className={styles.benefitItem}>
+                  <div className={styles.benefitIcon}><FiCheckCircle /></div> 
+                  <div className={styles.benefitText}>
+                    <strong>Consulta sin costo</strong>
+                    <span>Evaluación inicial gratuita de tu proyecto</span>
+                  </div>
+                </div>
+                
+                <div className={styles.benefitItem}>
+                  <div className={styles.benefitIcon}><FiTarget /></div>
+                  <div className={styles.benefitText}>
+                    <strong>Propuesta personalizada</strong>
+                    <span>Estrategia adaptada a tus objetivos específicos</span>
+                  </div>
+                </div>
+                
+                <div className={styles.benefitItem}>
+                  <div className={styles.benefitIcon}><FiZap /></div>
+                  <div className={styles.benefitText}>
+                    <strong>Resultados rápidos</strong>
+                    <span>Te contactamos en menos de un día hábil</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.contactInfo}>
+                <div className={styles.contactItem}>
+                  <span className={styles.contactLabel}>Contáctanos directamente:</span>
+                  <a href="tel:+123456789" className={styles.contactLink}>
+                    <FiPhone /> 
+                    <span>+1 234 567 89</span>
+                  </a>
+                  <a href="mailto:lumen.agencia1@gmail.com" className={styles.contactLink}>
+                    <FiMail /> 
+                    <span>lumen.agencia1@gmail.com</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Formulario */}
           <div className={styles.formSection}>
+            <div className={styles.formHeader}>
+              <h3 className={styles.formTitle}>Solicita tu consulta</h3>
+              <p className={styles.formSubtitle}>Completa el formulario y nos pondremos en contacto contigo</p>
+            </div>
+            
             <form onSubmit={handleSubmit} className={styles.meetingForm}>
               <div className={styles.formGroup}>
                 <label htmlFor="name" className={styles.formLabel}>Nombre completo *</label>
@@ -196,6 +237,7 @@ const Meeting = () => {
                   className={styles.formInput}
                   required
                   disabled={isTransitioning}
+                  placeholder="Tu nombre completo"
                 />
               </div>
 
@@ -210,6 +252,7 @@ const Meeting = () => {
                   className={styles.formInput}
                   required
                   disabled={isTransitioning}
+                  placeholder="tu.email@ejemplo.com"
                 />
               </div>
               
@@ -223,6 +266,7 @@ const Meeting = () => {
                   onChange={handleInputChange}
                   className={styles.formInput}
                   disabled={isTransitioning}
+                  placeholder="Nombre de tu empresa"
                 />
               </div>
 
@@ -260,7 +304,7 @@ const Meeting = () => {
 
               <button 
                 type="submit" 
-                className={`${styles.submitButton} ${styles.ctaButton}`}
+                className={styles.submitButton}
                 disabled={isTransitioning}
               >
                 <span>{isTransitioning ? 'Enviando...' : 'Enviar Solicitud'}</span>

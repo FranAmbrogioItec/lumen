@@ -7,8 +7,7 @@ import {
   FiInstagram,
   FiLinkedin,
   FiYoutube,
-  FiTwitter,
-  FiArrowUp
+  FiTwitter
 } from 'react-icons/fi';
 
 const Footer = () => {
@@ -17,54 +16,25 @@ const Footer = () => {
   const quickLinks = [
     { name: 'Inicio', href: '#inicio' },
     { name: 'Servicios', href: '#servicios' },
-    { name: 'Proceso', href: '#proceso' },
     { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Nosotros', href: '#nosotros' }
+    { name: 'Contacto', href: '#contacto' }
   ];
 
   const services = [
     'Diseño Gráfico',
     'Desarrollo Web',
     'Marketing Digital',
-    'Branding Corporativo',
-    'E-commerce Solutions',
-    'SEO & Analytics'
+    'Branding'
   ];
 
   const socialLinks = [
-    { 
-      name: 'Instagram', 
-      href: '#', 
-      icon: <FiInstagram />,
-      color: '#E4405F'
-    },
-    { 
-      name: 'LinkedIn', 
-      href: '#', 
-      icon: <FiLinkedin />,
-      color: '#0A66C2'
-    },
-    { 
-      name: 'YouTube', 
-      href: '#', 
-      icon: <FiYoutube />,
-      color: '#FF0000'
-    },
-    { 
-      name: 'Twitter', 
-      href: '#', 
-      icon: <FiTwitter />,
-      color: '#1DA1F2'
-    }
+    { name: 'Instagram', href: '#', icon: <FiInstagram /> },
+    { name: 'LinkedIn', href: '#', icon: <FiLinkedin /> },
+    { name: 'YouTube', href: '#', icon: <FiYoutube /> },
+    { name: 'Twitter', href: '#', icon: <FiTwitter /> }
   ];
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
+  // Función de utilería para el scroll
   const scrollToSection = (sectionId) => {
     const element = document.querySelector(sectionId);
     if (element) {
@@ -77,35 +47,28 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer} role="contentinfo">
-      <div className="container">
-        {/* Back to Top Button */}
-        <button 
-          className={styles.backToTop}
-          onClick={scrollToTop}
-          aria-label="Volver al inicio"
-        >
-          <FiArrowUp className={styles.backToTopIcon} />
-        </button>
+      <div className={`container ${styles.container}`}>
+        {/* El botón BackToTop fue eliminado según la solicitud */}
 
-        {/* Main Footer Content */}
+        {/* Contenido Principal del Footer */}
         <div className={styles.footerMain}>
-          {/* Brand Section */}
+          
+          {/* 1. Sección de Marca y Redes Sociales */}
           <div className={styles.brandSection}>
             <div className={styles.logoContainer}>
               <img 
-                src='../../assets/isotipo.png'
-                alt="Agencia Integral - Desarrollo y Marketing Digital"
+                src='/isotipo.svg' /* Usé una ruta relativa al público */
+                alt="Lúmen Agencia Integral"
                 className={styles.logo}
-                width={160}
-                height={48}
+                width={35}
+                height={35}
                 loading="lazy"
               />
             </div>
             
             <p className={styles.brandDescription}>
-              Transformamos ideas en experiencias digitales excepcionales. 
-              Combinamos diseño innovador, desarrollo técnico y estrategias 
-              de marketing para impulsar tu crecimiento.
+              Transformamos ideas en experiencias digitales que impulsan el crecimiento. 
+              Especialistas en diseño, desarrollo y estrategia.
             </p>
             
             <div className={styles.socialLinks}>
@@ -125,7 +88,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* 2. Enlaces Rápidos (Ocultos en móvil para simplificar) */}
           <div className={styles.linksSection}>
             <h4 className={styles.sectionTitle}>Navegación</h4>
             <ul className={styles.linksList} role="list">
@@ -142,9 +105,9 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* 3. Servicios (Ocultos en móvil para simplificar) */}
           <div className={styles.linksSection}>
-            <h4 className={styles.sectionTitle}>Servicios</h4>
+            <h4 className={styles.sectionTitle}>Servicios Clave</h4>
             <ul className={styles.linksList} role="list">
               {services.map((service, index) => (
                 <li key={index} role="listitem">
@@ -154,14 +117,14 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* 4. Información de Contacto y Newsletter */}
           <div className={styles.contactSection}>
-            <h4 className={styles.sectionTitle}>Contacto</h4>
+            <h4 className={styles.sectionTitle}>Contáctanos</h4>
             <div className={styles.contactInfo}>
               <div className={styles.contactItem}>
                 <FiMail className={styles.contactIcon} aria-hidden="true" />
                 <a 
-                  href="mailto:hola@agencia.com" 
+                  href="mailto:lumen.agencia1@gmail.com" 
                   className={styles.contactLink}
                 >
                   lumen.agencia1@gmail.com
@@ -181,20 +144,21 @@ const Footer = () => {
               <div className={styles.contactItem}>
                 <FiMapPin className={styles.contactIcon} aria-hidden="true" />
                 <span className={styles.contactText}>
-                  Córdoba, Argentina 
+                  Córdoba, Argentina
                 </span>
               </div>
             </div>
 
-            {/* Newsletter Signup */}
+            {/* Suscripción a Newsletter */}
             <div className={styles.newsletter}>
-              <h5 className={styles.newsletterTitle}>Suscríbete a nuestro newsletter</h5>
-              <form className={styles.newsletterForm}>
+              <h5 className={styles.newsletterTitle}>Únete a nuestro newsletter</h5>
+              <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
                 <input
                   type="email"
                   placeholder="Tu email"
                   className={styles.newsletterInput}
                   aria-label="Email para newsletter"
+                  required
                 />
                 <button 
                   type="submit" 
@@ -207,31 +171,31 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Footer Bottom */}
+        {/* Sección Inferior del Footer */}
         <div className={styles.footerBottom}>
-          <div className={styles.copyright}>
+          <p className={styles.copyright}>
             © {currentYear} <strong>Lúmen</strong>. Todos los derechos reservados.
-          </div>
+          </p>
           
           <div className={styles.legalLinks}>
             <a 
-              href="#" 
+              href="#privacidad" 
               className={styles.legalLink}
               aria-label="Política de privacidad"
             >
-              Política de privacidad
+              Privacidad
             </a>
             <span className={styles.separator}>•</span>
             <a 
-              href="#" 
+              href="#terminos" 
               className={styles.legalLink}
               aria-label="Términos de servicio"
             >
-              Términos de servicio
+              Términos
             </a>
             <span className={styles.separator}>•</span>
             <a 
-              href="#" 
+              href="#cookies" 
               className={styles.legalLink}
               aria-label="Política de cookies"
             >

@@ -4,8 +4,6 @@
   padding: 2rem;
   text-align: center;
 
-  @import '../src/styles/fonts.css'
-
 }
 
 .logo {
