@@ -1,53 +1,55 @@
 // Portfolio.jsx
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './Portfolio.module.css'
-import diegoten from '../../assets/diegotten.png'
-import echenique from '../../assets/echenique.png'
-import fasolutions from '../../assets/fasolutions.png'
-import deligo from '../../assets/deligo.png'
+import caminos from '../../assets/caminoscba.png'
+import sigma from '../../assets/sigma.png'
+import playwith from '../../assets/playwith.png'
+import detailing from '../../assets/diegotten.png'
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('todos')
   const [selectedProject, setSelectedProject] = useState(null)
+  // ESTADO NUEVO: Índice del proyecto visible en el carrusel
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0) 
 
+  // FILTROS MODIFICADOS: Solo 'todos', 'branding' y 'web'
   const filters = [
     { id: 'todos', label: 'Todos' },
     { id: 'branding', label: 'Branding' },
-    { id: 'web', label: 'Web' },
-    { id: 'marketing', label: 'Marketing' }
+    { id: 'web', label: 'Web' }
   ]
 
   const projects = [
     {
       id: 1,
-      title: "NOVA TECH",
-      category: "branding",
+      title: "Sigma Motors",
+      category: "web",
       description: "Rediseño completo de identidad corporativa para empresa de tecnología",
-      image: diegoten,
+      image: sigma,
       results: ["+40% reconocimiento", "+25% engagement", "Nueva identidad visual"]
     },
     {
       id: 2,
-      title: "ECO LIVING",
+      title: "Caminos del Lago",
       category: "web",
-      description: "Desarrollo de e-commerce sostenible con experiencia UX optimizada",
-      image: echenique,
+      description: "Desarrollo de landing page de conversion sostenible con experiencia UX optimizada",
+      image: caminos,
       results: ["+150% conversiones", "-30% tasa de rebote", "Mobile first design"]
     },
     {
       id: 3,
-      title: "URBAN FIT",
-      category: "marketing",
-      description: "Campaña integral de marketing digital para cadena de gimnasios",
-      image: deligo,
+      title: "Detailing",
+      category: "branding", // Cambiado para ejemplo
+      description: "Desarrollo de landing page de conversion sostenible con experiencia UX optimizada",
+      image: detailing,
       results: ["+300% leads", "+45% membresías", "Comunidad activa"]
     },
     {
       id: 4,
-      title: "ARTISAN COFFEE",
-      category: "branding",
+      title: "PlayWith",
+      category: "branding", // Cambiado para ejemplo
       description: "Posicionamiento de marca premium en mercado de especialidad",
-      image: fasolutions,
+      image: playwith,
       results: ["Posicionamiento premium", "+60% ventas", "Expansión nacional"]
     }
   ]
@@ -55,6 +57,21 @@ const Portfolio = () => {
   const filteredProjects = activeFilter === 'todos' 
     ? projects 
     : projects.filter(project => project.category === activeFilter)
+
+  // EFECTO: Reiniciar el índice del carrusel cuando cambia el filtro
+  useEffect(() => {
+    setActiveProjectIndex(0)
+  }, [activeFilter])
+
+  // FUNCIÓN: Mover al proyecto anterior
+  const prevProject = () => {
+    setActiveProjectIndex((prev) => Math.max(prev - 1, 0))
+  }
+
+  // FUNCIÓN: Mover al siguiente proyecto
+  const nextProject = () => {
+    setActiveProjectIndex((prev) => Math.min(prev + 1, filteredProjects.length - 1))
+  }
 
   return (
     <section id="trabajos" className={styles.portfolio}>
@@ -79,31 +96,78 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* Grid de proyectos */}
-        <div className={styles.projectsGrid}>
-          {filteredProjects.map(project => (
-            <div
-              key={project.id}
-              className={styles.projectCard}
-              onClick={() => setSelectedProject(project)}
-            >
-              <div className={styles.projectImage}>
-                <img src={project.image} alt={project.title} />
-                <div className={styles.projectOverlay}>
-                  <span className={styles.viewProject}>Ver proyecto</span>
+        {/* --- Carrusel de proyectos (en lugar del Grid) --- */}
+        <div className={styles.carouselContainer}>
+          
+          {/* Tarjetas de Proyecto (Carousel) */}
+          <div className={styles.projectsCarousel}>
+            {filteredProjects.map((project, index) => (
+              <div
+                key={project.id}
+                // Clase dinámica para mostrar solo la tarjeta activa (fade)
+                className={`${styles.projectCard} ${index === activeProjectIndex ? styles.activeCard : ''}`}
+                onClick={() => setSelectedProject(project)}
+                // z-index para apilamiento correcto
+                style={{ zIndex: filteredProjects.length - index }} 
+              >
+                <div className={styles.projectImage}>
+                  <img src={project.image} alt={project.title} />
+                  <div className={styles.projectOverlay}>
+                    <span className={styles.viewProject}>Ver proyecto</span>
+                  </div>
+                </div>
+                
+                <div className={styles.projectInfo}>
+                  <h3 className={`${styles.projectTitle}`}>{project.title}</h3>
+                  <p className={styles.projectDescription}>{project.description}</p>
+                  <div className={styles.projectCategory}>{project.category}</div>
                 </div>
               </div>
-              
-              <div className={styles.projectInfo}>
-                <h3 className={`${styles.projectTitle}`}>{project.title}</h3>
-                <p className={styles.projectDescription}>{project.description}</p>
-                <div className={styles.projectCategory}>{project.category}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Modal de proyecto */}
+          {/* Controles del Carrusel (Flechas y Puntos) */}
+          {filteredProjects.length > 1 && (
+            <div className={styles.carouselControls}>
+              {/* Botón Prev */}
+              <button 
+                className={`${styles.controlButton} ${styles.prev}`}
+                onClick={prevProject} 
+                disabled={activeProjectIndex === 0}
+                aria-label="Proyecto anterior"
+              >
+                {'<'}
+              </button>
+              
+              {/* Puntos de Navegación */}
+              <div className={styles.navDots}>
+                {filteredProjects.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`${styles.navDot} ${index === activeProjectIndex ? styles.active : ''}`}
+                    onClick={() => setActiveProjectIndex(index)}
+                    aria-label={`Ir al proyecto ${index + 1}`}
+                  />
+                ))}
+              </div>
+              
+              {/* Botón Next */}
+              <button 
+                className={`${styles.controlButton} ${styles.next}`}
+                onClick={nextProject} 
+                disabled={activeProjectIndex === filteredProjects.length - 1}
+                aria-label="Siguiente proyecto"
+              >
+                {'>'}
+              </button>
+            </div>
+          )}
+
+        </div>
+        {/* --- Fin del Carrusel --- */}
+
+
+        {/* Modal de proyecto (Se mantiene igual) */}
         {selectedProject && (
           <div className={styles.projectModal} onClick={() => setSelectedProject(null)}>
             <div className={styles.modalContent} onClick={e => e.stopPropagation()}>

@@ -2,7 +2,8 @@
 /* Estética light y minimalista con fondo sutil */
 .howWeWork {
   padding: 120px 0;
-  background: #fcfcfc; 
+  /* CAMBIO 1: Blanco roto para mayor contraste con las cards */
+  background: #f7f7f9; 
   position: relative;
   overflow: hidden;
   color: #333;
@@ -214,7 +215,8 @@
     line-height: 1;
     margin-bottom: 10px;
     color: var(--accent-color); 
-    opacity: 0.85;
+    /* CAMBIO 2: Opacidad total para más impacto */
+    opacity: 1;
     transition: color 0.4s ease;
 }
 
@@ -258,7 +260,8 @@
 .navDot.active {
     background: var(--dot-color, #f05a1f);
     border-color: #fcfcfc;
-    box-shadow: 0 0 0 4px #fcfcfc, 0 0 0 6px var(--dot-color, #f05a1f);
+    /* CAMBIO 3: Aumentar el tamaño del brillo del punto activo (de 6px a 10px) */
+    box-shadow: 0 0 0 4px #fcfcfc, 0 0 0 10px var(--dot-color, #f05a1f);
 }
 
 /* Controles de Flechas */
@@ -285,8 +288,9 @@
 }
 
 .controlButton:hover:not(:disabled) {
-    background: #f05a1f;
-    border-color: #f05a1f;
+    /* CAMBIO 4: Usar la variable de color para el hover */
+    background: var(--button-hover-color, #f05a1f); 
+    border-color: var(--button-hover-color, #f05a1f);
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 5px 10px rgba(240, 90, 31, 0.2);
@@ -308,7 +312,8 @@
     overflow: hidden;
     width: 100%;
     border-radius: 15px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    /* CAMBIO 5: Sombra más fuerte y un borde sutil para profundidad */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05); 
     background: white;
 }
 
@@ -378,7 +383,8 @@
     height: 80%;
     border-radius: 50%;
     background: var(--card-color, #E74C3C);
-    opacity: 0.1;
+    /* CAMBIO 6: Aumentar la opacidad del brillo de la imagen */
+    opacity: 0.15; 
     filter: blur(50px);
     transition: background 0.6s ease;
 }
@@ -400,12 +406,13 @@
 
 .featureTag {
   padding: 8px 15px;
-  background: #f0f0f0; 
+  /* CAMBIO 7: Fondo transparente con color de texto y borde dinámico */
+  background: var(--tag-bg-color, #f0f0f0); 
   border-radius: 20px;
   font-size: 0.85rem;
-  color: #444;
+  color: var(--tag-text-color, #444); 
   font-weight: 500;
-  border: 1px solid #ddd;
+  border: 1px solid var(--tag-border-color, #ddd);
 }
 
 /* --- Responsive --- */
@@ -449,7 +456,7 @@
         opacity: 1;
     }
     
-    /* En móvil, queremos que la tarjeta visual se muestre */
+    /* En móvil, solo mostramos la tarjeta activa */
     .stepCard:not(.activeCard) {
         display: none;
     }

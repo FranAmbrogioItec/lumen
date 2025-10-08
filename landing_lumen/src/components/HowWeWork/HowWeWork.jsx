@@ -21,8 +21,8 @@ const HowWeWork = () => {
       mainContent: "Aquí **comenzamos la inmersión** en tu proyecto. Analizamos exhaustivamente tu mercado, tu competencia directa y las tendencias. Establecemos **objetivos SMART** y definimos el verdadero potencial de tu marca. Es la fase de la 'radiografía' del proyecto.",
       cardTitle: "Análisis y Setup",
       cardFeatures: ["Análisis de mercado", "Definición de objetivos", "Auditoría inicial"],
+      color: "#E74C3C", // Color primario (Naranja)
       image: stepImage1,
-      color: "#E74C3C" // Color primario (Naranja)
     },
     {
       number: "02",
@@ -30,8 +30,8 @@ const HowWeWork = () => {
       mainContent: "Con el diagnóstico en mano, **diseñamos el mapa de ruta**. Creamos una estrategia digital personalizada, definimos las plataformas clave, el tono de comunicación y, lo más importante, un **Roadmap de implementación** con metas medibles (KPIs) a corto y largo plazo.",
       cardTitle: "Diseño del Roadmap",
       cardFeatures: ["Planificación estratégica", "Definición de KPIs", "Roadmap detallado"],
+      color: "#4B8FCE", // Color secundario (Azul)
       image: stepImage2,
-      color: "#4B8FCE" // Color secundario (Azul)
     },
     {
       number: "03",
@@ -39,8 +39,8 @@ const HowWeWork = () => {
       mainContent: "Ponemos el plan en acción. Implementamos las soluciones con **metodologías ágiles** (diseño, desarrollo, campañas). Nos enfocamos en la **velocidad y la calidad**, asegurando que cada pieza de contenido o código cumpla con los estándares más altos.",
       cardTitle: "Desarrollo Ágil",
       cardFeatures: ["Desarrollo web/gráfica", "Implementación", "Seguimiento en tiempo real"],
+      color: "#FFC300", // Color terciario (Amarillo)
       image: stepImage3,
-      color: "#FFC300" // Color terciario (Amarillo)
     },
     {
       number: "04",
@@ -48,8 +48,8 @@ const HowWeWork = () => {
       mainContent: "El trabajo nunca termina. Monitorizamos constantemente el rendimiento, utilizando **datos reales para optimizar campañas** y contenidos. Lo que funciona, se escala. Lo que no, se ajusta. **Aseguramos el crecimiento** continuo y sostenido de tu inversión.",
       cardTitle: "Data y Escalamiento",
       cardFeatures: ["Análisis de datos", "Optimización continua", "Reportes de impacto"],
+      color: "#4CAF50", // Color cuaternario (Verde)
       image: stepImage4,
-      color: "#4CAF50" // Color cuaternario (Verde)
     }
   ]
 
@@ -168,12 +168,13 @@ const HowWeWork = () => {
 
             {/* Controles de Navegación (Flechas) */}
             <div className={styles.arrowControls}>
-              {/* Se eliminan las clases dinámicas de disabled del className para usar el atributo nativo */}
               <button 
                 className={styles.controlButton} 
                 onClick={prevStep} 
                 disabled={activeStep === 0}
                 aria-label="Paso anterior"
+                /* CLAVE: Definir el color de hover en línea */
+                style={{ '--button-hover-color': activeContent.color }} 
               >
                 {'<'}
               </button>
@@ -182,6 +183,8 @@ const HowWeWork = () => {
                 onClick={nextStep} 
                 disabled={activeStep === totalSteps - 1}
                 aria-label="Siguiente paso"
+                /* CLAVE: Definir el color de hover en línea */
+                style={{ '--button-hover-color': activeContent.color }}
               >
                 {'>'}
               </button>
@@ -194,7 +197,6 @@ const HowWeWork = () => {
             <div className={styles.carouselWrapper}>
               <div 
                 className={styles.processSteps}
-                // Se ELIMINA el estilo de transform: translateX
               >
                 {processSteps.map((step, index) => (
                   <div 
@@ -216,7 +218,16 @@ const HowWeWork = () => {
                     
                     <div className={styles.stepFeatures}>
                       {step.cardFeatures.map((feature, featureIndex) => (
-                        <span key={featureIndex} className={styles.featureTag}>
+                        <span 
+                          key={featureIndex} 
+                          className={styles.featureTag}
+                          /* CLAVE: Aplicar color dinámico al tag para que el acento de color se vea */
+                          style={{ 
+                            '--tag-bg-color': `${step.color}1A`, // 10% de opacidad del color
+                            '--tag-text-color': step.color, 
+                            '--tag-border-color': `${step.color}33` // 20% de opacidad del color
+                          }}
+                        >
                           {feature}
                         </span>
                       ))}

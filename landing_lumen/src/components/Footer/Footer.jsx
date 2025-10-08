@@ -150,7 +150,7 @@ const Footer = () => {
             </div>
 
             {/* Suscripción a Newsletter */}
-            <div className={styles.newsletter}>
+{/*             <div className={styles.newsletter}>
               <h5 className={styles.newsletterTitle}>Únete a nuestro newsletter</h5>
               <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
                 <input
@@ -167,7 +167,7 @@ const Footer = () => {
                   Suscribir
                 </button>
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
 
