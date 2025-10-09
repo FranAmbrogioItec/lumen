@@ -3,6 +3,8 @@
   padding: var(--section-padding);
   /* Asegúrate de que estas variables estén definidas en un archivo global (variables.css o similar) */
   background: var(--color-bg-secondary);
+  scroll-margin-top: 80px;
+
 }
 
 .sectionHeader {

@@ -16,6 +16,8 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateZ(0);
   backface-visibility: hidden;
+  scroll-margin-top: 80px;
+
 }
 
 .meetingPreview.fadeOut {
@@ -134,13 +136,13 @@
 
 .ctaButton {
   position: relative;
-  background: #f05a1f;
+  background: #e74e13;
   border: none;
   padding: 20px 50px;
   border-radius: 50px;
   color: white;
-  font-size: 1.2rem;
-  font-weight: regular;
+  font-size: 1.4rem;
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
@@ -158,20 +160,17 @@
 
 .ctaButton2 {
   position: relative;
-  background: white;
+  background: transparent;
   border: none;
   padding: 20px 50px;
   border-radius: 50px;
-  color: f05a1f;
+  color: #e74e13;
   font-size: 1.2rem;
   font-weight: regular;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
   font-family: inherit;
-  box-shadow: 0 10px 35px rgba(240, 90, 31, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   min-height: 64px;
   display: inline-flex;
@@ -185,6 +184,13 @@
   box-shadow: 0 15px 45px rgba(240, 90, 31, 0.6);
   border-color: rgba(255, 255, 255, 0.3);
   background: linear-gradient(135deg, #E74C3C, #F05A1F);
+}
+
+
+.ctaButton2:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(240, 90, 31, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .ctaButton:disabled {
@@ -280,6 +286,7 @@
 .meeting.activeForm {
   opacity: 1;
   transform: translateY(0);
+  scroll-margin-top: 55px;
 }
 
 .meeting.fadeOut {
@@ -589,7 +596,8 @@
   border: none;
   padding: 18px 30px;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: regular;
+  font-family: inherit;
   background: linear-gradient(135deg, #F05A1F, #E74C3C);
   color: white;
   border-radius: 12px;

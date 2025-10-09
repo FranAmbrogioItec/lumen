@@ -7,7 +7,7 @@ import {
   FiInstagram,
   FiLinkedin,
   FiYoutube,
-  FiTwitter
+  FiTwitter,
 } from 'react-icons/fi';
 
 const Footer = () => {

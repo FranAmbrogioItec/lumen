@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Meeting.module.css'
-import { FiCheckCircle, FiTarget, FiZap, FiPhone, FiMail, FiArrowLeft, FiCalendar } from 'react-icons/fi' 
+import { FiCheckCircle, FiTarget, FiZap, FiPhone, FiMail, FiArrowLeft, FiCalendar} from 'react-icons/fi' 
 
 const Meeting = () => {
   const [showForm, setShowForm] = useState(false)
@@ -122,7 +122,7 @@ const Meeting = () => {
                 disabled={isTransitioning}
               >
                 <FiCalendar className={styles.ctaIcon} />
-                <span>{isTransitioning ? 'Cargando...' : 'Agendar mi reunión'}</span>
+                <span>{isTransitioning ? 'Cargando...' : 'Agenda tu reunión'}</span>
                 <div className={styles.ctaGlow}></div>
               </button>
 
