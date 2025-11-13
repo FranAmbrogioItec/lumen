@@ -1,3 +1,7 @@
+* {
+  font-family: var(--font-primary);
+}
+
 .header {
   position: fixed;
   top: 0;

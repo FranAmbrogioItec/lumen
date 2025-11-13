@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './WhatsAppButton.module.css';
 
 const WhatsAppButton = () => {
-  const phoneNumber = '+1234567890'; // Reemplaza con tu número
+  const phoneNumber = '5493513233866'; 
   const message = 'Hola, me interesa conocer más sobre sus servicios';
   
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -12,7 +12,7 @@ const WhatsAppButton = () => {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={styles.whatsappButton}
+      className={styles.whatsappButton}z
       aria-label="Contactar por WhatsApp"
     >
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">

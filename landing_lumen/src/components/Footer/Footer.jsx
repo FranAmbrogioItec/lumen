@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Footer.module.css';
+// Se asume que las variables CSS como --color-accent se reemplazan por clases de Tailwind (ej. text-orange-600)
 import { 
   FiMail, 
   FiPhone, 
@@ -7,7 +7,7 @@ import {
   FiInstagram,
   FiLinkedin,
   FiYoutube,
-  FiTwitter,
+  FiTwitter
 } from 'react-icons/fi';
 
 const Footer = () => {
@@ -28,7 +28,7 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'Instagram', href: '#', icon: <FiInstagram /> },
+    { name: 'Instagram', href: 'https://www.instagram.com/lumenagencia.ar/', icon: <FiInstagram /> },
     { name: 'LinkedIn', href: '#', icon: <FiLinkedin /> },
     { name: 'YouTube', href: '#', icon: <FiYoutube /> },
     { name: 'Twitter', href: '#', icon: <FiTwitter /> }
@@ -46,56 +46,100 @@ const Footer = () => {
   };
 
   return (
-    <footer className={styles.footer} role="contentinfo">
-      <div className={`container ${styles.container}`}>
-        {/* El botón BackToTop fue eliminado según la solicitud */}
+    <footer 
+      // styles.footer: Gradient background, text color, top border, relative, overflow-hidden, padding
+      className="bg-gradient-to-br from-black-950 via-gray-900 to-gray-950 
+                 text-white/70 border-t border-white/10 relative overflow-hidden px-5" 
+      role="contentinfo"
+    >
+      
+      {/* Reemplazo de styles.footer::before: Línea decorativa de acento en la parte superior */}
+      <div 
+        className="absolute top-0 left-0 w-full h-px 
+                   bg-gradient-to-r from-transparent via-orange-600 to-transparent"
+        aria-hidden="true"
+      ></div>
 
-        {/* Contenido Principal del Footer */}
-        <div className={styles.footerMain}>
+      {/* styles.container */}
+      <div className="max-w-7xl mx-auto relative">
+        
+        {/* styles.footerMain: Estructura de cuadrícula responsiva (1 col en móvil, 2 en sm, 3 en md, 4 en lg) */}
+        <div 
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 
+                     gap-8 md:gap-x-10 lg:gap-x-16 py-12 md:py-16 relative z-10"
+        >
           
           {/* 1. Sección de Marca y Redes Sociales */}
-          <div className={styles.brandSection}>
-            <div className={styles.logoContainer}>
+          <div 
+            // Responsividad de columna y alineación
+            className="flex flex-col gap-4 
+                       col-span-full sm:col-span-2 md:col-span-1 lg:col-span-2
+                       text-center sm:text-left md:text-left 
+                       items-center sm:items-start md:items-start
+                       border-b border-white/10 pb-5 md:border-b-0 md:pb-0 
+                       order-1"
+          >
+            {/* styles.logoContainer */}
+            <div className="mb-0 w-auto h-auto">
               <img 
-                src='/isotipo.svg' /* Usé una ruta relativa al público */
+                src='/isotipo.svg' 
                 alt="Lúmen Agencia Integral"
-                className={styles.logo}
-                width={35}
-                height={35}
+                // styles.logo: Transiciones y hover
+                className="w-9 h-9 transition duration-300 hover:scale-[1.02] hover:drop-shadow-lg"
+                width={36}
+                height={36}
                 loading="lazy"
               />
             </div>
             
-            <p className={styles.brandDescription}>
+            {/* styles.brandDescription */}
+            <p className="leading-relaxed text-sm text-white/70 max-w-sm m-0">
               Transformamos ideas en experiencias digitales que impulsan el crecimiento. 
               Especialistas en diseño, desarrollo y estrategia.
             </p>
             
-            <div className={styles.socialLinks}>
+            {/* styles.socialLinks */}
+            <div className="flex gap-2 mt-2">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
-                  className={styles.socialLink}
+                  // styles.socialLink: Botón, hover y backdrop-blur
+                  className="flex items-center justify-center w-10 h-10 
+                             bg-white/5 border border-white/10 rounded-lg 
+                             text-white/70 transition duration-300 backdrop-blur-sm
+                             hover:translate-y-[-2px] hover:border-orange-600 
+                             hover:bg-orange-600/10 hover:text-white"
                   aria-label={`Síguenos en ${social.name}`}
                   title={`Síguenos en ${social.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className={styles.socialIcon}>{social.icon}</span>
+                  {/* styles.socialIcon */}
+                  <span className="text-lg">{social.icon}</span>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* 2. Enlaces Rápidos (Ocultos en móvil para simplificar) */}
-          <div className={styles.linksSection}>
-            <h4 className={styles.sectionTitle}>Navegación</h4>
-            <ul className={styles.linksList} role="list">
+          {/* 2. Enlaces Rápidos (Navegación) - Oculto en móvil (<500px), visible en sm+ */}
+          <div 
+            // styles.linksSection
+            className="hidden sm:flex flex-col gap-4 order-3 md:order-2 lg:order-3"
+          >
+            {/* styles.sectionTitle: Subrayado con pseudo-elemento `after:` */}
+            <h4 className="text-white text-base font-light mb-1 relative inline-block 
+                           after:content-[''] after:absolute after:bottom-[-4px] after:left-0 
+                           after:w-6 after:h-px after:bg-orange-600 after:rounded-sm">Navegación</h4>
+            
+            {/* styles.linksList */}
+            <ul className="list-none p-0 m-0 flex flex-col gap-3" role="list">
               {quickLinks.map((link, index) => (
                 <li key={index} role="listitem">
                   <button 
-                    className={styles.footerLink}
+                    // styles.footerLink: Enlace de texto y hover
+                    className="text-white/60 text-sm transition duration-300 relative bg-none border-none text-left p-0 w-fit cursor-pointer 
+                               hover:text-white hover:translate-x-1"
                     onClick={() => scrollToSection(link.href)}
                   >
                     {link.name}
@@ -105,98 +149,119 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* 3. Servicios (Ocultos en móvil para simplificar) */}
-          <div className={styles.linksSection}>
-            <h4 className={styles.sectionTitle}>Servicios Clave</h4>
-            <ul className={styles.linksList} role="list">
+          {/* 3. Servicios - Oculto en móvil (<500px), visible en sm+ */}
+          <div 
+            // styles.linksSection
+            className="hidden sm:flex flex-col gap-4 order-4 md:order-3 lg:order-4"
+          >
+            {/* styles.sectionTitle */}
+            <h4 className="text-white text-base font-light mb-1 relative inline-block 
+                           after:content-[''] after:absolute after:bottom-[-4px] after:left-0 
+                           after:w-6 after:h-px after:bg-orange-600 after:rounded-sm">Servicios Clave</h4>
+            
+            {/* styles.linksList */}
+            <ul className="list-none p-0 m-0 flex flex-col gap-3" role="list">
               {services.map((service, index) => (
                 <li key={index} role="listitem">
-                  <span className={styles.serviceLink}>{service}</span>
+                  {/* styles.serviceLink */}
+                  <span 
+                    className="text-white/60 text-sm transition duration-300 relative bg-none border-none text-left p-0 w-fit cursor-default 
+                               hover:text-white hover:translate-x-1"
+                  >
+                    {service}
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* 4. Información de Contacto y Newsletter */}
-          <div className={styles.contactSection}>
-            <h4 className={styles.sectionTitle}>Contáctanos</h4>
-            <div className={styles.contactInfo}>
-              <div className={styles.contactItem}>
-                <FiMail className={styles.contactIcon} aria-hidden="true" />
+          {/* 4. Información de Contacto */}
+          <div 
+            // styles.contactSection: Columna completa en móvil, dos columnas en md, una en lg
+            className="flex flex-col gap-4 
+                       col-span-full md:col-span-2 lg:col-span-1 
+                       order-2 sm:order-4 md:order-4 lg:order-4
+                       border-t border-white/10 pt-5 md:border-t-0 md:pt-0 sm:mt-0" 
+          >
+            {/* styles.sectionTitle */}
+            <h4 className="text-white text-base font-light mb-1 relative inline-block 
+                           after:content-[''] after:absolute after:bottom-[-4px] after:left-0 
+                           after:w-6 after:h-px after:bg-orange-600 after:rounded-sm">Contáctanos</h4>
+            
+            {/* styles.contactInfo */}
+            <div className="flex flex-col gap-3">
+              
+              {/* styles.contactItem */}
+              <div className="flex items-center gap-3 transition duration-300 hover:translate-x-0.5">
+                {/* styles.contactIcon */}
+                <FiMail className="w-4 text-orange-600 flex-shrink-0" aria-hidden="true" />
+                {/* styles.contactLink */}
                 <a 
                   href="mailto:lumen.agencia1@gmail.com" 
-                  className={styles.contactLink}
+                  className="text-white/60 text-sm transition duration-300 hover:text-white"
                 >
                   lumen.agencia1@gmail.com
                 </a>
               </div>
               
-              <div className={styles.contactItem}>
-                <FiPhone className={styles.contactIcon} aria-hidden="true" />
+              <div className="flex items-center gap-3 transition duration-300 hover:translate-x-0.5">
+                <FiPhone className="w-4 text-orange-600 flex-shrink-0" aria-hidden="true" />
                 <a 
                   href="tel:+123456789" 
-                  className={styles.contactLink}
+                  className="text-white/60 text-sm transition duration-300 hover:text-white"
                 >
-                  +1 (234) 567-89
+                  +54 9 3513 23-3866
                 </a>
               </div>
               
-              <div className={styles.contactItem}>
-                <FiMapPin className={styles.contactIcon} aria-hidden="true" />
-                <span className={styles.contactText}>
+              <div className="flex items-center gap-3 transition duration-300 hover:translate-x-0.5">
+                <FiMapPin className="w-4 text-orange-600 flex-shrink-0" aria-hidden="true" />
+                {/* styles.contactText */}
+                <span className="text-white/60 text-sm">
                   Córdoba, Argentina
                 </span>
               </div>
             </div>
 
-            {/* Suscripción a Newsletter */}
-{/*             <div className={styles.newsletter}>
-              <h5 className={styles.newsletterTitle}>Únete a nuestro newsletter</h5>
-              <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type="email"
-                  placeholder="Tu email"
-                  className={styles.newsletterInput}
-                  aria-label="Email para newsletter"
-                  required
-                />
-                <button 
-                  type="submit" 
-                  className={styles.newsletterButton}
-                >
-                  Suscribir
-                </button>
-              </form>
-            </div> */}
+            {/* Suscripción a Newsletter (Comentado) */}
           </div>
         </div>
 
         {/* Sección Inferior del Footer */}
-        <div className={styles.footerBottom}>
-          <p className={styles.copyright}>
-            © {currentYear} <strong>Lúmen</strong>. Todos los derechos reservados.
+        <div 
+          // styles.footerBottom: Separador y diseño responsivo para derechos y enlaces legales
+          className="border-t border-white/10 py-5 flex justify-between items-center flex-wrap gap-4 relative z-10 
+                     sm:flex-row sm:text-left sm:gap-x-8 sm:gap-y-0 
+                     flex-col text-center"
+        >
+          {/* styles.copyright */}
+          <p className="text-xs text-white/50 m-0 order-2 sm:order-1">
+            © {currentYear} <strong className="text-white/70 font-semibold">Lúmen</strong>. Todos los derechos reservados.
           </p>
           
-          <div className={styles.legalLinks}>
+          {/* styles.legalLinks */}
+          <div className="flex items-center gap-3 flex-wrap order-1 sm:order-2 justify-center">
             <a 
               href="#privacidad" 
-              className={styles.legalLink}
+              // styles.legalLink
+              className="text-white/50 text-xs transition duration-300 hover:text-white"
               aria-label="Política de privacidad"
             >
               Privacidad
             </a>
-            <span className={styles.separator}>•</span>
+            {/* styles.separator */}
+            <span className="text-white/30 text-xs">•</span>
             <a 
               href="#terminos" 
-              className={styles.legalLink}
+              className="text-white/50 text-xs transition duration-300 hover:text-white"
               aria-label="Términos de servicio"
             >
               Términos
             </a>
-            <span className={styles.separator}>•</span>
+            <span className="text-white/30 text-xs">•</span>
             <a 
               href="#cookies" 
-              className={styles.legalLink}
+              className="text-white/50 text-xs transition duration-300 hover:text-white"
               aria-label="Política de cookies"
             >
               Cookies

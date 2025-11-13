@@ -1,14 +1,12 @@
 /* HowWeWork.module.css */
 /* Estética light y minimalista con fondo sutil */
 .howWeWork {
-  padding: 90px;
+  padding: 120px 0;
   /* CAMBIO 1: Blanco roto para mayor contraste con las cards */
   background: #f7f7f9; 
   position: relative;
   overflow: hidden;
   color: #333;
-  scroll-margin-top: 80px;
-
 }
 
 /* --- ANIMACIÓN DE ENTRADA (General) --- */

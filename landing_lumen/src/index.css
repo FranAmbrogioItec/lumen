@@ -1,4 +1,8 @@
-@import url('./fonts.css');
+@import url('./styles/fonts.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Variables CSS - Tema Oscuro (por defecto) */
 :root {
@@ -77,13 +81,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-.container {
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Utilidades */
+/* Utilidades personalizadas que puedes seguir usando */
 .text-bold {
   font-weight: 700;
 }
@@ -141,18 +139,10 @@ body {
   .section-title {
     font-size: 2rem;
   }
-  
-  .container {
-    padding: 0 16px;
-  }
 }
 
 @media (max-width: 480px) {
   .section-title {
     font-size: 1.8rem;
-  }
-  
-  :root {
-    --section-padding: 60px 16px;
   }
 }

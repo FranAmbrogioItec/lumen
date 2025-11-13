@@ -150,7 +150,7 @@
 .heroTitle {
   font-size: 3.3rem;
   line-height: 1.1;
-  font-weight: 00;
+  font-weight: bold;
   /* CAMBIO: Color de título oscuro */
   color: #1a1a1a;
 }
@@ -245,6 +245,8 @@
   background: #f05a1f; 
   color: white;
   box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+  /* NUEVO: Animación de pulso sutil */
+  animation: pulseCta 2s ease-out 1s infinite;
 }
 
 .buttonGlow {
@@ -264,6 +266,8 @@
 .heroCta:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 40px rgba(231, 76, 60, 0.5);
+  /* Pausar el pulso al hacer hover para no interferir con el efecto de elevación */
+  animation-play-state: paused;
 }
 
 .heroSecondary {
@@ -501,6 +505,20 @@
 @keyframes fadeIn {
   to {
     opacity: 1;
+  }
+}
+
+/* NUEVO: Animación para el botón CTA */
+@keyframes pulseCta {
+  0% {
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(231, 76, 60, 0.6);
+    transform: scale(1.01);
+  }
+  100% {
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
   }
 }
 

@@ -2,23 +2,24 @@
 @font-face {
   font-family: 'Glancyr';
   src: url('/fonts/Glancyr-Bold.otf') format('opentype');
-  font-weight: 700;
+  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
 
-@font-face {
+/* esta hija de puta SEMIBOLD no la toma chrome no se xq */
+/* @font-face {  
   font-family: 'Glancyr';
   src: url('/fonts/Glancyr-Semibold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
-
+ */
 @font-face {
   font-family: 'Glancyr';
   src: url('/fonts/Glancyr-ExtraLight.otf') format('opentype');
-  font-weight: 200;
+  font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
@@ -26,7 +27,7 @@
 @font-face {
   font-family: 'Glancyr';
   src: url('/fonts/Glancyr-Regular.otf') format('opentype');
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }

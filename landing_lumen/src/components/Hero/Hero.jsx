@@ -30,12 +30,28 @@ const Hero = () => {
     }
   }, [])
 
+  // Función para desplazar a una sección (se mantiene para el botón secundario)
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
   }
+  
+  // NUEVO: Función para redirigir a WhatsApp con mensaje predefinido
+  const handleCtaClick = () => {
+    // Reemplaza 'CODIGO_PAIS_NUMERO' con el número de teléfono deseado (Ej: 549351XXXXXXX)
+    const phoneNumber = '5493513233866' 
+    
+    // Mensaje predefinido, codificado para URL
+    const message = encodeURIComponent("Hola Agencia Lumen, me gustaría solicitar una reunión para hablar sobre diseño y marketing estratégico.");
+    
+    // URL de WhatsApp
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    
+    // Abrir en una nueva pestaña
+    window.open(whatsappUrl, '_blank');
+  };
 
   return (
     <section id="inicio" className={styles.hero} ref={heroRef}>
@@ -77,9 +93,10 @@ const Hero = () => {
             <div className={styles.heroButtons}>
               <button 
                 className={styles.heroCta}
-                onClick={() => scrollToSection('propuesta')}
+                // CAMBIO: Llamar a la nueva función de WhatsApp
+                onClick={handleCtaClick}
               >
-                <span>Nuestra Propuesta</span>
+                <span>Tengamos una reunión</span>
                 <div className={styles.buttonGlow}></div>
               </button>
               
