@@ -5,6 +5,8 @@ import caminos from '../../assets/caminoscba.png'
 import sigma from '../../assets/sigma.png'
 import playwith from '../../assets/playwith.png'
 import detailing from '../../assets/diegotten.png'
+import hiburger from '../../assets/hiburger.png'
+import linaje from '../../assets/linajejaca.jpg'
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null)
@@ -12,10 +14,10 @@ const Portfolio = () => {
   const featuredProjects = [
     {
       id: 1,
-      title: "Sigma Motors",
+      title: "Linaje Jaca",
       category: "Desarrollo Web",
       description: "Rediseño completo de identidad corporativa para empresa de tecnología",
-      image: sigma,
+      image: linaje,
       tags: ["React", "UX/UI", "SEO"],
       results: ["+40% reconocimiento", "+25% engagement", "Nueva identidad visual"]
     },
@@ -30,10 +32,10 @@ const Portfolio = () => {
     },
     {
       id: 3,
-      title: "Detailing",
+      title: "Hi Burger",
       category: "Branding",
       description: "Identidad visual completa para empresa de detailing automotriz premium",
-      image: detailing,
+      image: hiburger,
       tags: ["Branding", "Design System", "Marketing"],
       results: ["+300% leads", "+45% membresías", "Comunidad activa"]
     },
@@ -135,7 +137,7 @@ const Portfolio = () => {
               ¿Quieres ver más de nuestro trabajo?
             </p>
             <a 
-              href="https://tu-portfolio-completo.com" 
+              href="https://lumenagencia.myportfolio.com/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300" /* Gradiente de CTA un poco más oscuro */

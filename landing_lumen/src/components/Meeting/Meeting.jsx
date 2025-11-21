@@ -1,3 +1,4 @@
+// Meeting.jsx
 import React, { useState } from 'react'
 import { FiCheckCircle, FiTarget, FiZap, FiPhone, FiMail, FiArrowLeft, FiCalendar} from 'react-icons/fi'
 
@@ -9,6 +10,8 @@ const projectTypes = [
   'Consultoría',
   'Otro'
 ]
+
+const WHATSAPP_NUMBER = '5493513233866'
 
 const Meeting = () => {
   const [showForm, setShowForm] = useState(false)
@@ -30,10 +33,26 @@ const Meeting = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Formulario enviado:', formData)
+    
+    // 1. Construir el mensaje de WhatsApp
+    const whatsappMessage = `¡Hola! Me gustaría agendar una reunión. Detalles de la Solicitud: *Nombre:* ${formData.name} *Email:* ${formData.email} *Empresa:* ${formData.company || 'No especificada'} *Tipo de Proyecto:* ${formData.projectType} *Mensaje:* ${formData.message}`
+    
+    // 2. Codificar el mensaje para URL
+    const encodedMessage = encodeURIComponent(whatsappMessage)
+
+    // 3. Crear el enlace de WhatsApp
+    const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`
+
+    // 4. Redireccionar al enlace
+    window.open(whatsappLink, '_blank')
+
+    // Opcional: Limpiar el formulario después del envío
     setFormData({
       name: '', email: '', company: '', projectType: '', message: ''
     })
+    
+    // Opcional: Volver a la vista de CTA después del envío
+    // handleCloseForm();
   }
 
   const handleCTAClick = () => {
@@ -42,8 +61,6 @@ const Meeting = () => {
     setTimeout(() => {
       setShowForm(true)
       setTimeout(() => {
-        // Corrección: Usamos 'mt-20' o un valor similar en el CSS global para compensar el fixed header.
-        // Aquí forzamos el scroll al inicio del formulario
         document.getElementById('reunion-form')?.scrollIntoView({ 
           behavior: 'smooth',
           block: 'start'
@@ -103,6 +120,7 @@ const Meeting = () => {
               <div className="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-all duration-700 group-hover:left-[100%]"></div>
             </button>
             
+            {/* Opción alternativa a formulario, ahora también usa el CTA principal */}
             <button 
               className="relative bg-transparent text-orange-600 font-medium py-5 px-10 rounded-full text-lg cursor-pointer transition duration-400 hover:text-orange-500 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
               onClick={handleCTAClick}
@@ -146,8 +164,7 @@ const Meeting = () => {
               </h2>
               
               <p className="text-lg text-gray-400 leading-relaxed mb-10 text-center lg:text-left">
-                Comencemos a transformar tu visión en realidad. Agenda una consulta gratuita 
-                y descubramos juntos cómo podemos impulsar el crecimiento de tu negocio.
+                Comencemos a transformar tu visión en realidad. Agenda una consulta gratuita y descubramos juntos cómo podemos impulsar el crecimiento de tu negocio.
               </p>
 
               {/* Lista de Beneficios */}
@@ -186,7 +203,7 @@ const Meeting = () => {
               {/* Información de Contacto */}
               <div className="flex flex-col gap-3 text-center lg:text-left pt-5 border-t border-gray-700/50">
                 <span className="text-sm text-gray-400 font-medium">Contáctanos directamente:</span>
-                <a href="tel:+123456789" className="text-white text-lg transition duration-300 hover:text-orange-500 flex items-center justify-center lg:justify-start gap-2">
+                <a href={`tel:+${WHATSAPP_NUMBER}`} className="text-white text-lg transition duration-300 hover:text-orange-500 flex items-center justify-center lg:justify-start gap-2">
                   <FiPhone /> 
                   <span>+54 9 3513 23-3866</span>
                 </a>
@@ -202,7 +219,7 @@ const Meeting = () => {
           <div className="lg:order-2 order-1 bg-gray-800 rounded-2xl p-6 md:p-10 border border-gray-700 shadow-2xl transition duration-300 relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-1 before:bg-gradient-to-r before:from-orange-600 before:to-yellow-500">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-white mb-2">Solicita tu consulta</h3>
-              <p className="text-gray-400 text-sm">Completa el formulario y nos pondremos en contacto contigo</p>
+              <p className="text-gray-400 text-sm">Completa el formulario para iniciar una conversación directa</p>
             </div>
             
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -295,7 +312,7 @@ const Meeting = () => {
                 className="relative overflow-hidden border-none py-4 px-6 text-xl font-regular bg-gradient-to-r from-orange-600 to-red-500 text-white rounded-xl cursor-pointer transition duration-300 mt-4 w-full shadow-lg shadow-orange-600/30 hover:shadow-xl hover:shadow-orange-600/40 hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed group"
                 disabled={isTransitioning}
               >
-                <span>{isTransitioning ? 'Enviando...' : 'Enviar Solicitud'}</span>
+                <span>{isTransitioning ? 'Generando mensaje...' : 'Enviar Solicitud por WhatsApp'}</span>
                 <div className="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-all duration-500 group-hover:left-[100%]"></div>
               </button>
             </form>
