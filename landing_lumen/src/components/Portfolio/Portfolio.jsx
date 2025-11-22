@@ -2,10 +2,24 @@
 import React, { useState } from 'react'
 import styles from './Portfolio.module.css'
 // RUTAS DE IMAGENES PRINCIPALES
-import caminos from '../../assets/caminoscba.png'
-import playwith from '../../assets/playwith.png'
+import playwith from '../../assets/portfolio/playwith/9.jpg'
 import hiburger from '../../assets/hiburger.png'
 import linaje from '../../assets/linajejaca.jpg'
+import linaje1 from '../../assets/portfolio/linaje/2.jpg'
+import linaje2 from '../../assets/portfolio/linaje/4.jpg'
+import linaje3 from '../../assets/portfolio/linaje/7.png'
+import caminos from '../../assets/portfolio/caminos/1.jpg'
+import caminos2 from '../../assets/portfolio/caminos/2.jpg' 
+import caminos3 from '../../assets/portfolio/caminos/3.jpg'
+import caminos4 from '../../assets/portfolio/caminos/5.jpg'
+import hiburger2 from '../../assets/portfolio/hiburger/2.png'
+import hiburger3 from '../../assets/portfolio/hiburger/3.png'
+import hiburger4 from '../../assets/portfolio/hiburger/4.png'
+import playwith1 from '../../assets/portfolio/playwith/1.jpg'
+import playwith2 from '../../assets/portfolio/playwith/2.png'
+import playwith3 from '../../assets/portfolio/playwith/3.png'
+import playwith4 from '../../assets/portfolio/playwith/5.jpg'
+
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null)
@@ -20,12 +34,11 @@ const Portfolio = () => {
       image: linaje,
       tags: ["React", "UX/UI", "SEO"],
       results: ["+40% reconocimiento", "+25% engagement", "Nueva identidad visual"],
-      // Galería de imágenes - REEMPLAZAR CON RUTAS REALES
       gallery: [
-        linaje, 
-        '../../assets/portfolio/linaje/1.jpg',
-        '../../assets/portfolio/linaje/2.jpg',
-        '../../assets/portfolio/linaje/3.jpg',
+        linaje,
+        linaje1,
+        linaje2,
+        linaje3, 
       ]
     },
     {
@@ -38,7 +51,9 @@ const Portfolio = () => {
       results: ["+150% conversiones", "-30% tasa de rebote", "Mobile first design"],
       gallery: [
         caminos,
-        '../../assets/portfolio/caminos/caminoscba.png',
+        caminos2,
+        caminos3,
+        caminos4,
       ]
     },
     {
@@ -51,10 +66,9 @@ const Portfolio = () => {
       results: ["+300% leads", "+45% membresías", "Comunidad activa"],
       gallery: [
         hiburger,
-        '../../assets/portfolio/hiburger/2.png',
-        '../../assets/portfolio/hiburger/3.png',
-        '../../assets/portfolio/hiburger/4.png',
-
+        hiburger2,
+        hiburger3,
+        hiburger4,
       ]
     },
     {
@@ -67,9 +81,10 @@ const Portfolio = () => {
       results: ["Posicionamiento premium", "+60% ventas", "Expansión nacional"],
       gallery: [
         playwith,
-        '../../assets/portfolio/playwith/1.jpg',
-        '../../assets/portfolio/playwith/2.png',
-        '../../assets/portfolio/playwith/3.png',
+        playwith1,
+        playwith2,
+        playwith3,
+        playwith4,
       ]
     }
   ]

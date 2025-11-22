@@ -1,13 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react'
-// Asegúrate de importar la imagen que servirá de portada del Reel
-import reelPreviewImage from '../../assets/lumen.png' // O la imagen que prefieras como portada
+// Asegúrate de importar la imagen correcta
+import reelPreviewImage from '../../assets/lumen.png' 
 
 const HowWeWork = () => {
   const [activeStep, setActiveStep] = useState(0)
   const sectionRef = useRef(null)
   const [isVisible, setIsVisible] = useState(false) 
 
-  // URL a la que quieres redirigir (ej: tu Instagram)
+  // URL a la que quieres redirigir
   const REEL_LINK = "https://www.instagram.com/p/DRLZmbFjchz/"
 
   const processSteps = [
@@ -46,7 +46,7 @@ const HowWeWork = () => {
   
   const nextStep = () => {
     if (activeStep < totalSteps - 1) setActiveStep((prev) => prev + 1)
-    else setActiveStep(0) // Loop al inicio si se desea
+    else setActiveStep(0) 
   }
 
   const prevStep = () => {
@@ -76,10 +76,21 @@ const HowWeWork = () => {
       className="py-20 md:py-32 bg-[#f7f7f9] relative overflow-hidden text-[#333]"
       ref={sectionRef}
     >
-      {/* --- FONDO DECORATIVO (Partículas) --- */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-        <div className="absolute rounded-full blur-[80px] opacity-[0.03] animate-float w-[500px] h-[500px] -top-[100px] -left-[100px] bg-red-500" />
-        <div className="absolute rounded-full blur-[80px] opacity-[0.03] animate-float [animation-delay:2s] w-[400px] h-[400px] bottom-0 right-0 bg-blue-500" />
+      {/* --- FONDO ANIMADO (PARTÍCULAS RESTAURADAS) --- */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        {/* Partícula 1 (Roja) */}
+        <div className="absolute rounded-full blur-[60px] opacity-[0.06] animate-float w-[400px] h-[400px] -top-[100px] -left-[100px] bg-[radial-gradient(circle,#E74C3C_0%,transparent_70%)]" />
+        {/* Partícula 2 (Azul) */}
+        <div className="absolute rounded-full blur-[60px] opacity-[0.06] animate-float [animation-delay:2s] w-[300px] h-[300px] -bottom-[50px] -right-[50px] bg-[radial-gradient(circle,#3498DB_0%,transparent_70%)]" />
+        {/* Partícula 3 (Verde) */}
+        <div className="absolute rounded-full blur-[60px] opacity-[0.06] animate-float [animation-delay:4s] w-[200px] h-[200px] top-1/2 left-[70%] bg-[radial-gradient(circle,#2ECC71_0%,transparent_70%)]" />
+        
+        {/* Orbes naranjas flotantes (Detalles pequeños) */}
+        <div className="absolute rounded-full blur-[2px] animate-float [animation-delay:1s] w-[120px] h-[120px] top-[20%] right-[15%] bg-[radial-gradient(circle,rgba(231,76,60,0.15)_0%,transparent_70%)]" />
+        <div className="absolute rounded-full blur-[2px] animate-float [animation-delay:3s] w-[80px] h-[80px] bottom-[30%] left-[10%] bg-[radial-gradient(circle,rgba(231,76,60,0.15)_0%,transparent_70%)]" />
+        
+        {/* Formas flotantes (Morphing) */}
+        <div className="absolute animate-morph blur-[5px] w-[150px] h-[150px] top-[15%] left-[5%] bg-gradient-to-tr from-[rgba(231,76,60,0.1)] to-[rgba(231,76,60,0.05)]" />
       </div>
       
       <div className="container mx-auto px-5 relative z-10">
@@ -114,10 +125,10 @@ const HowWeWork = () => {
                     {activeContent.title}
                 </h3>
                 
-                {/* CLAVE UX: min-h-[180px] evita que el contenido "salte" cuando cambia el texto */}
+                {/* CLAVE UX: Altura mínima para evitar saltos */}
                 <div className="min-h-[160px] md:min-h-[180px]">
                     <div 
-                        key={activeStep} // La key fuerza la animación de re-renderizado
+                        key={activeStep}
                         className="text-lg text-gray-600 leading-relaxed animate-[fadeIn_0.5s_ease-in-out]"
                     >
                         <p dangerouslySetInnerHTML={{ 
@@ -127,7 +138,7 @@ const HowWeWork = () => {
                 </div>
             </div>
             
-            {/* CONTROLES DE NAVEGACIÓN (Ahora estables gracias al min-h de arriba) */}
+            {/* CONTROLES DE NAVEGACIÓN */}
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center mt-4">
                 
                 {/* Indicadores (Puntos) */}
@@ -177,9 +188,9 @@ const HowWeWork = () => {
                 href={REEL_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative group w-[280px] sm:w-[300px] aspect-[9/19] rounded-[2.5rem] border-[8px] border-[#111] bg-[#111] shadow-2xl overflow-hidden transform transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] cursor-pointer block"
+                className="relative group w-[280px] sm:w-[300px] aspect-[9/19] rounded-[2.5rem] border-[8px] border-[#111] bg-[#111] shadow-2xl overflow-hidden transform transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] cursor-pointer block z-20"
             >
-                {/* Notch (Muesca del celular) */}
+                {/* Notch */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-[#111] rounded-b-xl z-20"></div>
                 
                 {/* Imagen del Reel */}
@@ -192,7 +203,7 @@ const HowWeWork = () => {
                 {/* Overlay Oscuro al Hover */}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 z-10"></div>
 
-                {/* Botón Play y Texto */}
+                {/* Botón Play */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
                     <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-3 border border-white/30 shadow-lg">
                         <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -203,16 +214,13 @@ const HowWeWork = () => {
                         Ver en Instagram
                     </span>
                 </div>
-
-                {/* Indicador de "Grabando" (Detalle UI) */}
-                <div className="absolute top-3 right-5 w-2 h-2 bg-red-500 rounded-full animate-pulse z-20"></div>
             </a>
 
-            {/* Elemento decorativo detrás del celular */}
+            {/* Glow decorativo detrás del celular (Sutil conexión con el color del paso) */}
             <div 
-                className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[60%] bg-gradient-to-b from-transparent to-gray-200/50 rounded-full blur-3xl"
+                className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[60%] bg-gradient-to-b from-transparent to-gray-200/50 rounded-full blur-3xl transition-colors duration-500"
                 style={{ 
-                    background: `radial-gradient(circle, ${activeContent.color}20 0%, transparent 70%)` 
+                    background: `radial-gradient(circle, ${activeContent.color}40 0%, transparent 70%)` 
                 }}
             ></div>
 
