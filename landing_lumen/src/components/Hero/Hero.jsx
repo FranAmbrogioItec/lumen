@@ -96,7 +96,8 @@ const Hero = () => {
                 // CAMBIO: Llamar a la nueva función de WhatsApp
                 onClick={handleCtaClick}
               >
-                <span>Tengamos una reunión</span>
+                
+                <span>Tengamos una reunión →</span>
                 <div className={styles.buttonGlow}></div>
               </button>
               
@@ -126,12 +127,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        
-        {/* Scroll indicator */}
-        <div className={styles.scrollIndicator}>
-          <div className={styles.scrollLine}></div>
-          <span>Scroll</span>
-        </div>
+
       </div>
     </section>
   )

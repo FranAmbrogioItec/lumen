@@ -247,6 +247,8 @@
   box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
   /* NUEVO: Animación de pulso sutil */
   animation: pulseCta 2s ease-out 1s infinite;
+  animation: attentionPulse 1.8s ease-in-out infinite;
+
 }
 
 .buttonGlow {
@@ -521,6 +523,23 @@
     box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
   }
 }
+
+/* Animación más visible para el CTA */
+@keyframes attentionPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(240, 90, 31, 0.4);
+  }
+  50% {
+    transform: scale(1.07);
+    box-shadow: 0 0 25px rgba(240, 90, 31, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(240, 90, 31, 0.4);
+  }
+}
+
 
 /* Responsive (Se mantienen) */
 @media (max-width: 1024px) {
