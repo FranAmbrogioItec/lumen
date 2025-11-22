@@ -3,9 +3,7 @@ import React, { useState } from 'react'
 import styles from './Portfolio.module.css'
 // RUTAS DE IMAGENES PRINCIPALES
 import caminos from '../../assets/caminoscba.png'
-// import sigma from '../../assets/sigma.png' // Eliminado porque no está en featuredProjects
 import playwith from '../../assets/playwith.png'
-// import detailing from '../../assets/diegotten.png' // Eliminado porque no está en featuredProjects
 import hiburger from '../../assets/hiburger.png'
 import linaje from '../../assets/linajejaca.jpg'
 
@@ -41,7 +39,6 @@ const Portfolio = () => {
       gallery: [
         caminos,
         '../../assets/portfolio/caminos/caminoscba.png',
-        '../../assets/caminos-slide-3.jpg',
       ]
     },
     {

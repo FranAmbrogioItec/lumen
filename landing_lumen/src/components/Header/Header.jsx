@@ -68,7 +68,8 @@ const Header = () => {
         `}
       >
         <div className="container mx-auto px-5 md:px-8">
-          <nav className="flex justify-between items-center relative">
+          <nav className="flex justify-between items-center 
+          relative">
             
             {/* --- LOGO --- */}
             <a 

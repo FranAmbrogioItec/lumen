@@ -12,7 +12,7 @@ const WhatsAppButton = () => {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={styles.whatsappButton}z
+      className={styles.whatsappButton}
       aria-label="Contactar por WhatsApp"
     >
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
