@@ -1,8 +1,7 @@
 import React from 'react';
-// Se asume que las variables CSS como --color-accent se reemplazan por clases de Tailwind (ej. text-orange-600)
-import { 
-  FiMail, 
-  FiPhone, 
+import {
+  FiMail,
+  FiPhone,
   FiMapPin,
   FiInstagram,
   FiLinkedin,
@@ -34,7 +33,6 @@ const Footer = () => {
     { name: 'Twitter', href: '#', icon: <FiTwitter /> }
   ];
 
-  // Función de utilería para el scroll
   const scrollToSection = (sectionId) => {
     const element = document.querySelector(sectionId);
     if (element) {
@@ -46,100 +44,65 @@ const Footer = () => {
   };
 
   return (
-    <footer 
-      // styles.footer: Gradient background, text color, top border, relative, overflow-hidden, padding
-      className="bg-gradient-to-br from-black-950 via-gray-900 to-gray-950 
-                 text-white/70 border-t border-white/10 relative overflow-hidden px-5" 
+    <footer
       role="contentinfo"
+      className="relative overflow-hidden bg-[linear-gradient(135deg,#0a0a0a_0%,#1a1a1a_50%,#0f0f0f_100%)] text-white/70 border-t border-white/10 pt-10 pb-5"
     >
-      
-      {/* Reemplazo de styles.footer::before: Línea decorativa de acento en la parte superior */}
-      <div 
-        className="absolute top-0 left-0 w-full h-px 
-                   bg-gradient-to-r from-transparent via-orange-600 to-transparent"
+      {/* Línea decorativa superior (Gradiente Naranja) */}
+      <div
+        className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-orange to-transparent"
         aria-hidden="true"
       ></div>
 
-      {/* styles.container */}
-      <div className="max-w-7xl mx-auto relative">
-        
-        {/* styles.footerMain: Estructura de cuadrícula responsiva (1 col en móvil, 2 en sm, 3 en md, 4 en lg) */}
-        <div 
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 
-                     gap-8 md:gap-x-10 lg:gap-x-16 py-12 md:py-16 relative z-10"
-        >
-          
-          {/* 1. Sección de Marca y Redes Sociales */}
-          <div 
-            // Responsividad de columna y alineación
-            className="flex flex-col gap-4 
-                       col-span-full sm:col-span-2 md:col-span-1 lg:col-span-2
-                       text-center sm:text-left md:text-left 
-                       items-center sm:items-start md:items-start
-                       border-b border-white/10 pb-5 md:border-b-0 md:pb-0 
-                       order-1"
-          >
-            {/* styles.logoContainer */}
-            <div className="mb-0 w-auto h-auto">
-              <img 
-                src='/isotipo.svg' 
+      <div className="container mx-auto px-5 relative z-10">
+
+        {/* Grid Principal */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-10">
+
+          {/* 1. Marca y Redes Sociales */}
+          <div className="flex flex-col gap-4 text-center sm:text-left items-center sm:items-start col-span-1 sm:col-span-2 lg:col-span-1 border-b border-white/10 pb-6 lg:border-none lg:pb-0">
+            <div className="w-[100px] h-auto">
+              <img
+                src='/isotipo.svg'
                 alt="Lúmen Agencia Integral"
-                // styles.logo: Transiciones y hover
-                className="w-9 h-9 transition duration-300 hover:scale-[1.02] hover:drop-shadow-lg"
+                className="w-auto h-auto max-w-[150px] brightness-0 invert transition-all duration-300 hover:brightness-100 hover:invert-0 hover:drop-shadow-[0_2px_8px_rgba(231,76,60,0.3)] hover:scale-[1.02]"
                 width={36}
                 height={36}
                 loading="lazy"
               />
             </div>
-            
-            {/* styles.brandDescription */}
-            <p className="leading-relaxed text-sm text-white/70 max-w-sm m-0">
-              Transformamos ideas en experiencias digitales que impulsan el crecimiento. 
+
+            <p className="text-[0.9rem] leading-relaxed text-white/70 max-w-[300px]">
+              Transformamos ideas en experiencias digitales que impulsan el crecimiento.
               Especialistas en diseño, desarrollo y estrategia.
             </p>
-            
-            {/* styles.socialLinks */}
+
             <div className="flex gap-2 mt-2">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
-                  // styles.socialLink: Botón, hover y backdrop-blur
-                  className="flex items-center justify-center w-10 h-10 
-                             bg-white/5 border border-white/10 rounded-lg 
-                             text-white/70 transition duration-300 backdrop-blur-sm
-                             hover:translate-y-[-2px] hover:border-orange-600 
-                             hover:bg-orange-600/10 hover:text-white"
+                  className="flex items-center justify-center w-[38px] h-[38px] bg-white/5 border border-white/10 rounded-lg text-white/70 transition-all duration-300 backdrop-blur-sm hover:-translate-y-[2px] hover:border-brand-orange hover:bg-brand-orange/10 hover:text-white"
                   aria-label={`Síguenos en ${social.name}`}
-                  title={`Síguenos en ${social.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {/* styles.socialIcon */}
-                  <span className="text-lg">{social.icon}</span>
+                  <span className="text-[1.1rem]">{social.icon}</span>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* 2. Enlaces Rápidos (Navegación) - Oculto en móvil (<500px), visible en sm+ */}
-          <div 
-            // styles.linksSection
-            className="hidden sm:flex flex-col gap-4 order-3 md:order-2 lg:order-3"
-          >
-            {/* styles.sectionTitle: Subrayado con pseudo-elemento `after:` */}
-            <h4 className="text-white text-base font-light mb-1 relative inline-block 
-                           after:content-[''] after:absolute after:bottom-[-4px] after:left-0 
-                           after:w-6 after:h-px after:bg-orange-600 after:rounded-sm">Navegación</h4>
-            
-            {/* styles.linksList */}
-            <ul className="list-none p-0 m-0 flex flex-col gap-3" role="list">
+          {/* 2. Navegación (Oculto en móviles muy pequeños, visible en sm+) */}
+          <div className="hidden sm:flex flex-col gap-4">
+            <h4 className="text-white text-[1rem] font-light mb-1 relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-6 after:h-[2px] after:bg-brand-orange after:rounded-sm">
+              Navegación
+            </h4>
+            <ul className="flex flex-col gap-[10px]">
               {quickLinks.map((link, index) => (
-                <li key={index} role="listitem">
-                  <button 
-                    // styles.footerLink: Enlace de texto y hover
-                    className="text-white/60 text-sm transition duration-300 relative bg-none border-none text-left p-0 w-fit cursor-pointer 
-                               hover:text-white hover:translate-x-1"
+                <li key={index}>
+                  <button
+                    className="text-white/60 text-[0.88rem] transition-all duration-300 hover:text-white hover:translate-x-1"
                     onClick={() => scrollToSection(link.href)}
                   >
                     {link.name}
@@ -149,25 +112,15 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* 3. Servicios - Oculto en móvil (<500px), visible en sm+ */}
-          <div 
-            // styles.linksSection
-            className="hidden sm:flex flex-col gap-4 order-4 md:order-3 lg:order-4"
-          >
-            {/* styles.sectionTitle */}
-            <h4 className="text-white text-base font-light mb-1 relative inline-block 
-                           after:content-[''] after:absolute after:bottom-[-4px] after:left-0 
-                           after:w-6 after:h-px after:bg-orange-600 after:rounded-sm">Servicios Clave</h4>
-            
-            {/* styles.linksList */}
-            <ul className="list-none p-0 m-0 flex flex-col gap-3" role="list">
+          {/* 3. Servicios (Oculto en móviles muy pequeños, visible en sm+) */}
+          <div className="hidden sm:flex flex-col gap-4">
+            <h4 className="text-white text-[1rem] font-light mb-1 relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-6 after:h-[2px] after:bg-brand-orange after:rounded-sm">
+              Servicios Clave
+            </h4>
+            <ul className="flex flex-col gap-[10px]">
               {services.map((service, index) => (
-                <li key={index} role="listitem">
-                  {/* styles.serviceLink */}
-                  <span 
-                    className="text-white/60 text-sm transition duration-300 relative bg-none border-none text-left p-0 w-fit cursor-default 
-                               hover:text-white hover:translate-x-1"
-                  >
+                <li key={index}>
+                  <span className="text-white/60 text-[0.88rem] transition-all duration-300 cursor-default hover:text-white hover:translate-x-1 block">
                     {service}
                   </span>
                 </li>
@@ -175,95 +128,53 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* 4. Información de Contacto */}
-          <div 
-            // styles.contactSection: Columna completa en móvil, dos columnas en md, una en lg
-            className="flex flex-col gap-4 
-                       col-span-full md:col-span-2 lg:col-span-1 
-                       order-2 sm:order-4 md:order-4 lg:order-4
-                       border-t border-white/10 pt-5 md:border-t-0 md:pt-0 sm:mt-0" 
-          >
-            {/* styles.sectionTitle */}
-            <h4 className="text-white text-base font-light mb-1 relative inline-block 
-                           after:content-[''] after:absolute after:bottom-[-4px] after:left-0 
-                           after:w-6 after:h-px after:bg-orange-600 after:rounded-sm">Contáctanos</h4>
-            
-            {/* styles.contactInfo */}
-            <div className="flex flex-col gap-3">
-              
-              {/* styles.contactItem */}
-              <div className="flex items-center gap-3 transition duration-300 hover:translate-x-0.5">
-                {/* styles.contactIcon */}
-                <FiMail className="w-4 text-orange-600 flex-shrink-0" aria-hidden="true" />
-                {/* styles.contactLink */}
-                <a 
-                  href="mailto:lumen.agencia1@gmail.com" 
-                  className="text-white/60 text-sm transition duration-300 hover:text-white"
-                >
+          {/* 4. Contacto */}
+          <div className="flex flex-col gap-4 col-span-1 sm:col-span-2 lg:col-span-1 border-t border-white/10 pt-6 sm:border-none sm:pt-0">
+            <h4 className="text-white text-[1rem] font-light mb-1 relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-6 after:h-[2px] after:bg-brand-orange after:rounded-sm">
+              Contáctanos
+            </h4>
+
+            <div className="flex flex-col gap-[10px]">
+              <div className="flex items-center gap-[10px] transition-transform duration-300 hover:translate-x-[2px] group">
+                <FiMail className="w-4 text-brand-orange flex-shrink-0" aria-hidden="true" />
+                <a href="mailto:lumen.agencia1@gmail.com" className="text-white/60 text-[0.88rem] transition-colors duration-300 group-hover:text-white">
                   lumen.agencia1@gmail.com
                 </a>
               </div>
-              
-              <div className="flex items-center gap-3 transition duration-300 hover:translate-x-0.5">
-                <FiPhone className="w-4 text-orange-600 flex-shrink-0" aria-hidden="true" />
-                <a 
-                  href="tel:+123456789" 
-                  className="text-white/60 text-sm transition duration-300 hover:text-white"
-                >
-                  +54 9 3513 23-3866
+
+              <div className="flex items-center gap-[10px] transition-transform duration-300 hover:translate-x-[2px] group">
+                <FiPhone className="w-4 text-brand-orange flex-shrink-0" aria-hidden="true" />
+                <a href="tel:+5493513233866" className="text-white/60 text-[0.88rem] transition-colors duration-300 group-hover:text-white">
+                  +54 9 351 323-3866
                 </a>
               </div>
-              
-              <div className="flex items-center gap-3 transition duration-300 hover:translate-x-0.5">
-                <FiMapPin className="w-4 text-orange-600 flex-shrink-0" aria-hidden="true" />
-                {/* styles.contactText */}
-                <span className="text-white/60 text-sm">
+
+              <div className="flex items-center gap-[10px] transition-transform duration-300 hover:translate-x-[2px] group">
+                <FiMapPin className="w-4 text-brand-orange flex-shrink-0" aria-hidden="true" />
+                <span className="text-white/60 text-[0.88rem] transition-colors duration-300 group-hover:text-white">
                   Córdoba, Argentina
                 </span>
               </div>
             </div>
-
-            {/* Suscripción a Newsletter (Comentado) */}
           </div>
         </div>
 
-        {/* Sección Inferior del Footer */}
-        <div 
-          // styles.footerBottom: Separador y diseño responsivo para derechos y enlaces legales
-          className="border-t border-white/10 py-5 flex justify-between items-center flex-wrap gap-4 relative z-10 
-                     sm:flex-row sm:text-left sm:gap-x-8 sm:gap-y-0 
-                     flex-col text-center"
-        >
-          {/* styles.copyright */}
-          <p className="text-xs text-white/50 m-0 order-2 sm:order-1">
+        {/* Footer Bottom */}
+        <div className="border-t border-white/10 pt-5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+          <p className="text-[0.85rem] text-white/50 m-0 order-2 sm:order-1">
             © {currentYear} <strong className="text-white/70 font-semibold">Lúmen</strong>. Todos los derechos reservados.
           </p>
-          
-          {/* styles.legalLinks */}
-          <div className="flex items-center gap-3 flex-wrap order-1 sm:order-2 justify-center">
-            <a 
-              href="#privacidad" 
-              // styles.legalLink
-              className="text-white/50 text-xs transition duration-300 hover:text-white"
-              aria-label="Política de privacidad"
-            >
+
+          <div className="flex items-center gap-3 flex-wrap justify-center order-1 sm:order-2">
+            <a href="#privacidad" className="text-white/50 text-[0.8rem] transition-colors duration-300 hover:text-white">
               Privacidad
             </a>
-            {/* styles.separator */}
-            <span className="text-white/30 text-xs">•</span>
-            <a 
-              href="#terminos" 
-              className="text-white/50 text-xs transition duration-300 hover:text-white"
-              aria-label="Términos de servicio"
-            >
+            <span className="text-white/30 text-[0.8rem]">•</span>
+            <a href="#terminos" className="text-white/50 text-[0.8rem] transition-colors duration-300 hover:text-white">
               Términos
             </a>
-            <span className="text-white/30 text-xs">•</span>
-            <a 
-              href="#cookies" 
-              className="text-white/50 text-xs transition duration-300 hover:text-white"
-              aria-label="Política de cookies"
-            >
+            <span className="text-white/30 text-[0.8rem]">•</span>
+            <a href="#cookies" className="text-white/50 text-[0.8rem] transition-colors duration-300 hover:text-white">
               Cookies
             </a>
           </div>
